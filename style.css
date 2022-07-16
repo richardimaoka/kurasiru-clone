@@ -84,7 +84,14 @@ body {
 }
 
 /* .bottom-menu {
-}
+}*/
 
 .footer {
-} */
+  background-color: white;
+}
+
+.footer-container {
+  margin: 0 auto;
+  padding: 10px 0px;
+  max-width: 1020px;
+}
