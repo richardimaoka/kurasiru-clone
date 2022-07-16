@@ -4,7 +4,7 @@ body {
     "Hiragino Sans", Meiryo, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: rgb(219, 219, 219);
+  background-color: white;
 }
 
 .header {
@@ -97,7 +97,6 @@ body {
 
 .bottom-grid-logo {
   grid-column: 1/2;
-  grid-row: 1/8;
 }
 
 .footer {
