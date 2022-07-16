@@ -24,4 +24,23 @@ body {
 .main {
   display: grid;
   justify-content: center;
+  grid-template-columns: 680px 300px;
 }
+
+.contents {
+  grid-column: 1 / 2;
+}
+
+.sidebar {
+  grid-column: 2 / 3;
+}
+
+.download-section {
+  background-color: #efedeb;
+}
+
+/* .bottom-menu {
+}
+
+.footer {
+} */
