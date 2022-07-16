@@ -4,4 +4,17 @@ body {
     "Hiragino Sans", Meiryo, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: rgb(219, 219, 219);
+}
+
+.header {
+  background-color: white;
+  height: 64px;
+}
+
+.header-container {
+  display: flex;
+  margin: 0 auto;
+  max-width: 1340px;
+  justify-content: space-between;
 }
