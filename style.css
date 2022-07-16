@@ -10,6 +10,9 @@ body {
 .header {
   background-color: white;
   height: 64px;
+  border-bottom: 1px solid #d5d2cd;
+  box-shadow: 0px 5px 3px #f0f0f0;
+  margin-bottom: 10px;
 }
 
 .header-container {
@@ -31,9 +34,22 @@ body {
   border-width: 1px;
   border-color: #c0c0c0;
   border-style: solid;
-  height: 24px;
+  height: 32px;
   border-radius: 2px;
   min-width: 200px;
+}
+
+.header-button {
+  display: block;
+  height: 32px;
+  background-color: white;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #c0c0c0;
+  border-radius: 2px;
+  color: #635f5a;
+  font-size: 14px;
+  padding: 0px 12px;
 }
 
 .main {
