@@ -44,6 +44,24 @@ body {
   padding: 8px;
   background-color: white;
 }
+
+.ranking {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.ranking-title {
+  grid-column: 1/4;
+}
+
+.ranking-button {
+  grid-column: 1/4;
+  padding: 8px;
+  color: #dbb34d;
+  font-weight: 700;
+  border: 2px solid #dbb34d;
+}
+
 .download-section {
   background-color: #efedeb;
 }
