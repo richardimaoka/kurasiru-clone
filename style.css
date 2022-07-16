@@ -45,6 +45,10 @@ body {
   background-color: white;
 }
 
+.ranking-and-recipes {
+  display: flex;
+}
+
 .ranking {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -60,6 +64,19 @@ body {
   color: #dbb34d;
   font-weight: 700;
   border: 2px solid #dbb34d;
+}
+
+.read-recipes {
+  display: grid;
+  grid-template-columns: 64px 1fr;
+}
+
+.read-recipes-title {
+  grid-column: 1/3;
+}
+
+.read-recipes-image {
+  grid-column: 1/2;
 }
 
 .download-section {
