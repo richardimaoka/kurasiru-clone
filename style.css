@@ -35,6 +35,15 @@ body {
   grid-column: 2 / 3;
 }
 
+.carousel-footer {
+  padding: 16px 8px;
+  background-color: #f4f2f0;
+}
+
+.carousel-footer-keyword {
+  padding: 8px;
+  background-color: white;
+}
 .download-section {
   background-color: #efedeb;
 }
