@@ -154,20 +154,55 @@ body {
 }
 
 .ranking-middle-gap {
-  width: 20px;
+  flex-grow: 0;
+  flex-shrink: 0;
+  flex-basis: 40px;
+}
+
+.ranking-middle-gap > div {
+  height: 100%;
+  width: 0px;
+  border-right: solid 1px #efedeb;
+  margin: 0 auto;
 }
 
 .read-recipes {
   display: grid;
   grid-template-columns: 64px 1fr;
+  column-gap: 10px;
+  row-gap: 10px;
 }
 
 .read-recipes-title {
   grid-column: 1/3;
+  margin-bottom: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.read-recipes-read {
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.read-recipes-see-all {
+  text-align: end;
+  font-size: 14px;
+  font-weight: 700;
+  color: #93918f;
 }
 
 .read-recipes-image {
   grid-column: 1/2;
+  border-radius: 8px;
+}
+
+.read-recipes-text {
+  font-weight: 700;
+  font-size: 14px;
+  overflow: hidden;
+  height: 64px;
 }
 
 .popular-keyword-recipes-collection {
