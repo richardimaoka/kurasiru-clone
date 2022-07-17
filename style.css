@@ -81,6 +81,10 @@ body {
   grid-column: 2 / 3;
 }
 
+.carousel {
+  margin-bottom: 20px;
+}
+
 .carousel-footer {
   padding: 16px 8px;
   background-color: #f4f2f0;
@@ -95,22 +99,62 @@ body {
   display: flex;
 }
 
-.ranking {
+.ranking-grid {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
+  column-gap: 16px;
 }
 
 .ranking-title {
   grid-column: 1/4;
+  font-weight: 700;
+  font-size: 20px;
+  margin-bottom: 16px;
+}
+
+.ranking-tag {
+  background-color: orange;
+  border-radius: 4px;
+  width: 48px;
+  height: 22px;
+  margin-bottom: 8px;
+  /* font */
+  color: white;
+  font-weight: 700;
+  font-size: 14px;
+  text-align: center;
+  line-height: 22px;
+}
+
+.gold {
+  background-color: #dbb34d;
+}
+
+.silver {
+  background-color: #c3c7c3;
+}
+
+.broinze {
+  background-color: #aa6443;
+}
+
+.ranking-img {
+  border-radius: 8px;
+  margin-bottom: 20px;
 }
 
 .ranking-button {
   grid-column: 1/4;
-  padding: 8px;
+  display: block;
+  padding: 12px;
   color: #dbb34d;
   font-weight: 700;
   border: 2px solid #dbb34d;
   background-color: inherit;
+}
+
+.ranking-middle-gap {
+  width: 20px;
 }
 
 .read-recipes {
