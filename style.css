@@ -1,7 +1,7 @@
 body {
   margin: 0;
   font-family: BlinkMacSystemFont, "Segoe UI", "Hiragino Kaku Gothic ProN",
-    "Hiragino Sans", Meiryo, sans-serif;
+    "Hiragino Sans", Meiryo, sans;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: white;
@@ -22,6 +22,12 @@ body {
   max-width: 1340px;
   justify-content: space-between;
   align-items: center;
+  gap: 20px;
+}
+
+.header-logo {
+  display: block;
+  padding-right: 20px;
 }
 
 .header-menu-item {
@@ -30,13 +36,20 @@ body {
 }
 
 .header-search-box {
-  background-color: #f0f0f0;
+  display: block;
+  flex-basis: 200px;
+  flex-grow: 1;
+  text-indent: 10px;
   border-width: 1px;
   border-color: #c0c0c0;
   border-style: solid;
+  border-radius: 4px;
   height: 32px;
-  border-radius: 2px;
-  min-width: 200px;
+  background-color: #f0f0f0;
+}
+
+.header-search-box::placeholder {
+  color: #c0bfbd;
 }
 
 .header-button {
@@ -46,7 +59,7 @@ body {
   border-width: 1px;
   border-style: solid;
   border-color: #c0c0c0;
-  border-radius: 2px;
+  border-radius: 4px;
   color: #635f5a;
   font-size: 14px;
   padding: 0px 12px;
