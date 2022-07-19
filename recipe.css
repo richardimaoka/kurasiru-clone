@@ -1,0 +1,84 @@
+body {
+  margin: 0;
+  font-family: BlinkMacSystemFont, "Segoe UI", "Hiragino Kaku Gothic ProN",
+    "Hiragino Sans", Meiryo, sans;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: white;
+}
+
+.header {
+  background-color: white;
+  height: 64px;
+  border-bottom: 1px solid #d5d2cd;
+  box-shadow: 0px 5px 3px #f0f0f0;
+  margin-bottom: 10px;
+}
+
+.header-container {
+  display: flex;
+  margin: 0 auto;
+  padding: 10px 0px;
+  max-width: 1340px;
+  min-width: 1040px;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+.header-logo {
+  display: block;
+
+  padding-right: 20px;
+}
+
+.header-menu-item {
+  color: #635f5a;
+  font-weight: 700;
+}
+
+.header-search-box {
+  display: block;
+  flex-basis: 200px;
+  flex-grow: 1;
+  text-indent: 10px;
+  border-width: 1px;
+  border-color: #c0c0c0;
+  border-style: solid;
+  border-radius: 4px;
+  height: 32px;
+  background-color: #f0f0f0;
+}
+
+.header-search-box::placeholder {
+  color: #c0bfbd;
+}
+
+.header-button {
+  display: block;
+  height: 32px;
+  background-color: white;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #c0c0c0;
+  border-radius: 4px;
+  color: #635f5a;
+  font-size: 14px;
+  padding: 0px 12px;
+}
+
+.main {
+  display: grid;
+  justify-content: center;
+  grid-template-columns: 680px 300px;
+  column-gap: 40px;
+  background-color: white;
+}
+
+.contents {
+  grid-column: 1 / 2;
+}
+
+.sidebar {
+  grid-column: 2 / 3;
+}
