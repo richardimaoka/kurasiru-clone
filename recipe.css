@@ -79,6 +79,9 @@ body {
   grid-column: 1 / 2;
 }
 
+.recipe-contaier {
+}
+
 .sidebar {
   grid-column: 2 / 3;
 }
