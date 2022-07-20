@@ -79,7 +79,17 @@ body {
   grid-column: 1 / 2;
 }
 
-.recipe-contaier {
+.recipe-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.ingredient {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0px;
+  border-bottom: solid 1px #f4f2f0;
 }
 
 .sidebar {
