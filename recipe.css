@@ -11,7 +11,7 @@ body {
   background-color: white;
   height: 64px;
   border-bottom: 1px solid #d5d2cd;
-  box-shadow: 0px 5px 3px #f0f0f0;
+  box-shadow: 0px 2px 3px #f0f0f0;
   margin-bottom: 10px;
 }
 
@@ -65,6 +65,38 @@ body {
   color: #635f5a;
   font-size: 14px;
   padding: 0px 12px;
+}
+
+.breadcrumb {
+  background-color: white;
+  height: 32px;
+  border-bottom: 1px solid #d5d2cd;
+  margin-bottom: 10px;
+}
+
+.breadcrumb-container {
+  display: flex;
+  column-gap: 10px;
+  width: 1020px;
+  margin: 0 auto;
+}
+
+.breadcrumb-ancestor > a {
+  color: #93918f;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.breadcrumb-current > a {
+  color: black;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.breadcrumb-gt {
+  color: #93918f;
+  font-size: 14px;
+  line-height: 24px;
 }
 
 .main {
