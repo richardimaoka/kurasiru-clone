@@ -151,3 +151,17 @@ body {
 .sidebar {
   grid-column: 2 / 3;
 }
+
+.ranking-container {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 10px;
+}
+
+.ranking-image {
+  grid-column: 1/2;
+}
+
+.ranking-info {
+  grid-column: 2/3;
+}
