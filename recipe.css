@@ -165,3 +165,32 @@ body {
 .ranking-info {
   grid-column: 2/3;
 }
+
+.ranking-position {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.ranking-description {
+  font-size: 12px;
+  height: 40px;
+}
+
+.views {
+  padding-right: 10px;
+  font-size: 10px;
+}
+
+.view-num {
+  padding-right: 20px;
+  font-size: 14px;
+}
+
+.saves {
+  padding-right: 10px;
+  font-size: 10px;
+}
+
+.save-num {
+  font-size: 14px;
+}
