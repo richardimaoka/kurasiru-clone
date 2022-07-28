@@ -148,6 +148,25 @@ body {
   border-bottom: solid 1px #f4f2f0;
 }
 
+.recipe-step-title {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.recipe-step-container {
+  list-style-type: none;
+  padding-inline-start: 0px;
+}
+
+.recipe-step {
+  display: flex;
+  column-gap: 10px;
+  padding: 10px 0px;
+  border-bottom: solid 1px #f4f2f0;
+  font-size: 17px;
+  line-height: 25px;
+}
+
 .sidebar {
   grid-column: 2 / 3;
 }
