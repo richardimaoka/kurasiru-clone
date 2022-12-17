@@ -26,7 +26,7 @@ func (r *queryResolver) Todos(ctx context.Context) ([]*model.Todo, error) {
 
 // Recipe is the resolver for the recipe field.
 func (r *queryResolver) Recipe(ctx context.Context, id *string) (*model.Recipe, error) {
-	filename := fmt.Sprintf("data/%s.json", *id)
+	filename := fmt.Sprintf("data/recipes/%s.json", *id)
 	data, err := os.ReadFile(filename)
 	if err != nil {
 		return nil, errors.New(fmt.Sprintf("recipe id = %s not found", *id))

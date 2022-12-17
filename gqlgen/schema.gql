@@ -14,10 +14,24 @@ type User {
   name: String!
 }
 
+type Ingredient {
+  item: String
+  amount: String
+}
+
+type Ingredients {
+  servings: String
+  list: [Ingredient]
+}
+
 type Recipe {
   id: ID
   title: String
   subTitle: String
+  introduction: String
+  cookingTime: String
+  expense: String
+  ingredients: Ingredients
 }
 
 type Query {
