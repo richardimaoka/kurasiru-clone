@@ -7,6 +7,12 @@ type NewTodo struct {
 	UserID string `json:"userId"`
 }
 
+type Recipe struct {
+	ID       *string `json:"id"`
+	Title    *string `json:"title"`
+	SubTitle *string `json:"subTitle"`
+}
+
 type Todo struct {
 	ID   string `json:"id"`
 	Text string `json:"text"`
