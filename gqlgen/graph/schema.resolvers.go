@@ -6,7 +6,10 @@ package graph
 
 import (
 	"context"
+	"encoding/json"
+	"errors"
 	"fmt"
+	"os"
 
 	"github.com/richardimaoka/kurasiru-clone/gqlgen/graph/model"
 )
@@ -19,6 +22,23 @@ func (r *mutationResolver) CreateTodo(ctx context.Context, input model.NewTodo) 
 // Todos is the resolver for the todos field.
 func (r *queryResolver) Todos(ctx context.Context) ([]*model.Todo, error) {
 	panic(fmt.Errorf("not implemented: Todos - todos"))
+}
+
+// Recipe is the resolver for the recipe field.
+func (r *queryResolver) Recipe(ctx context.Context, id *string) (*model.Recipe, error) {
+	filename := fmt.Sprintf("data/%s.json", *id)
+	data, err := os.ReadFile(filename)
+	if err != nil {
+		return nil, errors.New(fmt.Sprintf("recipe id = %s not found", *id))
+	}
+
+	var recipe model.Recipe
+	err = json.Unmarshal(data, &recipe)
+	if err != nil {
+		return nil, errors.New("internal server error")
+	}
+
+	return &recipe, nil
 }
 
 // Mutation returns MutationResolver implementation.
