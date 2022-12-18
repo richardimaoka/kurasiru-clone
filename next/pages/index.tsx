@@ -1,15 +1,4 @@
-import {
-  ApolloClient,
-  InMemoryCache,
-  ApolloProvider,
-  gql,
-  useQuery,
-} from "@apollo/client";
-
-const client = new ApolloClient({
-  uri: "http://localhost:8080/query",
-  cache: new InMemoryCache(),
-});
+import { gql, useQuery } from "@apollo/client";
 
 const GET_RECIPE = gql`
   query GetRecipe {
@@ -42,9 +31,5 @@ const Child = () => {
 };
 
 export default function Home() {
-  return (
-    <ApolloProvider client={client}>
-      <Child />
-    </ApolloProvider>
-  );
+  return <Child />;
 }
