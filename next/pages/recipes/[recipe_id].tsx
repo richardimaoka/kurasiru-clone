@@ -3,6 +3,7 @@ import { GetServerSideProps } from "next";
 import { ParsedUrlQuery } from "querystring";
 import { client } from "../../libs/apolloClient";
 import { GetRecipeQuery } from "../../libs/gql/graphql";
+import { css } from "@emotion/react";
 
 const GET_RECIPE = gql`
   query GetRecipe($recipeId: ID) {
@@ -91,7 +92,15 @@ const RecipePage = (props: GetRecipeQuery) => {
 
   // console.log(data);
 
-  return <div>RecipePage</div>;
+  return (
+    <div
+      css={css`
+        background-color: black;
+      `}
+    >
+      RecipePage
+    </div>
+  );
 };
 
 export default RecipePage;
