@@ -14,6 +14,12 @@ export type Scalars = {
   Float: number;
 };
 
+export type BreadcrumbItem = {
+  __typename?: 'BreadcrumbItem';
+  href?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+};
+
 export type Ingredient = {
   __typename?: 'Ingredient';
   amount?: Maybe<Scalars['String']>;
@@ -54,6 +60,7 @@ export type QueryRecipeArgs = {
 
 export type Recipe = {
   __typename?: 'Recipe';
+  breadcrums?: Maybe<Array<Maybe<BreadcrumbItem>>>;
   cookingTime?: Maybe<Scalars['String']>;
   expense?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['ID']>;

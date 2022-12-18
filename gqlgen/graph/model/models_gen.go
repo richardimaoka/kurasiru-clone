@@ -2,6 +2,11 @@
 
 package model
 
+type BreadcrumbItem struct {
+	Name *string `json:"name"`
+	Href *string `json:"href"`
+}
+
 type Ingredient struct {
 	Item   *string `json:"item"`
 	Amount *string `json:"amount"`
@@ -18,13 +23,14 @@ type NewTodo struct {
 }
 
 type Recipe struct {
-	ID           *string      `json:"id"`
-	Title        *string      `json:"title"`
-	SubTitle     *string      `json:"subTitle"`
-	Introduction *string      `json:"introduction"`
-	CookingTime  *string      `json:"cookingTime"`
-	Expense      *string      `json:"expense"`
-	Ingredients  *Ingredients `json:"ingredients"`
+	ID           *string           `json:"id"`
+	Title        *string           `json:"title"`
+	SubTitle     *string           `json:"subTitle"`
+	Introduction *string           `json:"introduction"`
+	CookingTime  *string           `json:"cookingTime"`
+	Expense      *string           `json:"expense"`
+	Ingredients  *Ingredients      `json:"ingredients"`
+	Breadcrums   []*BreadcrumbItem `json:"breadcrums"`
 }
 
 type Todo struct {

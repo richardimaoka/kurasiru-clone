@@ -1,6 +1,7 @@
 import { ApolloError, gql } from "@apollo/client";
 import { GetServerSideProps } from "next";
 import { ParsedUrlQuery } from "querystring";
+import { Breadcrumb } from "../../components/bradcrumb/Breadcrumb";
 import { Header } from "../../components/header/Header";
 import { client } from "../../libs/apolloClient";
 import { GetRecipeQuery } from "../../libs/gql/graphql";
@@ -69,7 +70,12 @@ export const getServerSideProps: GetServerSideProps<
 const RecipePage = (props: GetRecipeQuery) => {
   console.log(props);
 
-  return <Header />;
+  return (
+    <>
+      <Header />
+      <Breadcrumb />
+    </>
+  );
 };
 
 export default RecipePage;

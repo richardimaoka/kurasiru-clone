@@ -44,6 +44,11 @@ type DirectiveRoot struct {
 }
 
 type ComplexityRoot struct {
+	BreadcrumbItem struct {
+		Href func(childComplexity int) int
+		Name func(childComplexity int) int
+	}
+
 	Ingredient struct {
 		Amount func(childComplexity int) int
 		Item   func(childComplexity int) int
@@ -64,6 +69,7 @@ type ComplexityRoot struct {
 	}
 
 	Recipe struct {
+		Breadcrums   func(childComplexity int) int
 		CookingTime  func(childComplexity int) int
 		Expense      func(childComplexity int) int
 		ID           func(childComplexity int) int
@@ -108,6 +114,20 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 	ec := executionContext{nil, e}
 	_ = ec
 	switch typeName + "." + field {
+
+	case "BreadcrumbItem.href":
+		if e.complexity.BreadcrumbItem.Href == nil {
+			break
+		}
+
+		return e.complexity.BreadcrumbItem.Href(childComplexity), true
+
+	case "BreadcrumbItem.name":
+		if e.complexity.BreadcrumbItem.Name == nil {
+			break
+		}
+
+		return e.complexity.BreadcrumbItem.Name(childComplexity), true
 
 	case "Ingredient.amount":
 		if e.complexity.Ingredient.Amount == nil {
@@ -167,6 +187,13 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 		}
 
 		return e.complexity.Query.Todos(childComplexity), true
+
+	case "Recipe.breadcrums":
+		if e.complexity.Recipe.Breadcrums == nil {
+			break
+		}
+
+		return e.complexity.Recipe.Breadcrums(childComplexity), true
 
 	case "Recipe.cookingTime":
 		if e.complexity.Recipe.CookingTime == nil {
@@ -354,6 +381,11 @@ type Ingredients {
   list: [Ingredient]
 }
 
+type BreadcrumbItem {
+  name: String
+  href: String
+}
+
 type Recipe {
   id: ID
   title: String
@@ -362,6 +394,7 @@ type Recipe {
   cookingTime: String
   expense: String
   ingredients: Ingredients
+  breadcrums: [BreadcrumbItem]
 }
 
 type Query {
@@ -467,6 +500,88 @@ func (ec *executionContext) field___Type_fields_args(ctx context.Context, rawArg
 // endregion ************************** directives.gotpl **************************
 
 // region    **************************** field.gotpl *****************************
+
+func (ec *executionContext) _BreadcrumbItem_name(ctx context.Context, field graphql.CollectedField, obj *model.BreadcrumbItem) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_BreadcrumbItem_name(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Name, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*string)
+	fc.Result = res
+	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_BreadcrumbItem_name(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "BreadcrumbItem",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type String does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _BreadcrumbItem_href(ctx context.Context, field graphql.CollectedField, obj *model.BreadcrumbItem) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_BreadcrumbItem_href(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Href, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*string)
+	fc.Result = res
+	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_BreadcrumbItem_href(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "BreadcrumbItem",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type String does not have child fields")
+		},
+	}
+	return fc, nil
+}
 
 func (ec *executionContext) _Ingredient_item(ctx context.Context, field graphql.CollectedField, obj *model.Ingredient) (ret graphql.Marshaler) {
 	fc, err := ec.fieldContext_Ingredient_item(ctx, field)
@@ -807,6 +922,8 @@ func (ec *executionContext) fieldContext_Query_recipe(ctx context.Context, field
 				return ec.fieldContext_Recipe_expense(ctx, field)
 			case "ingredients":
 				return ec.fieldContext_Recipe_ingredients(ctx, field)
+			case "breadcrums":
+				return ec.fieldContext_Recipe_breadcrums(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type Recipe", field.Name)
 		},
@@ -1242,6 +1359,53 @@ func (ec *executionContext) fieldContext_Recipe_ingredients(ctx context.Context,
 				return ec.fieldContext_Ingredients_list(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type Ingredients", field.Name)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _Recipe_breadcrums(ctx context.Context, field graphql.CollectedField, obj *model.Recipe) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_Recipe_breadcrums(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Breadcrums, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.([]*model.BreadcrumbItem)
+	fc.Result = res
+	return ec.marshalOBreadcrumbItem2ᚕᚖgithubᚗcomᚋrichardimaokaᚋkurasiruᚑcloneᚋgqlgenᚋgraphᚋmodelᚐBreadcrumbItem(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_Recipe_breadcrums(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "Recipe",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "name":
+				return ec.fieldContext_BreadcrumbItem_name(ctx, field)
+			case "href":
+				return ec.fieldContext_BreadcrumbItem_href(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type BreadcrumbItem", field.Name)
 		},
 	}
 	return fc, nil
@@ -3334,6 +3498,35 @@ func (ec *executionContext) unmarshalInputNewTodo(ctx context.Context, obj inter
 
 // region    **************************** object.gotpl ****************************
 
+var breadcrumbItemImplementors = []string{"BreadcrumbItem"}
+
+func (ec *executionContext) _BreadcrumbItem(ctx context.Context, sel ast.SelectionSet, obj *model.BreadcrumbItem) graphql.Marshaler {
+	fields := graphql.CollectFields(ec.OperationContext, sel, breadcrumbItemImplementors)
+	out := graphql.NewFieldSet(fields)
+	var invalids uint32
+	for i, field := range fields {
+		switch field.Name {
+		case "__typename":
+			out.Values[i] = graphql.MarshalString("BreadcrumbItem")
+		case "name":
+
+			out.Values[i] = ec._BreadcrumbItem_name(ctx, field, obj)
+
+		case "href":
+
+			out.Values[i] = ec._BreadcrumbItem_href(ctx, field, obj)
+
+		default:
+			panic("unknown field " + strconv.Quote(field.Name))
+		}
+	}
+	out.Dispatch()
+	if invalids > 0 {
+		return graphql.Null
+	}
+	return out
+}
+
 var ingredientImplementors = []string{"Ingredient"}
 
 func (ec *executionContext) _Ingredient(ctx context.Context, sel ast.SelectionSet, obj *model.Ingredient) graphql.Marshaler {
@@ -3553,6 +3746,10 @@ func (ec *executionContext) _Recipe(ctx context.Context, sel ast.SelectionSet, o
 		case "ingredients":
 
 			out.Values[i] = ec._Recipe_ingredients(ctx, field, obj)
+
+		case "breadcrums":
+
+			out.Values[i] = ec._Recipe_breadcrums(ctx, field, obj)
 
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
@@ -4362,6 +4559,54 @@ func (ec *executionContext) marshalOBoolean2ᚖbool(ctx context.Context, sel ast
 	}
 	res := graphql.MarshalBoolean(*v)
 	return res
+}
+
+func (ec *executionContext) marshalOBreadcrumbItem2ᚕᚖgithubᚗcomᚋrichardimaokaᚋkurasiruᚑcloneᚋgqlgenᚋgraphᚋmodelᚐBreadcrumbItem(ctx context.Context, sel ast.SelectionSet, v []*model.BreadcrumbItem) graphql.Marshaler {
+	if v == nil {
+		return graphql.Null
+	}
+	ret := make(graphql.Array, len(v))
+	var wg sync.WaitGroup
+	isLen1 := len(v) == 1
+	if !isLen1 {
+		wg.Add(len(v))
+	}
+	for i := range v {
+		i := i
+		fc := &graphql.FieldContext{
+			Index:  &i,
+			Result: &v[i],
+		}
+		ctx := graphql.WithFieldContext(ctx, fc)
+		f := func(i int) {
+			defer func() {
+				if r := recover(); r != nil {
+					ec.Error(ctx, ec.Recover(ctx, r))
+					ret = nil
+				}
+			}()
+			if !isLen1 {
+				defer wg.Done()
+			}
+			ret[i] = ec.marshalOBreadcrumbItem2ᚖgithubᚗcomᚋrichardimaokaᚋkurasiruᚑcloneᚋgqlgenᚋgraphᚋmodelᚐBreadcrumbItem(ctx, sel, v[i])
+		}
+		if isLen1 {
+			f(i)
+		} else {
+			go f(i)
+		}
+
+	}
+	wg.Wait()
+
+	return ret
+}
+
+func (ec *executionContext) marshalOBreadcrumbItem2ᚖgithubᚗcomᚋrichardimaokaᚋkurasiruᚑcloneᚋgqlgenᚋgraphᚋmodelᚐBreadcrumbItem(ctx context.Context, sel ast.SelectionSet, v *model.BreadcrumbItem) graphql.Marshaler {
+	if v == nil {
+		return graphql.Null
+	}
+	return ec._BreadcrumbItem(ctx, sel, v)
 }
 
 func (ec *executionContext) unmarshalOID2ᚖstring(ctx context.Context, v interface{}) (*string, error) {

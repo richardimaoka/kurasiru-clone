@@ -24,6 +24,11 @@ type Ingredients {
   list: [Ingredient]
 }
 
+type BreadcrumbItem {
+  name: String
+  href: String
+}
+
 type Recipe {
   id: ID
   title: String
@@ -32,6 +37,7 @@ type Recipe {
   cookingTime: String
   expense: String
   ingredients: Ingredients
+  breadcrums: [BreadcrumbItem]
 }
 
 type Query {
