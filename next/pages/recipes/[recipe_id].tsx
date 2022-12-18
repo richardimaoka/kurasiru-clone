@@ -96,25 +96,12 @@ const RecipePage = (props: GetRecipeQuery) => {
         `}
       >
         <HeaderLogo />
-        <div
-          css={css`
-            display: flex;
-            margin: 0 auto;
-            padding: 10px 0px;
-            max-width: 1340px;
-            min-width: 1040px;
-            justify-content: space-between;
-            align-items: center;
-            gap: 20px;
-          `}
-        >
-          <HeaderMenuItem name="カテゴリ一覧" />
-          <HeaderMenuItem name="レシピを読む" />
-          <HeaderSearchBox />
-          <HeaderButton name="招待コードを使う" />
-          <HeaderButton name="無料会員登録" />
-          <HeaderButton name="ログイン" />
-        </div>
+        <HeaderMenuItem name="カテゴリ一覧" />
+        <HeaderMenuItem name="レシピを読む" />
+        <HeaderSearchBox />
+        <HeaderButton name="招待コードを使う" />
+        <HeaderButton name="無料会員登録" />
+        <HeaderButton name="ログイン" />
       </div>
     </header>
   );
