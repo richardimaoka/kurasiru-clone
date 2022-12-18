@@ -67,6 +67,7 @@ export const getServerSideProps: GetServerSideProps<
 
 const RecipePage = (props: GetRecipeQuery) => {
   console.log(props);
+
   // const router = useRouter();
   // const { recipe_id } = router.query;
   // const { loading, error, data } = useQuery(GET_RECIPE, {
