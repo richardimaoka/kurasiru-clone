@@ -37,7 +37,7 @@ type Recipe {
   cookingTime: String
   expense: String
   ingredients: Ingredients
-  breadcrums: [BreadcrumbItem]
+  breadcrumbs: [BreadcrumbItem]
 }
 
 type Query {

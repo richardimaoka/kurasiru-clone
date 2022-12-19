@@ -69,7 +69,7 @@ type ComplexityRoot struct {
 	}
 
 	Recipe struct {
-		Breadcrums   func(childComplexity int) int
+		Breadcrumbs  func(childComplexity int) int
 		CookingTime  func(childComplexity int) int
 		Expense      func(childComplexity int) int
 		ID           func(childComplexity int) int
@@ -188,12 +188,12 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.Query.Todos(childComplexity), true
 
-	case "Recipe.breadcrums":
-		if e.complexity.Recipe.Breadcrums == nil {
+	case "Recipe.breadcrumbs":
+		if e.complexity.Recipe.Breadcrumbs == nil {
 			break
 		}
 
-		return e.complexity.Recipe.Breadcrums(childComplexity), true
+		return e.complexity.Recipe.Breadcrumbs(childComplexity), true
 
 	case "Recipe.cookingTime":
 		if e.complexity.Recipe.CookingTime == nil {
@@ -394,7 +394,7 @@ type Recipe {
   cookingTime: String
   expense: String
   ingredients: Ingredients
-  breadcrums: [BreadcrumbItem]
+  breadcrumbs: [BreadcrumbItem]
 }
 
 type Query {
@@ -922,8 +922,8 @@ func (ec *executionContext) fieldContext_Query_recipe(ctx context.Context, field
 				return ec.fieldContext_Recipe_expense(ctx, field)
 			case "ingredients":
 				return ec.fieldContext_Recipe_ingredients(ctx, field)
-			case "breadcrums":
-				return ec.fieldContext_Recipe_breadcrums(ctx, field)
+			case "breadcrumbs":
+				return ec.fieldContext_Recipe_breadcrumbs(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type Recipe", field.Name)
 		},
@@ -1364,8 +1364,8 @@ func (ec *executionContext) fieldContext_Recipe_ingredients(ctx context.Context,
 	return fc, nil
 }
 
-func (ec *executionContext) _Recipe_breadcrums(ctx context.Context, field graphql.CollectedField, obj *model.Recipe) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Recipe_breadcrums(ctx, field)
+func (ec *executionContext) _Recipe_breadcrumbs(ctx context.Context, field graphql.CollectedField, obj *model.Recipe) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_Recipe_breadcrumbs(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -1378,7 +1378,7 @@ func (ec *executionContext) _Recipe_breadcrums(ctx context.Context, field graphq
 	}()
 	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
 		ctx = rctx // use context from middleware stack in children
-		return obj.Breadcrums, nil
+		return obj.Breadcrumbs, nil
 	})
 	if err != nil {
 		ec.Error(ctx, err)
@@ -1392,7 +1392,7 @@ func (ec *executionContext) _Recipe_breadcrums(ctx context.Context, field graphq
 	return ec.marshalOBreadcrumbItem2ᚕᚖgithubᚗcomᚋrichardimaokaᚋkurasiruᚑcloneᚋgqlgenᚋgraphᚋmodelᚐBreadcrumbItem(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_Recipe_breadcrums(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Recipe_breadcrumbs(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Recipe",
 		Field:      field,
@@ -3747,9 +3747,9 @@ func (ec *executionContext) _Recipe(ctx context.Context, sel ast.SelectionSet, o
 
 			out.Values[i] = ec._Recipe_ingredients(ctx, field, obj)
 
-		case "breadcrums":
+		case "breadcrumbs":
 
-			out.Values[i] = ec._Recipe_breadcrums(ctx, field, obj)
+			out.Values[i] = ec._Recipe_breadcrumbs(ctx, field, obj)
 
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))

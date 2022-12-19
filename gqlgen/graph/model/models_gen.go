@@ -30,7 +30,7 @@ type Recipe struct {
 	CookingTime  *string           `json:"cookingTime"`
 	Expense      *string           `json:"expense"`
 	Ingredients  *Ingredients      `json:"ingredients"`
-	Breadcrums   []*BreadcrumbItem `json:"breadcrums"`
+	Breadcrumbs  []*BreadcrumbItem `json:"breadcrumbs"`
 }
 
 type Todo struct {
