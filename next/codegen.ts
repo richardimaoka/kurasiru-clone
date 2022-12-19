@@ -10,6 +10,7 @@ const config: CodegenConfig = {
       plugins: [],
     },
   },
+  watch: ["pages/**/*.tsx", "../gqlgen/schema.gql"],
   hooks: { afterOneFileWrite: ["npx prettier --write"] },
 };
 
