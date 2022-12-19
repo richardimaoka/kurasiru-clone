@@ -12,6 +12,9 @@ export const BreadcrumbAncestor = ({ name, href }: BreadcrumbAncestorProps) => (
         color: #93918f;
         text-decoration: none;
         font-size: 14px;
+        &:hover {
+          border-bottom: 1px solid #b2b2b2;
+        }
       `}
       href={href}
     >
