@@ -14,6 +14,10 @@ const GET_RECIPE = gql`
       subTitle
       introduction
       cookingTime
+      breadcrumbs {
+        name
+        href
+      }
       ingredients {
         servings
         list {
@@ -68,13 +72,12 @@ export const getServerSideProps: GetServerSideProps<
   }
 };
 
-const RecipePage = (props: GetRecipeQuery) => {
-  console.log(props);
-
+const RecipePage = ({ recipe }: GetRecipeQuery) => {
+  console.log(recipe?.breadcrumbs);
   return (
     <>
       <Header />
-      <Breadcrumb />
+      <Breadcrumb breadcrumbs={recipe?.breadcrumbs} />
     </>
   );
 };
