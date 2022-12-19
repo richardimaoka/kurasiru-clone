@@ -88,34 +88,11 @@ export type User = {
   name: Scalars["String"];
 };
 
-export type GetRecipeQueryVariables = Exact<{ [key: string]: never }>;
-
-export type GetRecipeQuery = {
-  __typename?: "Query";
-  recipe?: {
-    __typename?: "Recipe";
-    id?: string | null;
-    title?: string | null;
-    subTitle?: string | null;
-    introduction?: string | null;
-    cookingTime?: string | null;
-    ingredients?: {
-      __typename?: "Ingredients";
-      servings?: string | null;
-      list?: Array<{
-        __typename?: "Ingredient";
-        item?: string | null;
-        amount?: string | null;
-      } | null> | null;
-    } | null;
-  } | null;
-};
-
-export type GetRecipeeeeeQueryVariables = Exact<{
+export type GetRecipeQueryVariables = Exact<{
   recipeId?: InputMaybe<Scalars["ID"]>;
 }>;
 
-export type GetRecipeeeeeQuery = {
+export type GetRecipeQuery = {
   __typename?: "Query";
   recipe?: {
     __typename?: "Recipe";
@@ -148,79 +125,6 @@ export const GetRecipeDocument = {
       kind: "OperationDefinition",
       operation: "query",
       name: { kind: "Name", value: "GetRecipe" },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "recipe" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "id" },
-                value: {
-                  kind: "StringValue",
-                  value: "f488a1b0-9a53-4bbb-8c9c-e4e880f998ab",
-                  block: false,
-                },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "id" } },
-                { kind: "Field", name: { kind: "Name", value: "title" } },
-                { kind: "Field", name: { kind: "Name", value: "subTitle" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "introduction" },
-                },
-                { kind: "Field", name: { kind: "Name", value: "cookingTime" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "ingredients" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "servings" },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "list" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "item" },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "amount" },
-                            },
-                          ],
-                        },
-                      },
-                    ],
-                  },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<GetRecipeQuery, GetRecipeQueryVariables>;
-export const GetRecipeeeeeDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "query",
-      name: { kind: "Name", value: "GetRecipeeeee" },
       variableDefinitions: [
         {
           kind: "VariableDefinition",
@@ -310,4 +214,4 @@ export const GetRecipeeeeeDocument = {
       },
     },
   ],
-} as unknown as DocumentNode<GetRecipeeeeeQuery, GetRecipeeeeeQueryVariables>;
+} as unknown as DocumentNode<GetRecipeQuery, GetRecipeQueryVariables>;
