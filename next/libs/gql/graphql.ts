@@ -64,7 +64,7 @@ export type QueryRecipeArgs = {
 
 export type Recipe = {
   __typename?: "Recipe";
-  breadcrums?: Maybe<Array<Maybe<BreadcrumbItem>>>;
+  breadcrumbs?: Maybe<Array<Maybe<BreadcrumbItem>>>;
   cookingTime?: Maybe<Scalars["String"]>;
   expense?: Maybe<Scalars["String"]>;
   id?: Maybe<Scalars["ID"]>;
@@ -104,6 +104,36 @@ export type GetRecipeQuery = {
       servings?: string | null;
       list?: Array<{
         __typename?: "Ingredient";
+        item?: string | null;
+        amount?: string | null;
+      } | null> | null;
+    } | null;
+  } | null;
+};
+
+export type GetRecipeeeeeQueryVariables = Exact<{
+  recipeId?: InputMaybe<Scalars["ID"]>;
+}>;
+
+export type GetRecipeeeeeQuery = {
+  __typename?: "Query";
+  recipe?: {
+    __typename?: "Recipe";
+    id?: string | null;
+    title?: string | null;
+    subTitle?: string | null;
+    introduction?: string | null;
+    cookingTime?: string | null;
+    breadcrumbs?: Array<{
+      __typename?: "BreadcrumbItem";
+      name?: string | null;
+      href?: string | null;
+    } | null> | null;
+    ingredients?: {
+      __typename?: "Ingredients";
+      servings?: string | null;
+      list?: Array<{
+        __typename: "Ingredient";
         item?: string | null;
         amount?: string | null;
       } | null> | null;
@@ -184,3 +214,100 @@ export const GetRecipeDocument = {
     },
   ],
 } as unknown as DocumentNode<GetRecipeQuery, GetRecipeQueryVariables>;
+export const GetRecipeeeeeDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "GetRecipeeeee" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "recipeId" },
+          },
+          type: { kind: "NamedType", name: { kind: "Name", value: "ID" } },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "recipe" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "id" },
+                value: {
+                  kind: "Variable",
+                  name: { kind: "Name", value: "recipeId" },
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "title" } },
+                { kind: "Field", name: { kind: "Name", value: "subTitle" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "introduction" },
+                },
+                { kind: "Field", name: { kind: "Name", value: "cookingTime" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "breadcrumbs" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "name" } },
+                      { kind: "Field", name: { kind: "Name", value: "href" } },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "ingredients" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "servings" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "list" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "item" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "amount" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "__typename" },
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<GetRecipeeeeeQuery, GetRecipeeeeeQueryVariables>;
