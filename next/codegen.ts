@@ -8,6 +8,10 @@ const config: CodegenConfig = {
     "libs/gql/": {
       preset: "client",
       plugins: [],
+      config: {
+        avoidOptionals: true,
+        nonOptionalTypename: true,
+      },
     },
   },
   watch: ["pages/**/*.tsx", "../gqlgen/schema.gql"],
