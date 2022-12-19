@@ -10,6 +10,7 @@ const config: CodegenConfig = {
       plugins: [],
     },
   },
+  hooks: { afterOneFileWrite: ["npx prettier --write"] },
 };
 
 export default config;

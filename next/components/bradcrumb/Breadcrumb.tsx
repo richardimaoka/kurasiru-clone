@@ -3,6 +3,8 @@ import { BreadcrumbAncestor } from "./BreadcrumbAncestor";
 import { BreadcrumbCurrent } from "./BreadcrumbCurrent";
 import { BreadcrumbGreaterThan } from "./BreadcrumbGreaterThan";
 
+export interface BreadcrumbProps {}
+
 export const Breadcrumb = () => (
   <section
     css={css`

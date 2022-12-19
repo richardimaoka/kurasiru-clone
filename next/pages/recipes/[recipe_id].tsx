@@ -19,6 +19,7 @@ const GET_RECIPE = gql`
         list {
           item
           amount
+          __typename
         }
       }
     }
