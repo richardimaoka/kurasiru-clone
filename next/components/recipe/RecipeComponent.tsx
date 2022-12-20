@@ -53,7 +53,13 @@ export const RecipeComponent = ({ recipe }: RecipeProps): JSX.Element => {
               }
             `}
           >
-            <div>
+            <div
+              css={css`
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+              `}
+            >
               <VideoComponent fragment={recipe.video} />
             </div>
           </section>
