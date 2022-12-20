@@ -1,7 +1,5 @@
-const Child = () => {
-  return <div>Child</div>;
-};
+import { Layout } from "../components/layouts/Layout";
 
 export default function Home() {
-  return <Child />;
+  return <Layout></Layout>;
 }
