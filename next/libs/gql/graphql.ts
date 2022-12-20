@@ -70,9 +70,15 @@ export type Recipe = {
   id?: Maybe<Scalars["ID"]>;
   ingredients?: Maybe<Ingredients>;
   introduction?: Maybe<Scalars["String"]>;
+  steps?: Maybe<Array<Maybe<Step>>>;
   subTitle?: Maybe<Scalars["String"]>;
   title?: Maybe<Scalars["String"]>;
   video?: Maybe<Video>;
+};
+
+export type Step = {
+  __typename: "Step";
+  description?: Maybe<Scalars["String"]>;
 };
 
 export type Todo = {

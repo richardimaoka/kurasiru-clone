@@ -35,6 +35,10 @@ type Video {
   type: String
 }
 
+type Step {
+  description: String
+}
+
 type Recipe {
   id: ID
   title: String
@@ -45,6 +49,7 @@ type Recipe {
   ingredients: Ingredients
   breadcrumbs: [BreadcrumbItem]
   video: Video
+  steps: [Step]
 }
 
 type Query {

@@ -75,9 +75,14 @@ type ComplexityRoot struct {
 		ID           func(childComplexity int) int
 		Ingredients  func(childComplexity int) int
 		Introduction func(childComplexity int) int
+		Steps        func(childComplexity int) int
 		SubTitle     func(childComplexity int) int
 		Title        func(childComplexity int) int
 		Video        func(childComplexity int) int
+	}
+
+	Step struct {
+		Description func(childComplexity int) int
 	}
 
 	Todo struct {
@@ -237,6 +242,13 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.Recipe.Introduction(childComplexity), true
 
+	case "Recipe.steps":
+		if e.complexity.Recipe.Steps == nil {
+			break
+		}
+
+		return e.complexity.Recipe.Steps(childComplexity), true
+
 	case "Recipe.subTitle":
 		if e.complexity.Recipe.SubTitle == nil {
 			break
@@ -257,6 +269,13 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 		}
 
 		return e.complexity.Recipe.Video(childComplexity), true
+
+	case "Step.description":
+		if e.complexity.Step.Description == nil {
+			break
+		}
+
+		return e.complexity.Step.Description(childComplexity), true
 
 	case "Todo.done":
 		if e.complexity.Todo.Done == nil {
@@ -427,6 +446,10 @@ type Video {
   type: String
 }
 
+type Step {
+  description: String
+}
+
 type Recipe {
   id: ID
   title: String
@@ -437,6 +460,7 @@ type Recipe {
   ingredients: Ingredients
   breadcrumbs: [BreadcrumbItem]
   video: Video
+  steps: [Step]
 }
 
 type Query {
@@ -968,6 +992,8 @@ func (ec *executionContext) fieldContext_Query_recipe(ctx context.Context, field
 				return ec.fieldContext_Recipe_breadcrumbs(ctx, field)
 			case "video":
 				return ec.fieldContext_Recipe_video(ctx, field)
+			case "steps":
+				return ec.fieldContext_Recipe_steps(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type Recipe", field.Name)
 		},
@@ -1499,6 +1525,92 @@ func (ec *executionContext) fieldContext_Recipe_video(ctx context.Context, field
 				return ec.fieldContext_Video_type(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type Video", field.Name)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _Recipe_steps(ctx context.Context, field graphql.CollectedField, obj *model.Recipe) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_Recipe_steps(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Steps, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.([]*model.Step)
+	fc.Result = res
+	return ec.marshalOStep2ᚕᚖgithubᚗcomᚋrichardimaokaᚋkurasiruᚑcloneᚋgqlgenᚋgraphᚋmodelᚐStep(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_Recipe_steps(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "Recipe",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "description":
+				return ec.fieldContext_Step_description(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type Step", field.Name)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _Step_description(ctx context.Context, field graphql.CollectedField, obj *model.Step) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_Step_description(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Description, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*string)
+	fc.Result = res
+	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_Step_description(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "Step",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type String does not have child fields")
 		},
 	}
 	return fc, nil
@@ -3971,6 +4083,35 @@ func (ec *executionContext) _Recipe(ctx context.Context, sel ast.SelectionSet, o
 
 			out.Values[i] = ec._Recipe_video(ctx, field, obj)
 
+		case "steps":
+
+			out.Values[i] = ec._Recipe_steps(ctx, field, obj)
+
+		default:
+			panic("unknown field " + strconv.Quote(field.Name))
+		}
+	}
+	out.Dispatch()
+	if invalids > 0 {
+		return graphql.Null
+	}
+	return out
+}
+
+var stepImplementors = []string{"Step"}
+
+func (ec *executionContext) _Step(ctx context.Context, sel ast.SelectionSet, obj *model.Step) graphql.Marshaler {
+	fields := graphql.CollectFields(ec.OperationContext, sel, stepImplementors)
+	out := graphql.NewFieldSet(fields)
+	var invalids uint32
+	for i, field := range fields {
+		switch field.Name {
+		case "__typename":
+			out.Values[i] = graphql.MarshalString("Step")
+		case "description":
+
+			out.Values[i] = ec._Step_description(ctx, field, obj)
+
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
@@ -4938,6 +5079,54 @@ func (ec *executionContext) marshalORecipe2ᚖgithubᚗcomᚋrichardimaokaᚋkur
 		return graphql.Null
 	}
 	return ec._Recipe(ctx, sel, v)
+}
+
+func (ec *executionContext) marshalOStep2ᚕᚖgithubᚗcomᚋrichardimaokaᚋkurasiruᚑcloneᚋgqlgenᚋgraphᚋmodelᚐStep(ctx context.Context, sel ast.SelectionSet, v []*model.Step) graphql.Marshaler {
+	if v == nil {
+		return graphql.Null
+	}
+	ret := make(graphql.Array, len(v))
+	var wg sync.WaitGroup
+	isLen1 := len(v) == 1
+	if !isLen1 {
+		wg.Add(len(v))
+	}
+	for i := range v {
+		i := i
+		fc := &graphql.FieldContext{
+			Index:  &i,
+			Result: &v[i],
+		}
+		ctx := graphql.WithFieldContext(ctx, fc)
+		f := func(i int) {
+			defer func() {
+				if r := recover(); r != nil {
+					ec.Error(ctx, ec.Recover(ctx, r))
+					ret = nil
+				}
+			}()
+			if !isLen1 {
+				defer wg.Done()
+			}
+			ret[i] = ec.marshalOStep2ᚖgithubᚗcomᚋrichardimaokaᚋkurasiruᚑcloneᚋgqlgenᚋgraphᚋmodelᚐStep(ctx, sel, v[i])
+		}
+		if isLen1 {
+			f(i)
+		} else {
+			go f(i)
+		}
+
+	}
+	wg.Wait()
+
+	return ret
+}
+
+func (ec *executionContext) marshalOStep2ᚖgithubᚗcomᚋrichardimaokaᚋkurasiruᚑcloneᚋgqlgenᚋgraphᚋmodelᚐStep(ctx context.Context, sel ast.SelectionSet, v *model.Step) graphql.Marshaler {
+	if v == nil {
+		return graphql.Null
+	}
+	return ec._Step(ctx, sel, v)
 }
 
 func (ec *executionContext) unmarshalOString2ᚖstring(ctx context.Context, v interface{}) (*string, error) {
