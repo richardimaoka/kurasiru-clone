@@ -126,13 +126,19 @@ export type RecipeComponentFragment = {
       amount?: string | null;
     } | null> | null;
   } | null;
-  video?: {
-    __typename: "Video";
-    thumbnailUrl?: string | null;
-    source?: string | null;
-    type?: string | null;
-  } | null;
+  video?:
+    | ({ __typename: "Video" } & {
+        " $fragmentRefs"?: { VideoComponentFragment: VideoComponentFragment };
+      })
+    | null;
 } & { " $fragmentName"?: "RecipeComponentFragment" };
+
+export type VideoComponentFragment = {
+  __typename: "Video";
+  thumbnailUrl?: string | null;
+  source?: string | null;
+  type?: string | null;
+} & { " $fragmentName"?: "VideoComponentFragment" };
 
 export type GetRecipeQueryVariables = Exact<{
   recipeId?: InputMaybe<Scalars["ID"]>;
@@ -167,6 +173,27 @@ export const BreadCrumbAncestorFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<BreadCrumbAncestorFragment, unknown>;
+export const VideoComponentFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "VideoComponent" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "Video" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "thumbnailUrl" } },
+          { kind: "Field", name: { kind: "Name", value: "source" } },
+          { kind: "Field", name: { kind: "Name", value: "type" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<VideoComponentFragment, unknown>;
 export const RecipeComponentFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -233,11 +260,9 @@ export const RecipeComponentFragmentDoc = {
               kind: "SelectionSet",
               selections: [
                 {
-                  kind: "Field",
-                  name: { kind: "Name", value: "thumbnailUrl" },
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "VideoComponent" },
                 },
-                { kind: "Field", name: { kind: "Name", value: "source" } },
-                { kind: "Field", name: { kind: "Name", value: "type" } },
               ],
             },
           },
@@ -245,6 +270,7 @@ export const RecipeComponentFragmentDoc = {
       },
     },
     ...BreadCrumbAncestorFragmentDoc.definitions,
+    ...VideoComponentFragmentDoc.definitions,
   ],
 } as unknown as DocumentNode<RecipeComponentFragment, unknown>;
 export const GetRecipeDocument = {

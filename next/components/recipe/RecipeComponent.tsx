@@ -1,6 +1,7 @@
-import { Breadcrumb } from "../bradcrumb/Breadcrumb";
-import { Recipe, RecipeComponentFragment } from "../../libs/gql/graphql";
 import { graphql } from "../../libs/gql/gql";
+import { RecipeComponentFragment } from "../../libs/gql/graphql";
+import { Breadcrumb } from "../bradcrumb/Breadcrumb";
+import { VideoComponent } from "../video/VideoComponent";
 
 graphql(`
   fragment RecipeComponent on Recipe {
@@ -21,9 +22,7 @@ graphql(`
       }
     }
     video {
-      thumbnailUrl
-      source
-      type
+      ...VideoComponent
     }
   }
 `);
@@ -33,5 +32,10 @@ export interface RecipeProps {
 }
 
 export const RecipeComponent = ({ recipe }: RecipeProps): JSX.Element => {
-  return <Breadcrumb breadcrumbs={recipe.breadcrumbs} />;
+  return (
+    <>
+      <Breadcrumb breadcrumbs={recipe.breadcrumbs} />
+      {recipe.video ? <VideoComponent fragment={recipe.video} /> : <></>}
+    </>
+  );
 };
