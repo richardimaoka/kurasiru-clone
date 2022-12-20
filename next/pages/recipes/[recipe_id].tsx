@@ -1,15 +1,13 @@
-import { ApolloError, gql } from "@apollo/client";
+import { ApolloError } from "@apollo/client";
 import { GetServerSideProps } from "next";
 import { ParsedUrlQuery } from "querystring";
 import { Breadcrumb } from "../../components/bradcrumb/Breadcrumb";
-import { fragmentBreadCrumbAncestor } from "../../components/bradcrumb/BreadcrumbAncestor";
 import { Header } from "../../components/header/Header";
 import { client } from "../../libs/apolloClient";
+import { graphql } from "../../libs/gql/gql";
 import { GetRecipeQuery } from "../../libs/gql/graphql";
 
-const GET_RECIPE = gql`
-  ${fragmentBreadCrumbAncestor}
-
+const GET_RECIPE = graphql(`
   query GetRecipe($recipeId: ID) {
     recipe(id: $recipeId) {
       id
@@ -30,7 +28,7 @@ const GET_RECIPE = gql`
       }
     }
   }
-`;
+`);
 
 const notFoundError = (error: any): boolean => {
   return (
@@ -56,7 +54,7 @@ export const getServerSideProps: GetServerSideProps<
   }
 
   try {
-    const { data } = await client.query<GetRecipeQuery>({
+    const { data } = await client.query({
       query: GET_RECIPE,
       variables: {
         recipeId: context.params.recipe_id,
