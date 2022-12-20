@@ -1,7 +1,6 @@
 import { css } from "@emotion/react";
 import { FragmentType, useFragment } from "../../libs/gql";
 import { graphql } from "../../libs/gql/gql";
-import { RecipeComponentFragment } from "../../libs/gql/graphql";
 import { Breadcrumb } from "../bradcrumb/Breadcrumb";
 import { DescriptionComponent } from "./DescriptionComponent";
 import { IngredientList } from "./IngredientListing";
@@ -9,12 +8,7 @@ import { VideoComponent } from "./VideoComponent";
 
 const RecipeComponent_Fragment = graphql(`
   fragment RecipeComponent on Recipe {
-    id
-    title
-    subTitle
-    introduction
-    cookingTime
-    expense
+    ...DescriptionComponent_Fragment
     breadcrumbs {
       ...BreadCrumbAncestor
     }

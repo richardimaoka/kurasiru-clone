@@ -1,14 +1,26 @@
 import { css } from "@emotion/react";
-import { Maybe, RecipeComponentFragment } from "../../libs/gql/graphql";
+import { FragmentType, graphql, useFragment } from "../../libs/gql";
+
+export const DescriptionComponent_Fragment = graphql(`
+  fragment DescriptionComponent_Fragment on Recipe {
+    id
+    title
+    subTitle
+    introduction
+    cookingTime
+    expense
+  }
+`);
 
 interface DescriptionComponentProps {
-  fragment?: Maybe<RecipeComponentFragment>;
+  fragment: FragmentType<typeof DescriptionComponent_Fragment>;
 }
 
-export const DescriptionComponent = ({
-  fragment,
-}: DescriptionComponentProps): JSX.Element => {
-  return fragment ? (
+export const DescriptionComponent = (
+  props: DescriptionComponentProps
+): JSX.Element => {
+  const fragment = useFragment(DescriptionComponent_Fragment, props.fragment);
+  return (
     <div
       css={css`
         margin-bottom: 20px;
@@ -41,7 +53,5 @@ export const DescriptionComponent = ({
       <div>調理時間：{fragment.cookingTime}</div>
       <div>費用目安：{fragment.expense}</div>
     </div>
-  ) : (
-    <></>
   );
 };
