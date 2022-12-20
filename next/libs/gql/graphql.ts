@@ -21,25 +21,25 @@ export type Scalars = {
 };
 
 export type BreadcrumbItem = {
-  __typename?: "BreadcrumbItem";
+  __typename: "BreadcrumbItem";
   href?: Maybe<Scalars["String"]>;
   name?: Maybe<Scalars["String"]>;
 };
 
 export type Ingredient = {
-  __typename?: "Ingredient";
+  __typename: "Ingredient";
   amount?: Maybe<Scalars["String"]>;
   item?: Maybe<Scalars["String"]>;
 };
 
 export type Ingredients = {
-  __typename?: "Ingredients";
+  __typename: "Ingredients";
   list?: Maybe<Array<Maybe<Ingredient>>>;
   servings?: Maybe<Scalars["String"]>;
 };
 
 export type Mutation = {
-  __typename?: "Mutation";
+  __typename: "Mutation";
   createTodo: Todo;
 };
 
@@ -53,7 +53,7 @@ export type NewTodo = {
 };
 
 export type Query = {
-  __typename?: "Query";
+  __typename: "Query";
   recipe?: Maybe<Recipe>;
   todos: Array<Todo>;
 };
@@ -63,7 +63,7 @@ export type QueryRecipeArgs = {
 };
 
 export type Recipe = {
-  __typename?: "Recipe";
+  __typename: "Recipe";
   breadcrumbs?: Maybe<Array<Maybe<BreadcrumbItem>>>;
   cookingTime?: Maybe<Scalars["String"]>;
   expense?: Maybe<Scalars["String"]>;
@@ -75,7 +75,7 @@ export type Recipe = {
 };
 
 export type Todo = {
-  __typename?: "Todo";
+  __typename: "Todo";
   done: Scalars["Boolean"];
   id: Scalars["ID"];
   text: Scalars["String"];
@@ -83,13 +83,13 @@ export type Todo = {
 };
 
 export type User = {
-  __typename?: "User";
+  __typename: "User";
   id: Scalars["ID"];
   name: Scalars["String"];
 };
 
 export type BreadCrumbAncestorFragment = {
-  __typename?: "BreadcrumbItem";
+  __typename: "BreadcrumbItem";
   name?: string | null;
   href?: string | null;
 } & { " $fragmentName"?: "BreadCrumbAncestorFragment" };
@@ -99,16 +99,16 @@ export type GetRecipeQueryVariables = Exact<{
 }>;
 
 export type GetRecipeQuery = {
-  __typename?: "Query";
+  __typename: "Query";
   recipe?: {
-    __typename?: "Recipe";
+    __typename: "Recipe";
     id?: string | null;
     title?: string | null;
     subTitle?: string | null;
     introduction?: string | null;
     cookingTime?: string | null;
     breadcrumbs?: Array<
-      | ({ __typename?: "BreadcrumbItem" } & {
+      | ({ __typename: "BreadcrumbItem" } & {
           " $fragmentRefs"?: {
             BreadCrumbAncestorFragment: BreadCrumbAncestorFragment;
           };
@@ -116,7 +116,7 @@ export type GetRecipeQuery = {
       | null
     > | null;
     ingredients?: {
-      __typename?: "Ingredients";
+      __typename: "Ingredients";
       servings?: string | null;
       list?: Array<{
         __typename: "Ingredient";
