@@ -29,6 +29,12 @@ type BreadcrumbItem {
   href: String
 }
 
+type Video {
+  thumbnailUrl: String
+  source: String
+  type: String
+}
+
 type Recipe {
   id: ID
   title: String
@@ -38,6 +44,7 @@ type Recipe {
   expense: String
   ingredients: Ingredients
   breadcrumbs: [BreadcrumbItem]
+  video: Video
 }
 
 type Query {

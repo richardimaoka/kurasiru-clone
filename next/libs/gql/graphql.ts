@@ -72,6 +72,7 @@ export type Recipe = {
   introduction?: Maybe<Scalars["String"]>;
   subTitle?: Maybe<Scalars["String"]>;
   title?: Maybe<Scalars["String"]>;
+  video?: Maybe<Video>;
 };
 
 export type Todo = {
@@ -86,6 +87,13 @@ export type User = {
   __typename: "User";
   id: Scalars["ID"];
   name: Scalars["String"];
+};
+
+export type Video = {
+  __typename: "Video";
+  source?: Maybe<Scalars["String"]>;
+  thumbnailUrl?: Maybe<Scalars["String"]>;
+  type?: Maybe<Scalars["String"]>;
 };
 
 export type BreadCrumbAncestorFragment = {

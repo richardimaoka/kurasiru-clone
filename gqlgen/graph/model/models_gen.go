@@ -31,6 +31,7 @@ type Recipe struct {
 	Expense      *string           `json:"expense"`
 	Ingredients  *Ingredients      `json:"ingredients"`
 	Breadcrumbs  []*BreadcrumbItem `json:"breadcrumbs"`
+	Video        *Video            `json:"video"`
 }
 
 type Todo struct {
@@ -43,4 +44,10 @@ type Todo struct {
 type User struct {
 	ID   string `json:"id"`
 	Name string `json:"name"`
+}
+
+type Video struct {
+	ThumbnailURL *string `json:"thumbnailUrl"`
+	Source       *string `json:"source"`
+	Type         *string `json:"type"`
 }
