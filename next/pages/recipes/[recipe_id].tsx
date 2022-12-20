@@ -66,7 +66,17 @@ export const getServerSideProps: GetServerSideProps<
       return {
         notFound: true,
       };
+    } else if (error instanceof ApolloError) {
+      console.log("---------------------------------");
+      console.log(GET_RECIPE);
+      console.log(error.clientErrors);
+      console.log(error.networkError);
+      console.log(error.graphQLErrors);
+      return { notFound: true };
+      throw Error("internal server error");
     } else {
+      console.log("---------------------------------");
+      console.log(error);
       throw Error("internal server error");
     }
   }

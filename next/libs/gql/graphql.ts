@@ -88,6 +88,12 @@ export type User = {
   name: Scalars["String"];
 };
 
+export type BreadCrumbAncestorFragment = {
+  __typename: "BreadcrumbItem";
+  name?: string | null;
+  href?: string | null;
+} & { " $fragmentName"?: "BreadCrumbAncestorFragment" };
+
 export type GetRecipeQueryVariables = Exact<{
   recipeId?: InputMaybe<Scalars["ID"]>;
 }>;
@@ -118,6 +124,26 @@ export type GetRecipeQuery = {
   } | null;
 };
 
+export const BreadCrumbAncestorFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "BreadCrumbAncestor" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "BreadcrumbItem" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "name" } },
+          { kind: "Field", name: { kind: "Name", value: "href" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<BreadCrumbAncestorFragment, unknown>;
 export const GetRecipeDocument = {
   kind: "Document",
   definitions: [

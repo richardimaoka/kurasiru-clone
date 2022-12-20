@@ -30,13 +30,13 @@ export const Breadcrumb = ({ breadcrumbs }: BreadcrumbProps) =>
         `}
       >
         {breadcrumbs.map((b, index) =>
-          b && b.name && b.href ? (
+          !b ? (
+            <></>
+          ) : (
             <React.Fragment key={index}>
-              <BreadcrumbAncestor name={b.name} href={b.href} />
+              <BreadcrumbAncestor fragment={b} />
               <BreadcrumbGreaterThan />
             </React.Fragment>
-          ) : (
-            <></>
           )
         )}
         <BreadcrumbCurrent name="ズッキーニとチキンのトマト煮込み" />

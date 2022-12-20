@@ -9,7 +9,7 @@ const config: CodegenConfig = {
       preset: "client",
       plugins: [],
       config: {
-        avoidOptionals: true,
+        // avoidOptionals: true,
         nonOptionalTypename: true,
       },
     },
