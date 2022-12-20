@@ -1,3 +1,4 @@
+import { css } from "@emotion/react";
 import { graphql } from "../../libs/gql/gql";
 import { RecipeComponentFragment } from "../../libs/gql/graphql";
 import { Breadcrumb } from "../bradcrumb/Breadcrumb";
@@ -35,7 +36,31 @@ export const RecipeComponent = ({ recipe }: RecipeProps): JSX.Element => {
   return (
     <>
       <Breadcrumb breadcrumbs={recipe.breadcrumbs} />
-      {recipe.video ? <VideoComponent fragment={recipe.video} /> : <></>}
+      {recipe.video ? (
+        <main
+          css={css`
+            display: grid;
+            justify-content: center;
+            grid-template-columns: 680px 300px;
+            column-gap: 40px;
+            background-color: white;
+          `}
+        >
+          <section
+            css={css`
+              .contents {
+                grid-column: 1 / 2;
+              }
+            `}
+          >
+            <div>
+              <VideoComponent fragment={recipe.video} />
+            </div>
+          </section>
+        </main>
+      ) : (
+        <></>
+      )}
     </>
   );
 };

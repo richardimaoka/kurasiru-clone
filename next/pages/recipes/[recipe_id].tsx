@@ -71,11 +71,13 @@ type RecipePageProps = GetRecipeQuery;
 const RecipePage = ({ recipe }: RecipePageProps) => {
   return (
     <Layout>
-      {!recipe ? (
-        <div>failed to load recipe</div>
-      ) : (
-        <RecipeComponent recipe={recipe} />
-      )}
+      <main>
+        {!recipe ? (
+          <div>failed to load recipe</div>
+        ) : (
+          <RecipeComponent recipe={recipe} />
+        )}
+      </main>
     </Layout>
   );
 };
