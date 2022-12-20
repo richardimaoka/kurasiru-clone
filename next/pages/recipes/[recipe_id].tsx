@@ -1,9 +1,8 @@
 import { ApolloError } from "@apollo/client";
 import { GetServerSideProps } from "next";
 import { ParsedUrlQuery } from "querystring";
-import { Breadcrumb } from "../../components/bradcrumb/Breadcrumb";
-import { Header } from "../../components/header/Header";
 import { Layout } from "../../components/layouts/Layout";
+import { RecipeComponent } from "../../components/recipe/RecipeComponent";
 import { client } from "../../libs/apolloClient";
 import { graphql } from "../../libs/gql/gql";
 import { GetRecipeQuery } from "../../libs/gql/graphql";
@@ -11,27 +10,7 @@ import { GetRecipeQuery } from "../../libs/gql/graphql";
 const GET_RECIPE = graphql(`
   query GetRecipe($recipeId: ID) {
     recipe(id: $recipeId) {
-      id
-      title
-      subTitle
-      introduction
-      cookingTime
-      breadcrumbs {
-        ...BreadCrumbAncestor
-      }
-      ingredients {
-        servings
-        list {
-          item
-          amount
-          __typename
-        }
-      }
-      video {
-        thumbnailUrl
-        source
-        type
-      }
+      ...RecipeComponent
     }
   }
 `);
@@ -95,7 +74,7 @@ const RecipePage = ({ recipe }: RecipePageProps) => {
       {!recipe ? (
         <div>failed to load recipe</div>
       ) : (
-        <Breadcrumb breadcrumbs={recipe.breadcrumbs} />
+        <RecipeComponent recipe={recipe} />
       )}
     </Layout>
   );

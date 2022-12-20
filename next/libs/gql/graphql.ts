@@ -102,43 +102,49 @@ export type BreadCrumbAncestorFragment = {
   href?: string | null;
 } & { " $fragmentName"?: "BreadCrumbAncestorFragment" };
 
+export type RecipeComponentFragment = {
+  __typename: "Recipe";
+  id?: string | null;
+  title?: string | null;
+  subTitle?: string | null;
+  introduction?: string | null;
+  cookingTime?: string | null;
+  breadcrumbs?: Array<
+    | ({ __typename: "BreadcrumbItem" } & {
+        " $fragmentRefs"?: {
+          BreadCrumbAncestorFragment: BreadCrumbAncestorFragment;
+        };
+      })
+    | null
+  > | null;
+  ingredients?: {
+    __typename: "Ingredients";
+    servings?: string | null;
+    list?: Array<{
+      __typename: "Ingredient";
+      item?: string | null;
+      amount?: string | null;
+    } | null> | null;
+  } | null;
+  video?: {
+    __typename: "Video";
+    thumbnailUrl?: string | null;
+    source?: string | null;
+    type?: string | null;
+  } | null;
+} & { " $fragmentName"?: "RecipeComponentFragment" };
+
 export type GetRecipeQueryVariables = Exact<{
   recipeId?: InputMaybe<Scalars["ID"]>;
 }>;
 
 export type GetRecipeQuery = {
   __typename: "Query";
-  recipe?: {
-    __typename: "Recipe";
-    id?: string | null;
-    title?: string | null;
-    subTitle?: string | null;
-    introduction?: string | null;
-    cookingTime?: string | null;
-    breadcrumbs?: Array<
-      | ({ __typename: "BreadcrumbItem" } & {
-          " $fragmentRefs"?: {
-            BreadCrumbAncestorFragment: BreadCrumbAncestorFragment;
-          };
-        })
-      | null
-    > | null;
-    ingredients?: {
-      __typename: "Ingredients";
-      servings?: string | null;
-      list?: Array<{
-        __typename: "Ingredient";
-        item?: string | null;
-        amount?: string | null;
-      } | null> | null;
-    } | null;
-    video?: {
-      __typename: "Video";
-      thumbnailUrl?: string | null;
-      source?: string | null;
-      type?: string | null;
-    } | null;
-  } | null;
+  recipe?:
+    | ({ __typename: "Recipe" } & {
+        " $fragmentRefs"?: { RecipeComponentFragment: RecipeComponentFragment };
+      })
+    | null;
 };
 
 export const BreadCrumbAncestorFragmentDoc = {
@@ -161,6 +167,86 @@ export const BreadCrumbAncestorFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<BreadCrumbAncestorFragment, unknown>;
+export const RecipeComponentFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "RecipeComponent" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "Recipe" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "title" } },
+          { kind: "Field", name: { kind: "Name", value: "subTitle" } },
+          { kind: "Field", name: { kind: "Name", value: "introduction" } },
+          { kind: "Field", name: { kind: "Name", value: "cookingTime" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "breadcrumbs" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "BreadCrumbAncestor" },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "ingredients" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "servings" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "list" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "item" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "amount" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "__typename" },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "video" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "thumbnailUrl" },
+                },
+                { kind: "Field", name: { kind: "Name", value: "source" } },
+                { kind: "Field", name: { kind: "Name", value: "type" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    ...BreadCrumbAncestorFragmentDoc.definitions,
+  ],
+} as unknown as DocumentNode<RecipeComponentFragment, unknown>;
 export const GetRecipeDocument = {
   kind: "Document",
   definitions: [
@@ -197,78 +283,9 @@ export const GetRecipeDocument = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [
-                { kind: "Field", name: { kind: "Name", value: "id" } },
-                { kind: "Field", name: { kind: "Name", value: "title" } },
-                { kind: "Field", name: { kind: "Name", value: "subTitle" } },
                 {
-                  kind: "Field",
-                  name: { kind: "Name", value: "introduction" },
-                },
-                { kind: "Field", name: { kind: "Name", value: "cookingTime" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "breadcrumbs" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      {
-                        kind: "FragmentSpread",
-                        name: { kind: "Name", value: "BreadCrumbAncestor" },
-                      },
-                    ],
-                  },
-                },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "ingredients" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "servings" },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "list" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "item" },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "amount" },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "__typename" },
-                            },
-                          ],
-                        },
-                      },
-                    ],
-                  },
-                },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "video" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "thumbnailUrl" },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "source" },
-                      },
-                      { kind: "Field", name: { kind: "Name", value: "type" } },
-                    ],
-                  },
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "RecipeComponent" },
                 },
               ],
             },
@@ -276,6 +293,6 @@ export const GetRecipeDocument = {
         ],
       },
     },
-    ...BreadCrumbAncestorFragmentDoc.definitions,
+    ...RecipeComponentFragmentDoc.definitions,
   ],
 } as unknown as DocumentNode<GetRecipeQuery, GetRecipeQueryVariables>;
