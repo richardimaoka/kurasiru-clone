@@ -7,7 +7,7 @@ import { IngredientList } from "./IngredientListing";
 import { VideoComponent } from "./VideoComponent";
 
 const RecipeComponent_Fragment = graphql(`
-  fragment RecipeComponent on Recipe {
+  fragment RecipeComponent_Fragment on Recipe {
     ...DescriptionComponent_Fragment
     breadcrumbs {
       ...BreadCrumbAncestor

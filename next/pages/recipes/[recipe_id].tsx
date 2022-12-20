@@ -10,7 +10,7 @@ import { GetRecipeQuery } from "../../libs/gql/graphql";
 const GET_RECIPE = graphql(`
   query GetRecipe($recipeId: ID) {
     recipe(id: $recipeId) {
-      ...RecipeComponent
+      ...RecipeComponent_Fragment
     }
   }
 `);
