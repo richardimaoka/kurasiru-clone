@@ -13,7 +13,7 @@ const RecipeComponent_Fragment = graphql(`
       ...BreadCrumbAncestor
     }
     ingredients {
-      ...IngredientListing
+      ...IngredientListing_Fragment
     }
     video {
       ...VideoComponent

@@ -1,21 +1,22 @@
 import { css } from "@emotion/react";
+import { FragmentType, useFragment } from "../../libs/gql";
 import { graphql } from "../../libs/gql/gql";
-import { IngredientElementFragment } from "../../libs/gql/graphql";
 
-graphql(`
-  fragment IngredientElement on Ingredient {
+const IngredientElement_Fragment = graphql(`
+  fragment IngredientElement_Fragment on Ingredient {
     item
     amount
   }
 `);
 
 export interface IngredientElementProps {
-  fragment: IngredientElementFragment;
+  fragment: FragmentType<typeof IngredientElement_Fragment>;
 }
 
-export const IngredientElement = ({
-  fragment,
-}: IngredientElementProps): JSX.Element => {
+export const IngredientElement = (
+  props: IngredientElementProps
+): JSX.Element => {
+  const fragment = useFragment(IngredientElement_Fragment, props.fragment);
   return (
     <div
       css={css`

@@ -112,24 +112,24 @@ export type DescriptionComponent_FragmentFragment = {
   expense?: string | null;
 } & { " $fragmentName"?: "DescriptionComponent_FragmentFragment" };
 
-export type IngredientElementFragment = {
+export type IngredientElement_FragmentFragment = {
   __typename: "Ingredient";
   item?: string | null;
   amount?: string | null;
-} & { " $fragmentName"?: "IngredientElementFragment" };
+} & { " $fragmentName"?: "IngredientElement_FragmentFragment" };
 
-export type IngredientListingFragment = {
+export type IngredientListing_FragmentFragment = {
   __typename: "Ingredients";
   servings?: string | null;
   list?: Array<
     | ({ __typename: "Ingredient" } & {
         " $fragmentRefs"?: {
-          IngredientElementFragment: IngredientElementFragment;
+          IngredientElement_FragmentFragment: IngredientElement_FragmentFragment;
         };
       })
     | null
   > | null;
-} & { " $fragmentName"?: "IngredientListingFragment" };
+} & { " $fragmentName"?: "IngredientListing_FragmentFragment" };
 
 export type RecipeComponent_FragmentFragment = ({
   __typename: "Recipe";
@@ -144,7 +144,7 @@ export type RecipeComponent_FragmentFragment = ({
   ingredients?:
     | ({ __typename: "Ingredients" } & {
         " $fragmentRefs"?: {
-          IngredientListingFragment: IngredientListingFragment;
+          IngredientListing_FragmentFragment: IngredientListing_FragmentFragment;
         };
       })
     | null;
@@ -225,12 +225,12 @@ export const BreadCrumbAncestorFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<BreadCrumbAncestorFragment, unknown>;
-export const IngredientElementFragmentDoc = {
+export const IngredientElement_FragmentFragmentDoc = {
   kind: "Document",
   definitions: [
     {
       kind: "FragmentDefinition",
-      name: { kind: "Name", value: "IngredientElement" },
+      name: { kind: "Name", value: "IngredientElement_Fragment" },
       typeCondition: {
         kind: "NamedType",
         name: { kind: "Name", value: "Ingredient" },
@@ -244,13 +244,13 @@ export const IngredientElementFragmentDoc = {
       },
     },
   ],
-} as unknown as DocumentNode<IngredientElementFragment, unknown>;
-export const IngredientListingFragmentDoc = {
+} as unknown as DocumentNode<IngredientElement_FragmentFragment, unknown>;
+export const IngredientListing_FragmentFragmentDoc = {
   kind: "Document",
   definitions: [
     {
       kind: "FragmentDefinition",
-      name: { kind: "Name", value: "IngredientListing" },
+      name: { kind: "Name", value: "IngredientListing_Fragment" },
       typeCondition: {
         kind: "NamedType",
         name: { kind: "Name", value: "Ingredients" },
@@ -267,7 +267,7 @@ export const IngredientListingFragmentDoc = {
               selections: [
                 {
                   kind: "FragmentSpread",
-                  name: { kind: "Name", value: "IngredientElement" },
+                  name: { kind: "Name", value: "IngredientElement_Fragment" },
                 },
               ],
             },
@@ -275,9 +275,9 @@ export const IngredientListingFragmentDoc = {
         ],
       },
     },
-    ...IngredientElementFragmentDoc.definitions,
+    ...IngredientElement_FragmentFragmentDoc.definitions,
   ],
-} as unknown as DocumentNode<IngredientListingFragment, unknown>;
+} as unknown as DocumentNode<IngredientListing_FragmentFragment, unknown>;
 export const VideoComponentFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -337,7 +337,7 @@ export const RecipeComponent_FragmentFragmentDoc = {
               selections: [
                 {
                   kind: "FragmentSpread",
-                  name: { kind: "Name", value: "IngredientListing" },
+                  name: { kind: "Name", value: "IngredientListing_Fragment" },
                 },
               ],
             },
@@ -360,7 +360,7 @@ export const RecipeComponent_FragmentFragmentDoc = {
     },
     ...DescriptionComponent_FragmentFragmentDoc.definitions,
     ...BreadCrumbAncestorFragmentDoc.definitions,
-    ...IngredientListingFragmentDoc.definitions,
+    ...IngredientListing_FragmentFragmentDoc.definitions,
     ...VideoComponentFragmentDoc.definitions,
   ],
 } as unknown as DocumentNode<RecipeComponent_FragmentFragment, unknown>;
