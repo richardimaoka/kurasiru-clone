@@ -1,4 +1,5 @@
 import { css } from "@emotion/react";
+import Link from "next/link";
 
 interface BreadcrumbAncestorProps {
   name: string;
@@ -7,7 +8,7 @@ interface BreadcrumbAncestorProps {
 
 export const BreadcrumbAncestor = ({ name, href }: BreadcrumbAncestorProps) => (
   <div>
-    <a
+    <Link
       css={css`
         color: #93918f;
         text-decoration: none;
@@ -19,6 +20,6 @@ export const BreadcrumbAncestor = ({ name, href }: BreadcrumbAncestorProps) => (
       href={href}
     >
       {name}
-    </a>
+    </Link>
   </div>
 );
