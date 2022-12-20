@@ -1,4 +1,5 @@
 import { css } from "@emotion/react";
+import { FragmentType, useFragment } from "../../libs/gql";
 import { graphql } from "../../libs/gql/gql";
 import { RecipeComponentFragment } from "../../libs/gql/graphql";
 import { Breadcrumb } from "../bradcrumb/Breadcrumb";
@@ -6,7 +7,7 @@ import { DescriptionComponent } from "./DescriptionComponent";
 import { IngredientList } from "./IngredientListing";
 import { VideoComponent } from "./VideoComponent";
 
-graphql(`
+const RecipeComponent_Fragment = graphql(`
   fragment RecipeComponent on Recipe {
     id
     title
@@ -27,10 +28,11 @@ graphql(`
 `);
 
 export interface RecipeProps {
-  recipe: RecipeComponentFragment;
+  recipe: FragmentType<typeof RecipeComponent_Fragment>;
 }
 
-export const RecipeComponent = ({ recipe }: RecipeProps): JSX.Element => {
+export const RecipeComponent = (props: RecipeProps): JSX.Element => {
+  const recipe = useFragment(RecipeComponent_Fragment, props.recipe);
   return (
     <>
       <Breadcrumb breadcrumbs={recipe.breadcrumbs} />
