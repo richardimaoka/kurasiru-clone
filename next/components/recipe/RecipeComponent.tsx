@@ -32,38 +32,34 @@ export const RecipeComponent = ({ recipe }: RecipeProps): JSX.Element => {
   return (
     <>
       <Breadcrumb breadcrumbs={recipe.breadcrumbs} />
-      {recipe.video ? (
-        <main
+      <main
+        css={css`
+          display: grid;
+          justify-content: center;
+          grid-template-columns: 680px 300px;
+          column-gap: 40px;
+          background-color: white;
+        `}
+      >
+        <section
           css={css`
-            display: grid;
-            justify-content: center;
-            grid-template-columns: 680px 300px;
-            column-gap: 40px;
-            background-color: white;
+            .contents {
+              grid-column: 1 / 2;
+            }
           `}
         >
-          <section
+          <div
             css={css`
-              .contents {
-                grid-column: 1 / 2;
-              }
+              display: flex;
+              flex-direction: column;
+              gap: 20px;
             `}
           >
-            <div
-              css={css`
-                display: flex;
-                flex-direction: column;
-                gap: 20px;
-              `}
-            >
-              <VideoComponent fragment={recipe.video} />
-              <IngredientList fragment={recipe.ingredients} />
-            </div>
-          </section>
-        </main>
-      ) : (
-        <></>
-      )}
+            <VideoComponent fragment={recipe.video} />
+            <IngredientList fragment={recipe.ingredients} />
+          </div>
+        </section>
+      </main>
     </>
   );
 };

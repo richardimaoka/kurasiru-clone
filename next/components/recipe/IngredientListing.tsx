@@ -1,6 +1,6 @@
 import { css } from "@emotion/react";
 import { graphql } from "../../libs/gql/gql";
-import { IngredientListingFragment } from "../../libs/gql/graphql";
+import { IngredientListingFragment, Maybe } from "../../libs/gql/graphql";
 import { IngredientElement } from "./IngredientElement";
 
 graphql(`
@@ -13,15 +13,13 @@ graphql(`
 `);
 
 export interface IngredientsListingProps {
-  fragment: IngredientListingFragment;
+  fragment?: Maybe<IngredientListingFragment>;
 }
 
 export const IngredientList = ({
   fragment,
 }: IngredientsListingProps): JSX.Element => {
-  return !fragment.list ? (
-    <></>
-  ) : (
+  return fragment && fragment.list ? (
     <div
       css={css`
         margin-top: 40px;
@@ -54,5 +52,7 @@ export const IngredientList = ({
         !ingredient ? <></> : <IngredientElement fragment={ingredient} />
       )}
     </div>
+  ) : (
+    <></>
   );
 };

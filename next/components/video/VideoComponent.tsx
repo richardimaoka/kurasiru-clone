@@ -1,5 +1,5 @@
 import { graphql } from "../../libs/gql/gql";
-import { VideoComponentFragment } from "../../libs/gql/graphql";
+import { Maybe, VideoComponentFragment } from "../../libs/gql/graphql";
 
 graphql(`
   fragment VideoComponent on Video {
@@ -10,13 +10,16 @@ graphql(`
 `);
 
 export interface VideoComponentProps {
-  fragment: VideoComponentFragment;
+  fragment?: Maybe<VideoComponentFragment>;
 }
 
 export const VideoComponent = ({
   fragment,
 }: VideoComponentProps): JSX.Element => {
-  return fragment.source && fragment.thumbnailUrl && fragment.type ? (
+  return fragment &&
+    fragment.source &&
+    fragment.thumbnailUrl &&
+    fragment.type ? (
     <video
       width="560"
       height="560"
