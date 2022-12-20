@@ -3,6 +3,7 @@ import { GetServerSideProps } from "next";
 import { ParsedUrlQuery } from "querystring";
 import { Breadcrumb } from "../../components/bradcrumb/Breadcrumb";
 import { Header } from "../../components/header/Header";
+import { Layout } from "../../components/layouts/Layout";
 import { client } from "../../libs/apolloClient";
 import { graphql } from "../../libs/gql/gql";
 import { GetRecipeQuery } from "../../libs/gql/graphql";
@@ -84,13 +85,14 @@ export const getServerSideProps: GetServerSideProps<
 type RecipePageProps = GetRecipeQuery;
 
 const RecipePage = ({ recipe }: RecipePageProps) => {
-  return !recipe ? (
-    <></>
-  ) : (
-    <>
-      <Header />
-      <Breadcrumb breadcrumbs={recipe.breadcrumbs} />
-    </>
+  return (
+    <Layout>
+      {!recipe ? (
+        <div>failed to load recipe</div>
+      ) : (
+        <Breadcrumb breadcrumbs={recipe.breadcrumbs} />
+      )}
+    </Layout>
   );
 };
 
