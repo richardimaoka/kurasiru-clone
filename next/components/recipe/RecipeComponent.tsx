@@ -16,7 +16,7 @@ const RecipeComponent_Fragment = graphql(`
       ...IngredientListing_Fragment
     }
     video {
-      ...VideoComponent
+      ...VideoComponent_Fragment
     }
   }
 `);
@@ -53,8 +53,7 @@ export const RecipeComponent = (props: RecipeProps): JSX.Element => {
               gap: 20px;
             `}
           >
-            {/* {recipe.video ? <VideoComponent fragment={recipe.video} /> : <></>} */}
-            <VideoComponent fragment={recipe.video} />
+            {recipe.video ? <VideoComponent fragment={recipe.video} /> : <></>}
             <DescriptionComponent fragment={recipe} />
             {recipe.ingredients ? (
               <IngredientList fragment={recipe.ingredients} />

@@ -150,7 +150,9 @@ export type RecipeComponent_FragmentFragment = ({
     | null;
   video?:
     | ({ __typename: "Video" } & {
-        " $fragmentRefs"?: { VideoComponentFragment: VideoComponentFragment };
+        " $fragmentRefs"?: {
+          VideoComponent_FragmentFragment: VideoComponent_FragmentFragment;
+        };
       })
     | null;
 } & {
@@ -159,12 +161,12 @@ export type RecipeComponent_FragmentFragment = ({
   };
 }) & { " $fragmentName"?: "RecipeComponent_FragmentFragment" };
 
-export type VideoComponentFragment = {
+export type VideoComponent_FragmentFragment = {
   __typename: "Video";
   thumbnailUrl?: string | null;
   source?: string | null;
   type?: string | null;
-} & { " $fragmentName"?: "VideoComponentFragment" };
+} & { " $fragmentName"?: "VideoComponent_FragmentFragment" };
 
 export type GetRecipeQueryVariables = Exact<{
   recipeId?: InputMaybe<Scalars["ID"]>;
@@ -278,12 +280,12 @@ export const IngredientListing_FragmentFragmentDoc = {
     ...IngredientElement_FragmentFragmentDoc.definitions,
   ],
 } as unknown as DocumentNode<IngredientListing_FragmentFragment, unknown>;
-export const VideoComponentFragmentDoc = {
+export const VideoComponent_FragmentFragmentDoc = {
   kind: "Document",
   definitions: [
     {
       kind: "FragmentDefinition",
-      name: { kind: "Name", value: "VideoComponent" },
+      name: { kind: "Name", value: "VideoComponent_Fragment" },
       typeCondition: {
         kind: "NamedType",
         name: { kind: "Name", value: "Video" },
@@ -298,7 +300,7 @@ export const VideoComponentFragmentDoc = {
       },
     },
   ],
-} as unknown as DocumentNode<VideoComponentFragment, unknown>;
+} as unknown as DocumentNode<VideoComponent_FragmentFragment, unknown>;
 export const RecipeComponent_FragmentFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -350,7 +352,7 @@ export const RecipeComponent_FragmentFragmentDoc = {
               selections: [
                 {
                   kind: "FragmentSpread",
-                  name: { kind: "Name", value: "VideoComponent" },
+                  name: { kind: "Name", value: "VideoComponent_Fragment" },
                 },
               ],
             },
@@ -361,7 +363,7 @@ export const RecipeComponent_FragmentFragmentDoc = {
     ...DescriptionComponent_FragmentFragmentDoc.definitions,
     ...BreadCrumbAncestorFragmentDoc.definitions,
     ...IngredientListing_FragmentFragmentDoc.definitions,
-    ...VideoComponentFragmentDoc.definitions,
+    ...VideoComponent_FragmentFragmentDoc.definitions,
   ],
 } as unknown as DocumentNode<RecipeComponent_FragmentFragment, unknown>;
 export const GetRecipeDocument = {
