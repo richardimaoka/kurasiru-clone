@@ -2,7 +2,7 @@ import { css } from "@emotion/react";
 import { graphql } from "../../libs/gql/gql";
 import { RecipeComponentFragment } from "../../libs/gql/graphql";
 import { Breadcrumb } from "../bradcrumb/Breadcrumb";
-import { VideoComponent } from "../video/VideoComponent";
+import { VideoComponent } from "./VideoComponent";
 import { IngredientList } from "./IngredientListing";
 
 graphql(`
