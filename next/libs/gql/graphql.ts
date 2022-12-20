@@ -132,6 +132,12 @@ export type GetRecipeQuery = {
         amount?: string | null;
       } | null> | null;
     } | null;
+    video?: {
+      __typename: "Video";
+      thumbnailUrl?: string | null;
+      source?: string | null;
+      type?: string | null;
+    } | null;
   } | null;
 };
 
@@ -243,6 +249,24 @@ export const GetRecipeDocument = {
                           ],
                         },
                       },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "video" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "thumbnailUrl" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "source" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "type" } },
                     ],
                   },
                 },

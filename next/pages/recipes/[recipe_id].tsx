@@ -27,6 +27,11 @@ const GET_RECIPE = graphql(`
           __typename
         }
       }
+      video {
+        thumbnailUrl
+        source
+        type
+      }
     }
   }
 `);
