@@ -3,7 +3,7 @@ import { css } from "@emotion/react";
 import Link from "next/link";
 import { BreadCrumbAncestorFragment } from "../../libs/gql/graphql";
 
-gql`
+export const fragmentBreadCrumbAncestor = gql`
   fragment BreadCrumbAncestor on BreadcrumbItem {
     name
     href

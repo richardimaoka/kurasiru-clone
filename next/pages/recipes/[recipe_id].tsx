@@ -2,11 +2,14 @@ import { ApolloError, gql } from "@apollo/client";
 import { GetServerSideProps } from "next";
 import { ParsedUrlQuery } from "querystring";
 import { Breadcrumb } from "../../components/bradcrumb/Breadcrumb";
+import { fragmentBreadCrumbAncestor } from "../../components/bradcrumb/BreadcrumbAncestor";
 import { Header } from "../../components/header/Header";
 import { client } from "../../libs/apolloClient";
 import { GetRecipeQuery } from "../../libs/gql/graphql";
 
 const GET_RECIPE = gql`
+  ${fragmentBreadCrumbAncestor}
+
   query GetRecipe($recipeId: ID) {
     recipe(id: $recipeId) {
       id
@@ -15,8 +18,7 @@ const GET_RECIPE = gql`
       introduction
       cookingTime
       breadcrumbs {
-        name
-        href
+        ...BreadCrumbAncestor
       }
       ingredients {
         servings
@@ -72,7 +74,6 @@ export const getServerSideProps: GetServerSideProps<
       console.log(error.clientErrors);
       console.log(error.networkError);
       console.log(error.graphQLErrors);
-      return { notFound: true };
       throw Error("internal server error");
     } else {
       console.log("---------------------------------");
@@ -82,12 +83,15 @@ export const getServerSideProps: GetServerSideProps<
   }
 };
 
-const RecipePage = ({ recipe }: GetRecipeQuery) => {
-  console.log(recipe?.breadcrumbs);
-  return (
+type RecipePageProps = GetRecipeQuery;
+
+const RecipePage = ({ recipe }: RecipePageProps) => {
+  return !recipe ? (
+    <></>
+  ) : (
     <>
       <Header />
-      <Breadcrumb breadcrumbs={recipe?.breadcrumbs} />
+      <Breadcrumb breadcrumbs={recipe.breadcrumbs} />
     </>
   );
 };

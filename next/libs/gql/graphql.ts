@@ -107,11 +107,14 @@ export type GetRecipeQuery = {
     subTitle?: string | null;
     introduction?: string | null;
     cookingTime?: string | null;
-    breadcrumbs?: Array<{
-      __typename: "BreadcrumbItem";
-      name?: string | null;
-      href?: string | null;
-    } | null> | null;
+    breadcrumbs?: Array<
+      | ({ __typename: "BreadcrumbItem" } & {
+          " $fragmentRefs"?: {
+            BreadCrumbAncestorFragment: BreadCrumbAncestorFragment;
+          };
+        })
+      | null
+    > | null;
     ingredients?: {
       __typename: "Ingredients";
       servings?: string | null;
@@ -194,8 +197,10 @@ export const GetRecipeDocument = {
                   selectionSet: {
                     kind: "SelectionSet",
                     selections: [
-                      { kind: "Field", name: { kind: "Name", value: "name" } },
-                      { kind: "Field", name: { kind: "Name", value: "href" } },
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "BreadCrumbAncestor" },
+                      },
                     ],
                   },
                 },
@@ -239,5 +244,6 @@ export const GetRecipeDocument = {
         ],
       },
     },
+    ...BreadCrumbAncestorFragmentDoc.definitions,
   ],
 } as unknown as DocumentNode<GetRecipeQuery, GetRecipeQueryVariables>;
