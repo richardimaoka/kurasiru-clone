@@ -3,6 +3,7 @@ import { graphql } from "../../libs/gql/gql";
 import { RecipeComponentFragment } from "../../libs/gql/graphql";
 import { Breadcrumb } from "../bradcrumb/Breadcrumb";
 import { VideoComponent } from "../video/VideoComponent";
+import { IngredientList } from "./IngredientListing";
 
 graphql(`
   fragment RecipeComponent on Recipe {
@@ -15,12 +16,7 @@ graphql(`
       ...BreadCrumbAncestor
     }
     ingredients {
-      servings
-      list {
-        item
-        amount
-        __typename
-      }
+      ...IngredientListing
     }
     video {
       ...VideoComponent
@@ -61,6 +57,7 @@ export const RecipeComponent = ({ recipe }: RecipeProps): JSX.Element => {
               `}
             >
               <VideoComponent fragment={recipe.video} />
+              <IngredientList fragment={recipe.ingredients} />
             </div>
           </section>
         </main>
