@@ -56,7 +56,11 @@ export const RecipeComponent = (props: RecipeProps): JSX.Element => {
             {/* {recipe.video ? <VideoComponent fragment={recipe.video} /> : <></>} */}
             <VideoComponent fragment={recipe.video} />
             <DescriptionComponent fragment={recipe} />
-            <IngredientList fragment={recipe.ingredients} />
+            {recipe.ingredients ? (
+              <IngredientList fragment={recipe.ingredients} />
+            ) : (
+              <></>
+            )}
           </div>
         </section>
       </main>
