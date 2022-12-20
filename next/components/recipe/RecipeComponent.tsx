@@ -3,8 +3,8 @@ import { FragmentType, useFragment } from "../../libs/gql";
 import { graphql } from "../../libs/gql/gql";
 import { Breadcrumb } from "../bradcrumb/Breadcrumb";
 import { DescriptionComponent } from "./DescriptionComponent";
-import { IngredientList } from "./IngredientListing";
-import { StepList, StepListing } from "./StepListing";
+import { IngredientListing } from "./IngredientListing";
+import { StepListing } from "./StepListing";
 import { VideoComponent } from "./VideoComponent";
 
 const RecipeComponent_Fragment = graphql(`
@@ -58,7 +58,7 @@ export const RecipeComponent = (props: RecipeProps): JSX.Element => {
             {recipe.video ? <VideoComponent fragment={recipe.video} /> : <></>}
             <DescriptionComponent fragment={recipe} />
             {recipe.ingredients ? (
-              <IngredientList fragment={recipe.ingredients} />
+              <IngredientListing fragment={recipe.ingredients} />
             ) : (
               <></>
             )}

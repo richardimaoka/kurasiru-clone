@@ -17,7 +17,6 @@ export interface StepsListingProps {
 
 export const StepListing = (props: StepsListingProps): JSX.Element => {
   const fragment = useFragment(StepListing_Fragment, props.fragment);
-  console.log(fragment.steps);
   return (
     <div>
       <div

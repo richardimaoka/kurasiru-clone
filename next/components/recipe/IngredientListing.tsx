@@ -16,7 +16,9 @@ export interface IngredientsListingProps {
   fragment: FragmentType<typeof IngredientListing_Fragment>;
 }
 
-export const IngredientList = (props: IngredientsListingProps): JSX.Element => {
+export const IngredientListing = (
+  props: IngredientsListingProps
+): JSX.Element => {
   const fragment = useFragment(IngredientListing_Fragment, props.fragment);
   return fragment.list ? (
     <div
@@ -47,8 +49,12 @@ export const IngredientList = (props: IngredientsListingProps): JSX.Element => {
           ({fragment.servings})
         </span>
       </div>
-      {fragment.list.map((ingredient) =>
-        !ingredient ? <></> : <IngredientElement fragment={ingredient} />
+      {fragment.list.map((ingredient, index) =>
+        !ingredient ? (
+          <></>
+        ) : (
+          <IngredientElement key={index} fragment={ingredient} />
+        )
       )}
     </div>
   ) : (
