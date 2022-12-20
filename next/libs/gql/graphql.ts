@@ -128,6 +128,7 @@ export type RecipeComponentFragment = {
   subTitle?: string | null;
   introduction?: string | null;
   cookingTime?: string | null;
+  expense?: string | null;
   breadcrumbs?: Array<
     | ({ __typename: "BreadcrumbItem" } & {
         " $fragmentRefs"?: {
@@ -282,6 +283,7 @@ export const RecipeComponentFragmentDoc = {
           { kind: "Field", name: { kind: "Name", value: "subTitle" } },
           { kind: "Field", name: { kind: "Name", value: "introduction" } },
           { kind: "Field", name: { kind: "Name", value: "cookingTime" } },
+          { kind: "Field", name: { kind: "Name", value: "expense" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "breadcrumbs" },

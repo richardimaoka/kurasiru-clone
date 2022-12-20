@@ -2,8 +2,9 @@ import { css } from "@emotion/react";
 import { graphql } from "../../libs/gql/gql";
 import { RecipeComponentFragment } from "../../libs/gql/graphql";
 import { Breadcrumb } from "../bradcrumb/Breadcrumb";
-import { VideoComponent } from "./VideoComponent";
+import { DescriptionComponent } from "./DescriptionComponent";
 import { IngredientList } from "./IngredientListing";
+import { VideoComponent } from "./VideoComponent";
 
 graphql(`
   fragment RecipeComponent on Recipe {
@@ -12,6 +13,7 @@ graphql(`
     subTitle
     introduction
     cookingTime
+    expense
     breadcrumbs {
       ...BreadCrumbAncestor
     }
@@ -55,7 +57,9 @@ export const RecipeComponent = ({ recipe }: RecipeProps): JSX.Element => {
               gap: 20px;
             `}
           >
+            {/* {recipe.video ? <VideoComponent fragment={recipe.video} /> : <></>} */}
             <VideoComponent fragment={recipe.video} />
+            <DescriptionComponent fragment={recipe} />
             <IngredientList fragment={recipe.ingredients} />
           </div>
         </section>

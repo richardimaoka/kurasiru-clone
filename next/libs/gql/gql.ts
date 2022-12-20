@@ -19,7 +19,7 @@ const documents = {
     types.IngredientElementFragmentDoc,
   "\n  fragment IngredientListing on Ingredients {\n    servings\n    list {\n      ...IngredientElement\n    }\n  }\n":
     types.IngredientListingFragmentDoc,
-  "\n  fragment RecipeComponent on Recipe {\n    id\n    title\n    subTitle\n    introduction\n    cookingTime\n    breadcrumbs {\n      ...BreadCrumbAncestor\n    }\n    ingredients {\n      ...IngredientListing\n    }\n    video {\n      ...VideoComponent\n    }\n  }\n":
+  "\n  fragment RecipeComponent on Recipe {\n    id\n    title\n    subTitle\n    introduction\n    cookingTime\n    expense\n    breadcrumbs {\n      ...BreadCrumbAncestor\n    }\n    ingredients {\n      ...IngredientListing\n    }\n    video {\n      ...VideoComponent\n    }\n  }\n":
     types.RecipeComponentFragmentDoc,
   "\n  fragment VideoComponent on Video {\n    thumbnailUrl\n    source\n    type\n  }\n":
     types.VideoComponentFragmentDoc,
@@ -49,8 +49,8 @@ export function graphql(
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(
-  source: "\n  fragment RecipeComponent on Recipe {\n    id\n    title\n    subTitle\n    introduction\n    cookingTime\n    breadcrumbs {\n      ...BreadCrumbAncestor\n    }\n    ingredients {\n      ...IngredientListing\n    }\n    video {\n      ...VideoComponent\n    }\n  }\n"
-): typeof documents["\n  fragment RecipeComponent on Recipe {\n    id\n    title\n    subTitle\n    introduction\n    cookingTime\n    breadcrumbs {\n      ...BreadCrumbAncestor\n    }\n    ingredients {\n      ...IngredientListing\n    }\n    video {\n      ...VideoComponent\n    }\n  }\n"];
+  source: "\n  fragment RecipeComponent on Recipe {\n    id\n    title\n    subTitle\n    introduction\n    cookingTime\n    expense\n    breadcrumbs {\n      ...BreadCrumbAncestor\n    }\n    ingredients {\n      ...IngredientListing\n    }\n    video {\n      ...VideoComponent\n    }\n  }\n"
+): typeof documents["\n  fragment RecipeComponent on Recipe {\n    id\n    title\n    subTitle\n    introduction\n    cookingTime\n    expense\n    breadcrumbs {\n      ...BreadCrumbAncestor\n    }\n    ingredients {\n      ...IngredientListing\n    }\n    video {\n      ...VideoComponent\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
