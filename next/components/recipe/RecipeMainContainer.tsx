@@ -26,47 +26,39 @@ export interface RecipeProps {
 
 export const RecipeMainContainer = (props: RecipeProps): JSX.Element => {
   const fragment = useFragment(RecipeMainContainer_Fragment, props.fragment);
-  return (
-    <>
-      <main
+  return fragment.video && fragment.ingredients ? (
+    <main
+      css={css`
+        display: grid;
+        justify-content: center;
+        grid-template-columns: 680px 300px;
+        column-gap: 40px;
+        background-color: white;
+      `}
+    >
+      <section
         css={css`
-          display: grid;
-          justify-content: center;
-          grid-template-columns: 680px 300px;
-          column-gap: 40px;
-          background-color: white;
+          .contents {
+            grid-column: 1 / 2;
+          }
         `}
       >
-        <section
+        <div
           css={css`
-            .contents {
-              grid-column: 1 / 2;
-            }
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
           `}
         >
-          <div
-            css={css`
-              display: flex;
-              flex-direction: column;
-              gap: 20px;
-            `}
-          >
-            {fragment.video ? (
-              <VideoComponent fragment={fragment.video} />
-            ) : (
-              <></>
-            )}
-            <DescriptionComponent fragment={fragment} />
-            {fragment.ingredients ? (
-              <IngredientListing fragment={fragment.ingredients} />
-            ) : (
-              <></>
-            )}
-            <StepListing fragment={fragment} />
-          </div>
-        </section>
-        <AsideContainer />
-      </main>
-    </>
+          <VideoComponent fragment={fragment.video} />
+          <DescriptionComponent fragment={fragment} />
+          <IngredientListing fragment={fragment.ingredients} />
+          <StepListing fragment={fragment} />
+        </div>
+      </section>
+      <AsideContainer />
+    </main>
+  ) : (
+    <></>
   );
 };
