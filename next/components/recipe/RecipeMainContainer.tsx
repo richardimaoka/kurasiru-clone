@@ -1,6 +1,7 @@
 import { css } from "@emotion/react";
 import { FragmentType, useFragment } from "../../libs/gql";
 import { graphql } from "../../libs/gql/gql";
+import { AsideContainer } from "./AsideContainer";
 import { DescriptionComponent } from "./DescriptionComponent";
 import { IngredientListing } from "./IngredientListing";
 import { StepListing } from "./StepListing";
@@ -64,6 +65,7 @@ export const RecipeMainContainer = (props: RecipeProps): JSX.Element => {
             <StepListing fragment={fragment} />
           </div>
         </section>
+        <AsideContainer />
       </main>
     </>
   );

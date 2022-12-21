@@ -21,7 +21,6 @@ export const RecipeContents = (props: RecipeProps): JSX.Element => {
     <>
       <BreadcrumbContainer fragment={fragment} />
       <RecipeMainContainer fragment={fragment} />
-      <AsideContainer />
     </>
   );
 };
