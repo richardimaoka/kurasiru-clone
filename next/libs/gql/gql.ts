@@ -13,15 +13,17 @@ import { TypedDocumentNode as DocumentNode } from "@graphql-typed-document-node/
  * Therefore it is highly recommended to use the babel-plugin for production.
  */
 const documents = {
-  "\n  fragment BreadCrumbAncestor on BreadcrumbItem {\n    name\n    href\n  }\n":
-    types.BreadCrumbAncestorFragmentDoc,
+  "\n  fragment BreadCrumbAncestor_Fragment on BreadcrumbItem {\n    name\n    href\n  }\n":
+    types.BreadCrumbAncestor_FragmentFragmentDoc,
+  "\n  fragment BreadcrumbContainer_Fragment on Recipe {\n    title\n    breadcrumbs {\n      ...BreadCrumbAncestor_Fragment\n    }\n  }\n":
+    types.BreadcrumbContainer_FragmentFragmentDoc,
   "\n  fragment DescriptionComponent_Fragment on Recipe {\n    id\n    title\n    subTitle\n    introduction\n    cookingTime\n    expense\n  }\n":
     types.DescriptionComponent_FragmentFragmentDoc,
   "\n  fragment IngredientElement_Fragment on Ingredient {\n    item\n    amount\n  }\n":
     types.IngredientElement_FragmentFragmentDoc,
   "\n  fragment IngredientListing_Fragment on Ingredients {\n    servings\n    list {\n      ...IngredientElement_Fragment\n    }\n  }\n":
     types.IngredientListing_FragmentFragmentDoc,
-  "\n  fragment RecipeComponent_Fragment on Recipe {\n    ...DescriptionComponent_Fragment\n    breadcrumbs {\n      ...BreadCrumbAncestor\n    }\n    ingredients {\n      ...IngredientListing_Fragment\n    }\n    video {\n      ...VideoComponent_Fragment\n    }\n    ...StepListing_Fragment\n  }\n":
+  "\n  fragment RecipeComponent_Fragment on Recipe {\n    ...DescriptionComponent_Fragment\n    ...BreadcrumbContainer_Fragment\n    ingredients {\n      ...IngredientListing_Fragment\n    }\n    video {\n      ...VideoComponent_Fragment\n    }\n    ...StepListing_Fragment\n  }\n":
     types.RecipeComponent_FragmentFragmentDoc,
   "\n  fragment StepElement_Fragment on Step {\n    description\n  }\n":
     types.StepElement_FragmentFragmentDoc,
@@ -37,8 +39,14 @@ const documents = {
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(
-  source: "\n  fragment BreadCrumbAncestor on BreadcrumbItem {\n    name\n    href\n  }\n"
-): typeof documents["\n  fragment BreadCrumbAncestor on BreadcrumbItem {\n    name\n    href\n  }\n"];
+  source: "\n  fragment BreadCrumbAncestor_Fragment on BreadcrumbItem {\n    name\n    href\n  }\n"
+): typeof documents["\n  fragment BreadCrumbAncestor_Fragment on BreadcrumbItem {\n    name\n    href\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
+  source: "\n  fragment BreadcrumbContainer_Fragment on Recipe {\n    title\n    breadcrumbs {\n      ...BreadCrumbAncestor_Fragment\n    }\n  }\n"
+): typeof documents["\n  fragment BreadcrumbContainer_Fragment on Recipe {\n    title\n    breadcrumbs {\n      ...BreadCrumbAncestor_Fragment\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
@@ -61,8 +69,8 @@ export function graphql(
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(
-  source: "\n  fragment RecipeComponent_Fragment on Recipe {\n    ...DescriptionComponent_Fragment\n    breadcrumbs {\n      ...BreadCrumbAncestor\n    }\n    ingredients {\n      ...IngredientListing_Fragment\n    }\n    video {\n      ...VideoComponent_Fragment\n    }\n    ...StepListing_Fragment\n  }\n"
-): typeof documents["\n  fragment RecipeComponent_Fragment on Recipe {\n    ...DescriptionComponent_Fragment\n    breadcrumbs {\n      ...BreadCrumbAncestor\n    }\n    ingredients {\n      ...IngredientListing_Fragment\n    }\n    video {\n      ...VideoComponent_Fragment\n    }\n    ...StepListing_Fragment\n  }\n"];
+  source: "\n  fragment RecipeComponent_Fragment on Recipe {\n    ...DescriptionComponent_Fragment\n    ...BreadcrumbContainer_Fragment\n    ingredients {\n      ...IngredientListing_Fragment\n    }\n    video {\n      ...VideoComponent_Fragment\n    }\n    ...StepListing_Fragment\n  }\n"
+): typeof documents["\n  fragment RecipeComponent_Fragment on Recipe {\n    ...DescriptionComponent_Fragment\n    ...BreadcrumbContainer_Fragment\n    ingredients {\n      ...IngredientListing_Fragment\n    }\n    video {\n      ...VideoComponent_Fragment\n    }\n    ...StepListing_Fragment\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

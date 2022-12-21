@@ -1,20 +1,28 @@
 import { css } from "@emotion/react";
 import React from "react";
-import { BreadcrumbItem } from "../../libs/gql/graphql";
+import { FragmentType, useFragment } from "../../libs/gql";
+import { graphql } from "../../libs/gql/gql";
 import { BreadcrumbAncestor } from "./BreadcrumbAncestor";
 import { BreadcrumbCurrent } from "./BreadcrumbCurrent";
 import { BreadcrumbGreaterThan } from "./BreadcrumbGreaterThan";
 
+const BreadcrumbContainer_Fragment = graphql(`
+  fragment BreadcrumbContainer_Fragment on Recipe {
+    title
+    breadcrumbs {
+      ...BreadCrumbAncestor_Fragment
+    }
+  }
+`);
+
 export interface BreadcrumbContainerProps {
-  breadcrumbs: (BreadcrumbItem | null)[] | null | undefined;
+  fragment: FragmentType<typeof BreadcrumbContainer_Fragment>;
 }
 
-export const BreadcrumbContainer = ({
-  breadcrumbs,
-}: BreadcrumbContainerProps) =>
-  !breadcrumbs ? (
-    <></>
-  ) : (
+export const BreadcrumbContainer = (props: BreadcrumbContainerProps) => {
+  const fragment = useFragment(BreadcrumbContainer_Fragment, props.fragment);
+
+  return fragment.breadcrumbs && fragment.title ? (
     <section
       css={css`
         background-color: white;
@@ -31,17 +39,20 @@ export const BreadcrumbContainer = ({
           margin: 0 auto;
         `}
       >
-        {breadcrumbs.map((b, index) =>
-          !b ? (
-            <></>
-          ) : (
+        {fragment.breadcrumbs.map((b, index) =>
+          b ? (
             <React.Fragment key={index}>
               <BreadcrumbAncestor fragment={b} />
               <BreadcrumbGreaterThan />
             </React.Fragment>
+          ) : (
+            <></>
           )
         )}
-        <BreadcrumbCurrent name="ズッキーニとチキンのトマト煮込み" />
+        <BreadcrumbCurrent name={fragment.title} />
       </div>
     </section>
+  ) : (
+    <></>
   );
+};

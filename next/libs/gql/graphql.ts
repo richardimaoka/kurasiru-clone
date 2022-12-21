@@ -102,11 +102,24 @@ export type Video = {
   type?: Maybe<Scalars["String"]>;
 };
 
-export type BreadCrumbAncestorFragment = {
+export type BreadCrumbAncestor_FragmentFragment = {
   __typename: "BreadcrumbItem";
   name?: string | null;
   href?: string | null;
-} & { " $fragmentName"?: "BreadCrumbAncestorFragment" };
+} & { " $fragmentName"?: "BreadCrumbAncestor_FragmentFragment" };
+
+export type BreadcrumbContainer_FragmentFragment = {
+  __typename: "Recipe";
+  title?: string | null;
+  breadcrumbs?: Array<
+    | ({ __typename: "BreadcrumbItem" } & {
+        " $fragmentRefs"?: {
+          BreadCrumbAncestor_FragmentFragment: BreadCrumbAncestor_FragmentFragment;
+        };
+      })
+    | null
+  > | null;
+} & { " $fragmentName"?: "BreadcrumbContainer_FragmentFragment" };
 
 export type DescriptionComponent_FragmentFragment = {
   __typename: "Recipe";
@@ -139,14 +152,6 @@ export type IngredientListing_FragmentFragment = {
 
 export type RecipeComponent_FragmentFragment = ({
   __typename: "Recipe";
-  breadcrumbs?: Array<
-    | ({ __typename: "BreadcrumbItem" } & {
-        " $fragmentRefs"?: {
-          BreadCrumbAncestorFragment: BreadCrumbAncestorFragment;
-        };
-      })
-    | null
-  > | null;
   ingredients?:
     | ({ __typename: "Ingredients" } & {
         " $fragmentRefs"?: {
@@ -164,6 +169,7 @@ export type RecipeComponent_FragmentFragment = ({
 } & {
   " $fragmentRefs"?: {
     DescriptionComponent_FragmentFragment: DescriptionComponent_FragmentFragment;
+    BreadcrumbContainer_FragmentFragment: BreadcrumbContainer_FragmentFragment;
     StepListing_FragmentFragment: StepListing_FragmentFragment;
   };
 }) & { " $fragmentName"?: "RecipeComponent_FragmentFragment" };
@@ -231,12 +237,12 @@ export const DescriptionComponent_FragmentFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<DescriptionComponent_FragmentFragment, unknown>;
-export const BreadCrumbAncestorFragmentDoc = {
+export const BreadCrumbAncestor_FragmentFragmentDoc = {
   kind: "Document",
   definitions: [
     {
       kind: "FragmentDefinition",
-      name: { kind: "Name", value: "BreadCrumbAncestor" },
+      name: { kind: "Name", value: "BreadCrumbAncestor_Fragment" },
       typeCondition: {
         kind: "NamedType",
         name: { kind: "Name", value: "BreadcrumbItem" },
@@ -250,7 +256,40 @@ export const BreadCrumbAncestorFragmentDoc = {
       },
     },
   ],
-} as unknown as DocumentNode<BreadCrumbAncestorFragment, unknown>;
+} as unknown as DocumentNode<BreadCrumbAncestor_FragmentFragment, unknown>;
+export const BreadcrumbContainer_FragmentFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "BreadcrumbContainer_Fragment" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "Recipe" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "title" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "breadcrumbs" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "BreadCrumbAncestor_Fragment" },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    ...BreadCrumbAncestor_FragmentFragmentDoc.definitions,
+  ],
+} as unknown as DocumentNode<BreadcrumbContainer_FragmentFragment, unknown>;
 export const IngredientElement_FragmentFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -394,17 +433,8 @@ export const RecipeComponent_FragmentFragmentDoc = {
             name: { kind: "Name", value: "DescriptionComponent_Fragment" },
           },
           {
-            kind: "Field",
-            name: { kind: "Name", value: "breadcrumbs" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                {
-                  kind: "FragmentSpread",
-                  name: { kind: "Name", value: "BreadCrumbAncestor" },
-                },
-              ],
-            },
+            kind: "FragmentSpread",
+            name: { kind: "Name", value: "BreadcrumbContainer_Fragment" },
           },
           {
             kind: "Field",
@@ -440,7 +470,7 @@ export const RecipeComponent_FragmentFragmentDoc = {
       },
     },
     ...DescriptionComponent_FragmentFragmentDoc.definitions,
-    ...BreadCrumbAncestorFragmentDoc.definitions,
+    ...BreadcrumbContainer_FragmentFragmentDoc.definitions,
     ...IngredientListing_FragmentFragmentDoc.definitions,
     ...VideoComponent_FragmentFragmentDoc.definitions,
     ...StepListing_FragmentFragmentDoc.definitions,

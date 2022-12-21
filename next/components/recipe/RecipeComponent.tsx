@@ -10,9 +10,7 @@ import { VideoComponent } from "./VideoComponent";
 const RecipeComponent_Fragment = graphql(`
   fragment RecipeComponent_Fragment on Recipe {
     ...DescriptionComponent_Fragment
-    breadcrumbs {
-      ...BreadCrumbAncestor
-    }
+    ...BreadcrumbContainer_Fragment
     ingredients {
       ...IngredientListing_Fragment
     }
@@ -31,7 +29,7 @@ export const RecipeComponent = (props: RecipeProps): JSX.Element => {
   const recipe = useFragment(RecipeComponent_Fragment, props.recipe);
   return (
     <>
-      <BreadcrumbContainer breadcrumbs={recipe.breadcrumbs} />
+      <BreadcrumbContainer fragment={recipe} />
       <main
         css={css`
           display: grid;

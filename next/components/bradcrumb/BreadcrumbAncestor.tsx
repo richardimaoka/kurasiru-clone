@@ -1,21 +1,21 @@
-import { gql } from "@apollo/client";
 import { css } from "@emotion/react";
 import Link from "next/link";
-import { BreadCrumbAncestorFragment } from "../../libs/gql/graphql";
+import { FragmentType, graphql, useFragment } from "../../libs/gql";
 
-export const fragmentBreadCrumbAncestor = gql`
-  fragment BreadCrumbAncestor on BreadcrumbItem {
+export const BreadCrumbAncestor_Fragment = graphql(`
+  fragment BreadCrumbAncestor_Fragment on BreadcrumbItem {
     name
     href
   }
-`;
+`);
 
-interface BreadcrumbAncestorProps {
-  fragment: BreadCrumbAncestorFragment;
+export interface BreadcrumbAncestorProps {
+  fragment: FragmentType<typeof BreadCrumbAncestor_Fragment>;
 }
 
-export const BreadcrumbAncestor = ({ fragment }: BreadcrumbAncestorProps) =>
-  !fragment.href || !fragment.name ? (
+export const BreadcrumbAncestor = (props: BreadcrumbAncestorProps) => {
+  const fragment = useFragment(BreadCrumbAncestor_Fragment, props.fragment);
+  return !fragment.href || !fragment.name ? (
     <></>
   ) : (
     <div>
@@ -34,3 +34,4 @@ export const BreadcrumbAncestor = ({ fragment }: BreadcrumbAncestorProps) =>
       </Link>
     </div>
   );
+};
