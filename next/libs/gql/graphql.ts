@@ -152,7 +152,7 @@ export type IngredientListing_FragmentFragment = {
 
 export type RecipeComponent_FragmentFragment = ({ __typename: "Recipe" } & {
   " $fragmentRefs"?: {
-    DescriptionComponent_FragmentFragment: DescriptionComponent_FragmentFragment;
+    BreadcrumbContainer_FragmentFragment: BreadcrumbContainer_FragmentFragment;
     RecipeMainContainer_FragmentFragment: RecipeMainContainer_FragmentFragment;
   };
 }) & { " $fragmentName"?: "RecipeComponent_FragmentFragment" };
@@ -492,7 +492,7 @@ export const RecipeComponent_FragmentFragmentDoc = {
         selections: [
           {
             kind: "FragmentSpread",
-            name: { kind: "Name", value: "DescriptionComponent_Fragment" },
+            name: { kind: "Name", value: "BreadcrumbContainer_Fragment" },
           },
           {
             kind: "FragmentSpread",
@@ -501,7 +501,7 @@ export const RecipeComponent_FragmentFragmentDoc = {
         ],
       },
     },
-    ...DescriptionComponent_FragmentFragmentDoc.definitions,
+    ...BreadcrumbContainer_FragmentFragmentDoc.definitions,
     ...RecipeMainContainer_FragmentFragmentDoc.definitions,
   ],
 } as unknown as DocumentNode<RecipeComponent_FragmentFragment, unknown>;

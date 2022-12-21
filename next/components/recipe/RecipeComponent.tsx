@@ -5,7 +5,7 @@ import { RecipeMainContainer } from "./RecipeMainContainer";
 
 const RecipeComponent_Fragment = graphql(`
   fragment RecipeComponent_Fragment on Recipe {
-    ...DescriptionComponent_Fragment
+    ...BreadcrumbContainer_Fragment
     ...RecipeMainContainer_Fragment
   }
 `);
