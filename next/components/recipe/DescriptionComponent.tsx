@@ -52,6 +52,19 @@ export const DescriptionComponent = (
       </div>
       <div>調理時間：{fragment.cookingTime}</div>
       <div>費用目安：{fragment.expense}</div>
+      <button
+        css={css`
+          width: 300px;
+          height: 50px;
+          font-size: 14px;
+          font-weight: 700;
+          background-color: f0efef;
+          border: none;
+          border-radius: 25px;
+        `}
+      >
+        保存する
+      </button>
     </div>
   );
 };
