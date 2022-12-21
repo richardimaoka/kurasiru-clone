@@ -37,9 +37,7 @@ export const AsideRankingConponent = (): JSX.Element => {
           <img width="85" height="85" src="images/recipe-ranking3.jpg" />
         </div>
         <div className="ranking-info">
-          <div className="ranking-position" v>
-            3位
-          </div>
+          <div className="ranking-position">3位</div>
           <div className="ranking-description">
             ここに料理の説明が入ると思われます
           </div>
@@ -54,9 +52,7 @@ export const AsideRankingConponent = (): JSX.Element => {
           <img width="85" height="85" src="images/recipe-ranking4.jpg" />
         </div>
         <div className="ranking-info">
-          <div className="ranking-position" v>
-            4位
-          </div>
+          <div className="ranking-position">4位</div>
           <div className="ranking-description">
             ここに料理の説明が入ると思われます
           </div>
