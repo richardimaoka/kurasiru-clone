@@ -150,7 +150,14 @@ export type IngredientListing_FragmentFragment = {
   > | null;
 } & { " $fragmentName"?: "IngredientListing_FragmentFragment" };
 
-export type RecipeComponent_FragmentFragment = ({
+export type RecipeComponent_FragmentFragment = ({ __typename: "Recipe" } & {
+  " $fragmentRefs"?: {
+    DescriptionComponent_FragmentFragment: DescriptionComponent_FragmentFragment;
+    RecipeMainContainer_FragmentFragment: RecipeMainContainer_FragmentFragment;
+  };
+}) & { " $fragmentName"?: "RecipeComponent_FragmentFragment" };
+
+export type RecipeMainContainer_FragmentFragment = ({
   __typename: "Recipe";
   ingredients?:
     | ({ __typename: "Ingredients" } & {
@@ -169,10 +176,9 @@ export type RecipeComponent_FragmentFragment = ({
 } & {
   " $fragmentRefs"?: {
     DescriptionComponent_FragmentFragment: DescriptionComponent_FragmentFragment;
-    BreadcrumbContainer_FragmentFragment: BreadcrumbContainer_FragmentFragment;
     StepListing_FragmentFragment: StepListing_FragmentFragment;
   };
-}) & { " $fragmentName"?: "RecipeComponent_FragmentFragment" };
+}) & { " $fragmentName"?: "RecipeMainContainer_FragmentFragment" };
 
 export type StepElement_FragmentFragment = {
   __typename: "Step";
@@ -213,30 +219,6 @@ export type GetRecipeQuery = {
     | null;
 };
 
-export const DescriptionComponent_FragmentFragmentDoc = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "DescriptionComponent_Fragment" },
-      typeCondition: {
-        kind: "NamedType",
-        name: { kind: "Name", value: "Recipe" },
-      },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "id" } },
-          { kind: "Field", name: { kind: "Name", value: "title" } },
-          { kind: "Field", name: { kind: "Name", value: "subTitle" } },
-          { kind: "Field", name: { kind: "Name", value: "introduction" } },
-          { kind: "Field", name: { kind: "Name", value: "cookingTime" } },
-          { kind: "Field", name: { kind: "Name", value: "expense" } },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<DescriptionComponent_FragmentFragment, unknown>;
 export const BreadCrumbAncestor_FragmentFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -290,6 +272,30 @@ export const BreadcrumbContainer_FragmentFragmentDoc = {
     ...BreadCrumbAncestor_FragmentFragmentDoc.definitions,
   ],
 } as unknown as DocumentNode<BreadcrumbContainer_FragmentFragment, unknown>;
+export const DescriptionComponent_FragmentFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "DescriptionComponent_Fragment" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "Recipe" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "title" } },
+          { kind: "Field", name: { kind: "Name", value: "subTitle" } },
+          { kind: "Field", name: { kind: "Name", value: "introduction" } },
+          { kind: "Field", name: { kind: "Name", value: "cookingTime" } },
+          { kind: "Field", name: { kind: "Name", value: "expense" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<DescriptionComponent_FragmentFragment, unknown>;
 export const IngredientElement_FragmentFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -415,12 +421,12 @@ export const StepListing_FragmentFragmentDoc = {
     ...StepElement_FragmentFragmentDoc.definitions,
   ],
 } as unknown as DocumentNode<StepListing_FragmentFragment, unknown>;
-export const RecipeComponent_FragmentFragmentDoc = {
+export const RecipeMainContainer_FragmentFragmentDoc = {
   kind: "Document",
   definitions: [
     {
       kind: "FragmentDefinition",
-      name: { kind: "Name", value: "RecipeComponent_Fragment" },
+      name: { kind: "Name", value: "RecipeMainContainer_Fragment" },
       typeCondition: {
         kind: "NamedType",
         name: { kind: "Name", value: "Recipe" },
@@ -431,10 +437,6 @@ export const RecipeComponent_FragmentFragmentDoc = {
           {
             kind: "FragmentSpread",
             name: { kind: "Name", value: "DescriptionComponent_Fragment" },
-          },
-          {
-            kind: "FragmentSpread",
-            name: { kind: "Name", value: "BreadcrumbContainer_Fragment" },
           },
           {
             kind: "Field",
@@ -470,10 +472,37 @@ export const RecipeComponent_FragmentFragmentDoc = {
       },
     },
     ...DescriptionComponent_FragmentFragmentDoc.definitions,
-    ...BreadcrumbContainer_FragmentFragmentDoc.definitions,
     ...IngredientListing_FragmentFragmentDoc.definitions,
     ...VideoComponent_FragmentFragmentDoc.definitions,
     ...StepListing_FragmentFragmentDoc.definitions,
+  ],
+} as unknown as DocumentNode<RecipeMainContainer_FragmentFragment, unknown>;
+export const RecipeComponent_FragmentFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "RecipeComponent_Fragment" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "Recipe" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "FragmentSpread",
+            name: { kind: "Name", value: "DescriptionComponent_Fragment" },
+          },
+          {
+            kind: "FragmentSpread",
+            name: { kind: "Name", value: "RecipeMainContainer_Fragment" },
+          },
+        ],
+      },
+    },
+    ...DescriptionComponent_FragmentFragmentDoc.definitions,
+    ...RecipeMainContainer_FragmentFragmentDoc.definitions,
   ],
 } as unknown as DocumentNode<RecipeComponent_FragmentFragment, unknown>;
 export const GetRecipeDocument = {
