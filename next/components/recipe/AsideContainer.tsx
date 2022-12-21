@@ -1,9 +1,9 @@
+import { AsideAdsComponent } from "./AsideAdsComponent";
+
 export const AsideContainer = (): JSX.Element => {
   return (
     <section>
-      <img width="280" height="280" />
-      <img width="280" height="280" />
-      <img width="280" height="280" />
+      <AsideAdsComponent />
       <div>人気ランキング</div>
       <div className="ranking-container">
         <div className="ranking-image">
