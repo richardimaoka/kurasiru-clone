@@ -1,6 +1,7 @@
 import { FragmentType, useFragment } from "../../libs/gql";
 import { graphql } from "../../libs/gql/gql";
 import { BreadcrumbContainer } from "../bradcrumb/BreadcrumbContainer";
+import { AsideContainer } from "./AsideContainer";
 import { RecipeMainContainer } from "./RecipeMainContainer";
 
 const RecipeContents_Fragment = graphql(`
@@ -20,6 +21,7 @@ export const RecipeContents = (props: RecipeProps): JSX.Element => {
     <>
       <BreadcrumbContainer fragment={fragment} />
       <RecipeMainContainer fragment={fragment} />
+      <AsideContainer />
     </>
   );
 };
