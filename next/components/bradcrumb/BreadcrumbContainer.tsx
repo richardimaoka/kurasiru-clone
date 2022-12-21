@@ -5,11 +5,13 @@ import { BreadcrumbAncestor } from "./BreadcrumbAncestor";
 import { BreadcrumbCurrent } from "./BreadcrumbCurrent";
 import { BreadcrumbGreaterThan } from "./BreadcrumbGreaterThan";
 
-export interface BreadcrumbProps {
+export interface BreadcrumbContainerProps {
   breadcrumbs: (BreadcrumbItem | null)[] | null | undefined;
 }
 
-export const Breadcrumb = ({ breadcrumbs }: BreadcrumbProps) =>
+export const BreadcrumbContainer = ({
+  breadcrumbs,
+}: BreadcrumbContainerProps) =>
   !breadcrumbs ? (
     <></>
   ) : (

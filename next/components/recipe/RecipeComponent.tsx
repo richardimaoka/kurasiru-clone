@@ -1,7 +1,7 @@
 import { css } from "@emotion/react";
 import { FragmentType, useFragment } from "../../libs/gql";
 import { graphql } from "../../libs/gql/gql";
-import { Breadcrumb } from "../bradcrumb/Breadcrumb";
+import { BreadcrumbContainer } from "../bradcrumb/BreadcrumbContainer";
 import { DescriptionComponent } from "./DescriptionComponent";
 import { IngredientListing } from "./IngredientListing";
 import { StepListing } from "./StepListing";
@@ -31,7 +31,7 @@ export const RecipeComponent = (props: RecipeProps): JSX.Element => {
   const recipe = useFragment(RecipeComponent_Fragment, props.recipe);
   return (
     <>
-      <Breadcrumb breadcrumbs={recipe.breadcrumbs} />
+      <BreadcrumbContainer breadcrumbs={recipe.breadcrumbs} />
       <main
         css={css`
           display: grid;
