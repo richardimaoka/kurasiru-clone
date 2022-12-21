@@ -213,3 +213,17 @@ body {
 .save-num {
   font-size: 14px;
 }
+
+.recipe-tips-title {
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.recipe-tips-description {
+  margin-bottom: 20px;
+}
+
+.main-video-ads {
+  display: flex;
+  justify-content: space-between;
+}
