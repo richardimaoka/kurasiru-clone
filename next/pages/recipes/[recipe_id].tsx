@@ -2,7 +2,7 @@ import { ApolloError } from "@apollo/client";
 import { GetServerSideProps } from "next";
 import { ParsedUrlQuery } from "querystring";
 import { Layout } from "../../components/layouts/Layout";
-import { RecipeComponent } from "../../components/recipe/RecipeComponent";
+import { RecipeContents } from "../../components/recipe/RecipeContents";
 import { client } from "../../libs/apolloClient";
 import { graphql } from "../../libs/gql/gql";
 import { GetRecipeQuery } from "../../libs/gql/graphql";
@@ -10,7 +10,7 @@ import { GetRecipeQuery } from "../../libs/gql/graphql";
 const GET_RECIPE = graphql(`
   query GetRecipe($recipeId: ID) {
     recipe(id: $recipeId) {
-      ...RecipeComponent_Fragment
+      ...RecipeContents_Fragment
     }
   }
 `);
@@ -69,16 +69,12 @@ export const getServerSideProps: GetServerSideProps<
 type RecipePageProps = GetRecipeQuery;
 
 const RecipePage = ({ recipe }: RecipePageProps) => {
-  return (
+  return recipe ? (
     <Layout>
-      <main>
-        {!recipe ? (
-          <div>failed to load recipe</div>
-        ) : (
-          <RecipeComponent recipe={recipe} />
-        )}
-      </main>
+      <RecipeContents fragment={recipe} />
     </Layout>
+  ) : (
+    <></>
   );
 };
 

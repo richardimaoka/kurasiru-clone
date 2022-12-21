@@ -3,23 +3,23 @@ import { graphql } from "../../libs/gql/gql";
 import { BreadcrumbContainer } from "../bradcrumb/BreadcrumbContainer";
 import { RecipeMainContainer } from "./RecipeMainContainer";
 
-const RecipeComponent_Fragment = graphql(`
-  fragment RecipeComponent_Fragment on Recipe {
+const RecipeContents_Fragment = graphql(`
+  fragment RecipeContents_Fragment on Recipe {
     ...BreadcrumbContainer_Fragment
     ...RecipeMainContainer_Fragment
   }
 `);
 
 export interface RecipeProps {
-  recipe: FragmentType<typeof RecipeComponent_Fragment>;
+  fragment: FragmentType<typeof RecipeContents_Fragment>;
 }
 
-export const RecipeComponent = (props: RecipeProps): JSX.Element => {
-  const recipe = useFragment(RecipeComponent_Fragment, props.recipe);
+export const RecipeContents = (props: RecipeProps): JSX.Element => {
+  const fragment = useFragment(RecipeContents_Fragment, props.fragment);
   return (
     <>
-      <BreadcrumbContainer fragment={recipe} />
-      <RecipeMainContainer fragment={recipe} />
+      <BreadcrumbContainer fragment={fragment} />
+      <RecipeMainContainer fragment={fragment} />
     </>
   );
 };

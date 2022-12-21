@@ -150,12 +150,12 @@ export type IngredientListing_FragmentFragment = {
   > | null;
 } & { " $fragmentName"?: "IngredientListing_FragmentFragment" };
 
-export type RecipeComponent_FragmentFragment = ({ __typename: "Recipe" } & {
+export type RecipeContents_FragmentFragment = ({ __typename: "Recipe" } & {
   " $fragmentRefs"?: {
     BreadcrumbContainer_FragmentFragment: BreadcrumbContainer_FragmentFragment;
     RecipeMainContainer_FragmentFragment: RecipeMainContainer_FragmentFragment;
   };
-}) & { " $fragmentName"?: "RecipeComponent_FragmentFragment" };
+}) & { " $fragmentName"?: "RecipeContents_FragmentFragment" };
 
 export type RecipeMainContainer_FragmentFragment = ({
   __typename: "Recipe";
@@ -213,7 +213,7 @@ export type GetRecipeQuery = {
   recipe?:
     | ({ __typename: "Recipe" } & {
         " $fragmentRefs"?: {
-          RecipeComponent_FragmentFragment: RecipeComponent_FragmentFragment;
+          RecipeContents_FragmentFragment: RecipeContents_FragmentFragment;
         };
       })
     | null;
@@ -477,12 +477,12 @@ export const RecipeMainContainer_FragmentFragmentDoc = {
     ...StepListing_FragmentFragmentDoc.definitions,
   ],
 } as unknown as DocumentNode<RecipeMainContainer_FragmentFragment, unknown>;
-export const RecipeComponent_FragmentFragmentDoc = {
+export const RecipeContents_FragmentFragmentDoc = {
   kind: "Document",
   definitions: [
     {
       kind: "FragmentDefinition",
-      name: { kind: "Name", value: "RecipeComponent_Fragment" },
+      name: { kind: "Name", value: "RecipeContents_Fragment" },
       typeCondition: {
         kind: "NamedType",
         name: { kind: "Name", value: "Recipe" },
@@ -504,7 +504,7 @@ export const RecipeComponent_FragmentFragmentDoc = {
     ...BreadcrumbContainer_FragmentFragmentDoc.definitions,
     ...RecipeMainContainer_FragmentFragmentDoc.definitions,
   ],
-} as unknown as DocumentNode<RecipeComponent_FragmentFragment, unknown>;
+} as unknown as DocumentNode<RecipeContents_FragmentFragment, unknown>;
 export const GetRecipeDocument = {
   kind: "Document",
   definitions: [
@@ -543,7 +543,7 @@ export const GetRecipeDocument = {
               selections: [
                 {
                   kind: "FragmentSpread",
-                  name: { kind: "Name", value: "RecipeComponent_Fragment" },
+                  name: { kind: "Name", value: "RecipeContents_Fragment" },
                 },
               ],
             },
@@ -551,6 +551,6 @@ export const GetRecipeDocument = {
         ],
       },
     },
-    ...RecipeComponent_FragmentFragmentDoc.definitions,
+    ...RecipeContents_FragmentFragmentDoc.definitions,
   ],
 } as unknown as DocumentNode<GetRecipeQuery, GetRecipeQueryVariables>;
