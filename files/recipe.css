@@ -283,3 +283,12 @@ body {
   margin-top: 24px;
   width: 208px;
 }
+
+.recipe-question-title {
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.recipe-question-description {
+  margin-bottom: 20px;
+}
