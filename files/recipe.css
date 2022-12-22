@@ -228,14 +228,24 @@ body {
   justify-content: space-between;
 }
 
+.taberepo {
+  margin-top: 40px;
+}
+
 .teberepo-head {
   display: flex;
+  justify-content: space-between;
+  padding: 8px;
 }
 
 .taberepo-title {
   line-height: 20px;
   font-size: 20px;
   font-weight: 700;
+}
+
+.taberepo-head-right {
+  display: flex;
 }
 
 .taberepo-stars {
@@ -252,9 +262,16 @@ body {
 }
 
 .taberepo-score {
+  margin-left: 4px;
   line-height: 20px;
   font-size: 20px;
   font-weight: 700;
+}
+
+.taberepo-num-reviews {
+  margin-top: 8px;
+  text-align: right;
+  font-size: 12px;
 }
 
 .taberepo-cell {
