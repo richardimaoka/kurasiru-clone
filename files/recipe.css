@@ -328,6 +328,34 @@ body {
   margin-bottom: 20px;
 }
 
+.recipe-question-listing {
+  padding: 0px;
+  list-style-type: none;
+}
+
+.recipe-question-listing-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 16px 0px;
+  border-bottom: 1px solid #d8d8d8;
+}
+
+.recipe-question-toggle {
+  fill: black;
+  color: black;
+}
+
+.recipe-question-listing-item-question {
+  font-size: 14px;
+}
+
+.recipe-question-listing-item-answer {
+  font-size: 14px;
+  margin-top: 16px;
+  padding-left: 20px;
+  border-left: 3px solid #d8d8d8;
+}
+
 .related-recipe-title {
   line-height: 20px;
   font-size: 20px;
