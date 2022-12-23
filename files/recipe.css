@@ -364,3 +364,12 @@ body {
   font-size: 12px;
   color: #635f5a;
 }
+
+.footer {
+  background-color: #ededed;
+}
+
+.footer-image {
+  display: block;
+  margin: 0 auto;
+}
