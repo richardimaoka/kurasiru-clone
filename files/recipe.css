@@ -319,41 +319,92 @@ body {
   border-radius: 25px;
 }
 
-.recipe-question-title {
+.recipe-faq-title {
   font-size: 22px;
   font-weight: 700;
 }
 
-.recipe-question-description {
+.recipe-faq-description {
   margin-bottom: 20px;
 }
 
-.recipe-question-listing {
+.recipe-faq-listing {
   padding: 0px;
   list-style-type: none;
 }
 
-.recipe-question-listing-item {
+.recipe-faq-listing-item {
   display: flex;
   justify-content: space-between;
   padding: 16px 0px;
   border-bottom: 1px solid #d8d8d8;
 }
 
-.recipe-question-toggle {
+.recipe-faq-toggle {
   fill: black;
   color: black;
 }
 
-.recipe-question-listing-item-question {
+.recipe-faq-listing-item-question {
   font-size: 14px;
 }
 
-.recipe-question-listing-item-answer {
+.recipe-faq-listing-item-answer {
   font-size: 14px;
   margin-top: 16px;
   padding-left: 20px;
   border-left: 3px solid #d8d8d8;
+}
+
+.recipe-question-title {
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.recipe-question-listing-item-question {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.recipe-question-listing-item-question {
+  display: flex;
+}
+
+.recipe-question-listing-item-question-userimage {
+  display: block;
+  border-radius: 24px;
+  margin-right: 10px;
+}
+
+.recipe-question-listing-item-question-username {
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.recipe-question-listing-item-question-userquestion {
+  font-size: 14px;
+}
+
+.recipe-question-listing-item-answer {
+  display: flex;
+  padding-left: 80px;
+  margin-bottom: 40px;
+}
+
+.recipe-question-listing-item-answer-userimage {
+  display: block;
+  border-radius: 24px;
+}
+
+.recipe-question-listing-item-answer-username {
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.recipe-question-listing-item-answer-userqanswer {
+  font-size: 14px;
 }
 
 .related-recipe-title {
@@ -469,4 +520,19 @@ body {
   margin: 0 auto;
   padding: 10px 0px;
   max-width: 1020px;
+}
+
+.question-button-wrapper {
+  width: 300px;
+  margin: 20px auto 20px auto;
+}
+
+.question-seemore-button {
+  width: 300px;
+  height: 50px;
+  font-size: 14px;
+  font-weight: 700;
+  background-color: #f0efef;
+  border: none;
+  border-radius: 25px;
 }
