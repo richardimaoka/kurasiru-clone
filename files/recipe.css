@@ -292,3 +292,43 @@ body {
 .recipe-question-description {
   margin-bottom: 20px;
 }
+
+.related-recipe-title {
+  line-height: 20px;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.taberepo-num-reviews {
+  margin-top: 8px;
+  text-align: right;
+  font-size: 12px;
+}
+
+.related-recipe-grid {
+  display: grid;
+  grid-template-columns: auto auto auto;
+}
+
+.related-recipe-cell {
+  margin-top: 24px;
+  width: 216px;
+}
+
+.related-recipe-cell-title {
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.taberepo-cell-user {
+  border-radius: 24px;
+}
+
+.related-recipe-cell-description {
+  font-size: 13px;
+}
+
+.related-recipe-cell-ingredients {
+  font-size: 12px;
+  color: #b2b2b2;
+}
