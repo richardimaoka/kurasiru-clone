@@ -125,6 +125,7 @@ body {
 .recipe-title-caption {
   font-size: 12px;
   margin-bottom: 20px;
+  color: #635f5a;
 }
 
 .recipe-description {
@@ -286,6 +287,10 @@ body {
 
 .taberepo-cell-user {
   border-radius: 24px;
+}
+
+.taberepo-cell-description {
+  font-size: 14px;
 }
 
 .recipe-question-title {
