@@ -446,6 +446,22 @@ body {
   font-weight: 700;
 }
 
+.related-categories {
+  display: grid;
+  grid-template-columns: auto auto auto;
+}
+
+.related-category-image {
+  border-radius: 8px;
+  display: block;
+}
+
+.related-category-word {
+  font-size: 17px;
+  font-weight: 700;
+  margin: 4px 0px;
+}
+
 .related-keywords-list {
   display: flex;
 }
