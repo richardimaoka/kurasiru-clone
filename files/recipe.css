@@ -441,6 +441,26 @@ body {
   color: #b2b2b2;
 }
 
+.related-keywords-title {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.related-keywords-list {
+  display: flex;
+}
+
+.related-keyword {
+  padding: 4px 8px;
+  border: 1px solid #d5d2cd;
+  margin: 5px;
+}
+
+.keyword-tag {
+  margin: 4px;
+  vertical-align: top;
+}
+
 .popular-categories {
   margin-top: 40px;
 }
