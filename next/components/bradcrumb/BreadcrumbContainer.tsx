@@ -23,7 +23,7 @@ export const BreadcrumbContainer = (props: BreadcrumbContainerProps) => {
   const fragment = useFragment(BreadcrumbContainer_Fragment, props.fragment);
 
   return fragment.breadcrumbs && fragment.title ? (
-    <section
+    <nav
       css={css`
         background-color: white;
         height: 32px;
@@ -51,7 +51,7 @@ export const BreadcrumbContainer = (props: BreadcrumbContainerProps) => {
         )}
         <BreadcrumbCurrent name={fragment.title} />
       </div>
-    </section>
+    </nav>
   ) : (
     <></>
   );
