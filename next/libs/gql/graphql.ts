@@ -213,9 +213,8 @@ export type RecipeMainContainer_FragmentFragment = ({ __typename: "Recipe" } & {
   };
 }) & { " $fragmentName"?: "RecipeMainContainer_FragmentFragment" };
 
-export type RecipeTaberepoListing_FragmentFragment = {
+export type RecipeTaberepoListing_FragmentFragment = ({
   __typename: "TaberepoListing";
-  stars?: number | null;
   numReports?: number | null;
   numReviews?: number | null;
   list?: Array<{
@@ -229,7 +228,11 @@ export type RecipeTaberepoListing_FragmentFragment = {
       pictureUrl?: string | null;
     } | null;
   } | null> | null;
-} & { " $fragmentName"?: "RecipeTaberepoListing_FragmentFragment" };
+} & {
+  " $fragmentRefs"?: {
+    TaberepoStarsComponent_FragmentFragment: TaberepoStarsComponent_FragmentFragment;
+  };
+}) & { " $fragmentName"?: "RecipeTaberepoListing_FragmentFragment" };
 
 export type RecipeTipsComponent_FragmentFragment = {
   __typename: "Recipe";
@@ -252,6 +255,11 @@ export type StepListing_FragmentFragment = {
     | null
   > | null;
 } & { " $fragmentName"?: "StepListing_FragmentFragment" };
+
+export type TaberepoStarsComponent_FragmentFragment = {
+  __typename: "TaberepoListing";
+  stars?: number | null;
+} & { " $fragmentName"?: "TaberepoStarsComponent_FragmentFragment" };
 
 export type VideoComponent_FragmentFragment = {
   __typename: "Video";
@@ -495,6 +503,23 @@ export const RecipeTipsComponent_FragmentFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<RecipeTipsComponent_FragmentFragment, unknown>;
+export const TaberepoStarsComponent_FragmentFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "TaberepoStarsComponent_Fragment" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "TaberepoListing" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [{ kind: "Field", name: { kind: "Name", value: "stars" } }],
+      },
+    },
+  ],
+} as unknown as DocumentNode<TaberepoStarsComponent_FragmentFragment, unknown>;
 export const RecipeTaberepoListing_FragmentFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -508,7 +533,10 @@ export const RecipeTaberepoListing_FragmentFragmentDoc = {
       selectionSet: {
         kind: "SelectionSet",
         selections: [
-          { kind: "Field", name: { kind: "Name", value: "stars" } },
+          {
+            kind: "FragmentSpread",
+            name: { kind: "Name", value: "TaberepoStarsComponent_Fragment" },
+          },
           { kind: "Field", name: { kind: "Name", value: "numReports" } },
           { kind: "Field", name: { kind: "Name", value: "numReviews" } },
           {
@@ -540,6 +568,7 @@ export const RecipeTaberepoListing_FragmentFragmentDoc = {
         ],
       },
     },
+    ...TaberepoStarsComponent_FragmentFragmentDoc.definitions,
   ],
 } as unknown as DocumentNode<RecipeTaberepoListing_FragmentFragment, unknown>;
 export const RecipeArticle_FragmentFragmentDoc = {

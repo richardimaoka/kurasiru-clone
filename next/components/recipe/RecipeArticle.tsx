@@ -31,7 +31,7 @@ export interface RecipeProps {
 
 export const RecipeArticle = (props: RecipeProps): JSX.Element => {
   const fragment = useFragment(RecipeArticle_Fragment, props.fragment);
-  return fragment.video && fragment.ingredients ? (
+  return (
     <article>
       <div
         css={css`
@@ -40,9 +40,11 @@ export const RecipeArticle = (props: RecipeProps): JSX.Element => {
           gap: 20px;
         `}
       >
-        <VideoComponent fragment={fragment.video} />
+        {fragment.video && <VideoComponent fragment={fragment.video} />}
         <DescriptionComponent fragment={fragment} />
-        <IngredientListing fragment={fragment.ingredients} />
+        {fragment.ingredients && (
+          <IngredientListing fragment={fragment.ingredients} />
+        )}
         <StepListing fragment={fragment} />
         <RecipeTipsComponent fragment={fragment} />
         {fragment.taberepo && (
@@ -50,7 +52,5 @@ export const RecipeArticle = (props: RecipeProps): JSX.Element => {
         )}
       </div>
     </article>
-  ) : (
-    <></>
   );
 };

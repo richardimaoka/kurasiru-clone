@@ -1,10 +1,10 @@
 import { css } from "@emotion/react";
 import { FragmentType, graphql, useFragment } from "../../libs/gql";
-import { TaberepoStar } from "./TaberepoStar";
+import { TaberepoStarsComponent } from "./TaberepoStarsComponent";
 
 const RecipeTaberepoListing_Fragment = graphql(`
   fragment RecipeTaberepoListing_Fragment on TaberepoListing {
-    stars
+    ...TaberepoStarsComponent_Fragment
     numReports
     numReviews
     list {
@@ -33,7 +33,6 @@ export const RecipeTaberepoListing = (
         css={css`
           display: flex;
           justify-content: space-between;
-          padding: 8px;
         `}
       >
         <div
@@ -45,38 +44,7 @@ export const RecipeTaberepoListing = (
         >
           たべれぽ
         </div>
-        <div
-          css={css`
-            display: flex;
-          `}
-        >
-          {fragment.stars ? (
-            <div
-              css={css`
-                display: flex;
-                gap: 2px;
-              `}
-            >
-              <TaberepoStar nthStar={1} score={fragment.stars} />
-              <TaberepoStar nthStar={2} score={fragment.stars} />
-              <TaberepoStar nthStar={3} score={fragment.stars} />
-              <TaberepoStar nthStar={4} score={fragment.stars} />
-              <TaberepoStar nthStar={5} score={fragment.stars} />
-            </div>
-          ) : (
-            <></>
-          )}
-          <div
-            css={css`
-              margin-left: 4px;
-              line-height: 20px;
-              font-size: 20px;
-              font-weight: 700;
-            `}
-          >
-            4.6
-          </div>
-        </div>
+        <TaberepoStarsComponent fragment={fragment} />
       </div>
       <p
         css={css`
