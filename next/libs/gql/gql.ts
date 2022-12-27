@@ -29,7 +29,11 @@ const documents = {
     types.RecipeGrid_FragmentFragmentDoc,
   "\n  fragment RecipeMainContainer_Fragment on Recipe {\n    ...RecipeGrid_Fragment\n  }\n":
     types.RecipeMainContainer_FragmentFragmentDoc,
-  "\n  fragment RecipeTaberepoListing_Fragment on TaberepoListing {\n    ...TaberepoStarsComponent_Fragment\n    numReports\n    numReviews\n    list {\n      user {\n        name\n        pictureUrl\n      }\n      pictureUrl\n      comment\n      date\n    }\n  }\n":
+  "\n  fragment RecipeTaberepoCell_Fragment on Taberepo {\n    user {\n      name\n      pictureUrl\n    }\n    pictureUrl\n    comment\n    date\n  }\n":
+    types.RecipeTaberepoCell_FragmentFragmentDoc,
+  "\n  fragment RecipeTaberepoGrid_Fragment on TaberepoListing {\n    numReports\n    list {\n      ...RecipeTaberepoCell_Fragment\n    }\n  }\n":
+    types.RecipeTaberepoGrid_FragmentFragmentDoc,
+  "\n  fragment RecipeTaberepoListing_Fragment on TaberepoListing {\n    ...TaberepoStarsComponent_Fragment\n    numReports\n    numReviews\n    ...RecipeTaberepoGrid_Fragment\n  }\n":
     types.RecipeTaberepoListing_FragmentFragmentDoc,
   "\n  fragment RecipeTipsComponent_Fragment on Recipe {\n    tips\n  }\n":
     types.RecipeTipsComponent_FragmentFragmentDoc,
@@ -97,8 +101,20 @@ export function graphql(
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(
-  source: "\n  fragment RecipeTaberepoListing_Fragment on TaberepoListing {\n    ...TaberepoStarsComponent_Fragment\n    numReports\n    numReviews\n    list {\n      user {\n        name\n        pictureUrl\n      }\n      pictureUrl\n      comment\n      date\n    }\n  }\n"
-): typeof documents["\n  fragment RecipeTaberepoListing_Fragment on TaberepoListing {\n    ...TaberepoStarsComponent_Fragment\n    numReports\n    numReviews\n    list {\n      user {\n        name\n        pictureUrl\n      }\n      pictureUrl\n      comment\n      date\n    }\n  }\n"];
+  source: "\n  fragment RecipeTaberepoCell_Fragment on Taberepo {\n    user {\n      name\n      pictureUrl\n    }\n    pictureUrl\n    comment\n    date\n  }\n"
+): typeof documents["\n  fragment RecipeTaberepoCell_Fragment on Taberepo {\n    user {\n      name\n      pictureUrl\n    }\n    pictureUrl\n    comment\n    date\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
+  source: "\n  fragment RecipeTaberepoGrid_Fragment on TaberepoListing {\n    numReports\n    list {\n      ...RecipeTaberepoCell_Fragment\n    }\n  }\n"
+): typeof documents["\n  fragment RecipeTaberepoGrid_Fragment on TaberepoListing {\n    numReports\n    list {\n      ...RecipeTaberepoCell_Fragment\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
+  source: "\n  fragment RecipeTaberepoListing_Fragment on TaberepoListing {\n    ...TaberepoStarsComponent_Fragment\n    numReports\n    numReviews\n    ...RecipeTaberepoGrid_Fragment\n  }\n"
+): typeof documents["\n  fragment RecipeTaberepoListing_Fragment on TaberepoListing {\n    ...TaberepoStarsComponent_Fragment\n    numReports\n    numReviews\n    ...RecipeTaberepoGrid_Fragment\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

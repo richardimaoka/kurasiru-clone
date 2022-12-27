@@ -1,5 +1,6 @@
 import { css } from "@emotion/react";
 import { FragmentType, graphql, useFragment } from "../../libs/gql";
+import { RecipeTaberepoGrid } from "./RecipeTaberepoGrid";
 import { TaberepoStarsComponent } from "./TaberepoStarsComponent";
 
 const RecipeTaberepoListing_Fragment = graphql(`
@@ -7,15 +8,7 @@ const RecipeTaberepoListing_Fragment = graphql(`
     ...TaberepoStarsComponent_Fragment
     numReports
     numReviews
-    list {
-      user {
-        name
-        pictureUrl
-      }
-      pictureUrl
-      comment
-      date
-    }
+    ...RecipeTaberepoGrid_Fragment
   }
 `);
 
@@ -46,11 +39,16 @@ export const RecipeTaberepoListing = (
         </div>
         <TaberepoStarsComponent fragment={fragment} />
       </div>
-      <p
+      <div
         css={css`
-          margin-bottom: 20px;
+          margin-top: 8px;
+          text-align: right;
+          font-size: 12px;
         `}
-      ></p>
+      >
+        496件のレビュー
+      </div>
+      <RecipeTaberepoGrid fragment={fragment} />
     </div>
   );
 };

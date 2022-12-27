@@ -213,24 +213,39 @@ export type RecipeMainContainer_FragmentFragment = ({ __typename: "Recipe" } & {
   };
 }) & { " $fragmentName"?: "RecipeMainContainer_FragmentFragment" };
 
+export type RecipeTaberepoCell_FragmentFragment = {
+  __typename: "Taberepo";
+  pictureUrl?: string | null;
+  comment?: string | null;
+  date?: string | null;
+  user?: {
+    __typename: "User";
+    name: string;
+    pictureUrl?: string | null;
+  } | null;
+} & { " $fragmentName"?: "RecipeTaberepoCell_FragmentFragment" };
+
+export type RecipeTaberepoGrid_FragmentFragment = {
+  __typename: "TaberepoListing";
+  numReports?: number | null;
+  list?: Array<
+    | ({ __typename: "Taberepo" } & {
+        " $fragmentRefs"?: {
+          RecipeTaberepoCell_FragmentFragment: RecipeTaberepoCell_FragmentFragment;
+        };
+      })
+    | null
+  > | null;
+} & { " $fragmentName"?: "RecipeTaberepoGrid_FragmentFragment" };
+
 export type RecipeTaberepoListing_FragmentFragment = ({
   __typename: "TaberepoListing";
   numReports?: number | null;
   numReviews?: number | null;
-  list?: Array<{
-    __typename: "Taberepo";
-    pictureUrl?: string | null;
-    comment?: string | null;
-    date?: string | null;
-    user?: {
-      __typename: "User";
-      name: string;
-      pictureUrl?: string | null;
-    } | null;
-  } | null> | null;
 } & {
   " $fragmentRefs"?: {
     TaberepoStarsComponent_FragmentFragment: TaberepoStarsComponent_FragmentFragment;
+    RecipeTaberepoGrid_FragmentFragment: RecipeTaberepoGrid_FragmentFragment;
   };
 }) & { " $fragmentName"?: "RecipeTaberepoListing_FragmentFragment" };
 
@@ -520,6 +535,71 @@ export const TaberepoStarsComponent_FragmentFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<TaberepoStarsComponent_FragmentFragment, unknown>;
+export const RecipeTaberepoCell_FragmentFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "RecipeTaberepoCell_Fragment" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "Taberepo" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "user" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "name" } },
+                { kind: "Field", name: { kind: "Name", value: "pictureUrl" } },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "pictureUrl" } },
+          { kind: "Field", name: { kind: "Name", value: "comment" } },
+          { kind: "Field", name: { kind: "Name", value: "date" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<RecipeTaberepoCell_FragmentFragment, unknown>;
+export const RecipeTaberepoGrid_FragmentFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "RecipeTaberepoGrid_Fragment" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "TaberepoListing" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "numReports" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "list" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "RecipeTaberepoCell_Fragment" },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    ...RecipeTaberepoCell_FragmentFragmentDoc.definitions,
+  ],
+} as unknown as DocumentNode<RecipeTaberepoGrid_FragmentFragment, unknown>;
 export const RecipeTaberepoListing_FragmentFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -540,35 +620,14 @@ export const RecipeTaberepoListing_FragmentFragmentDoc = {
           { kind: "Field", name: { kind: "Name", value: "numReports" } },
           { kind: "Field", name: { kind: "Name", value: "numReviews" } },
           {
-            kind: "Field",
-            name: { kind: "Name", value: "list" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "user" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      { kind: "Field", name: { kind: "Name", value: "name" } },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "pictureUrl" },
-                      },
-                    ],
-                  },
-                },
-                { kind: "Field", name: { kind: "Name", value: "pictureUrl" } },
-                { kind: "Field", name: { kind: "Name", value: "comment" } },
-                { kind: "Field", name: { kind: "Name", value: "date" } },
-              ],
-            },
+            kind: "FragmentSpread",
+            name: { kind: "Name", value: "RecipeTaberepoGrid_Fragment" },
           },
         ],
       },
     },
     ...TaberepoStarsComponent_FragmentFragmentDoc.definitions,
+    ...RecipeTaberepoGrid_FragmentFragmentDoc.definitions,
   ],
 } as unknown as DocumentNode<RecipeTaberepoListing_FragmentFragment, unknown>;
 export const RecipeArticle_FragmentFragmentDoc = {
