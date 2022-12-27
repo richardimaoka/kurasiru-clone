@@ -42,13 +42,16 @@ type Step struct {
 }
 
 type Taberepo struct {
-	User    *User    `json:"user"`
-	Star    *float64 `json:"star"`
-	Comment *string  `json:"comment"`
-	Date    *string  `json:"date"`
+	User       *User    `json:"user"`
+	Stars      *float64 `json:"stars"`
+	Comment    *string  `json:"comment"`
+	Date       *string  `json:"date"`
+	PictureURL *string  `json:"pictureUrl"`
 }
 
 type TaberepoListing struct {
+	Stars      *float64    `json:"stars"`
+	NumReviews *int        `json:"numReviews"`
 	NumReports *int        `json:"numReports"`
 	List       []*Taberepo `json:"list"`
 }

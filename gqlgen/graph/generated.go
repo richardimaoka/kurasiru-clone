@@ -88,15 +88,18 @@ type ComplexityRoot struct {
 	}
 
 	Taberepo struct {
-		Comment func(childComplexity int) int
-		Date    func(childComplexity int) int
-		Star    func(childComplexity int) int
-		User    func(childComplexity int) int
+		Comment    func(childComplexity int) int
+		Date       func(childComplexity int) int
+		PictureURL func(childComplexity int) int
+		Stars      func(childComplexity int) int
+		User       func(childComplexity int) int
 	}
 
 	TaberepoListing struct {
 		List       func(childComplexity int) int
 		NumReports func(childComplexity int) int
+		NumReviews func(childComplexity int) int
+		Stars      func(childComplexity int) int
 	}
 
 	Todo struct {
@@ -320,12 +323,19 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.Taberepo.Date(childComplexity), true
 
-	case "Taberepo.star":
-		if e.complexity.Taberepo.Star == nil {
+	case "Taberepo.pictureUrl":
+		if e.complexity.Taberepo.PictureURL == nil {
 			break
 		}
 
-		return e.complexity.Taberepo.Star(childComplexity), true
+		return e.complexity.Taberepo.PictureURL(childComplexity), true
+
+	case "Taberepo.stars":
+		if e.complexity.Taberepo.Stars == nil {
+			break
+		}
+
+		return e.complexity.Taberepo.Stars(childComplexity), true
 
 	case "Taberepo.user":
 		if e.complexity.Taberepo.User == nil {
@@ -347,6 +357,20 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 		}
 
 		return e.complexity.TaberepoListing.NumReports(childComplexity), true
+
+	case "TaberepoListing.numReviews":
+		if e.complexity.TaberepoListing.NumReviews == nil {
+			break
+		}
+
+		return e.complexity.TaberepoListing.NumReviews(childComplexity), true
+
+	case "TaberepoListing.stars":
+		if e.complexity.TaberepoListing.Stars == nil {
+			break
+		}
+
+		return e.complexity.TaberepoListing.Stars(childComplexity), true
 
 	case "Todo.done":
 		if e.complexity.Todo.Done == nil {
@@ -531,12 +555,15 @@ type Step {
 
 type Taberepo {
   user: User
-  star: Float
+  stars: Float
   comment: String
   date: String
+  pictureUrl: String
 }
 
 type TaberepoListing {
+  stars: Float
+  numReviews: Int
   numReports: Int
   list: [Taberepo]
 }
@@ -1749,6 +1776,10 @@ func (ec *executionContext) fieldContext_Recipe_taberepo(ctx context.Context, fi
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			switch field.Name {
+			case "stars":
+				return ec.fieldContext_TaberepoListing_stars(ctx, field)
+			case "numReviews":
+				return ec.fieldContext_TaberepoListing_numReviews(ctx, field)
 			case "numReports":
 				return ec.fieldContext_TaberepoListing_numReports(ctx, field)
 			case "list":
@@ -1850,8 +1881,8 @@ func (ec *executionContext) fieldContext_Taberepo_user(ctx context.Context, fiel
 	return fc, nil
 }
 
-func (ec *executionContext) _Taberepo_star(ctx context.Context, field graphql.CollectedField, obj *model.Taberepo) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Taberepo_star(ctx, field)
+func (ec *executionContext) _Taberepo_stars(ctx context.Context, field graphql.CollectedField, obj *model.Taberepo) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_Taberepo_stars(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -1864,7 +1895,7 @@ func (ec *executionContext) _Taberepo_star(ctx context.Context, field graphql.Co
 	}()
 	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
 		ctx = rctx // use context from middleware stack in children
-		return obj.Star, nil
+		return obj.Stars, nil
 	})
 	if err != nil {
 		ec.Error(ctx, err)
@@ -1878,7 +1909,7 @@ func (ec *executionContext) _Taberepo_star(ctx context.Context, field graphql.Co
 	return ec.marshalOFloat2ᚖfloat64(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_Taberepo_star(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Taberepo_stars(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Taberepo",
 		Field:      field,
@@ -1973,6 +2004,129 @@ func (ec *executionContext) fieldContext_Taberepo_date(ctx context.Context, fiel
 	return fc, nil
 }
 
+func (ec *executionContext) _Taberepo_pictureUrl(ctx context.Context, field graphql.CollectedField, obj *model.Taberepo) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_Taberepo_pictureUrl(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.PictureURL, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*string)
+	fc.Result = res
+	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_Taberepo_pictureUrl(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "Taberepo",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type String does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _TaberepoListing_stars(ctx context.Context, field graphql.CollectedField, obj *model.TaberepoListing) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_TaberepoListing_stars(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Stars, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*float64)
+	fc.Result = res
+	return ec.marshalOFloat2ᚖfloat64(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_TaberepoListing_stars(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "TaberepoListing",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type Float does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _TaberepoListing_numReviews(ctx context.Context, field graphql.CollectedField, obj *model.TaberepoListing) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_TaberepoListing_numReviews(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.NumReviews, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*int)
+	fc.Result = res
+	return ec.marshalOInt2ᚖint(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_TaberepoListing_numReviews(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "TaberepoListing",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type Int does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
 func (ec *executionContext) _TaberepoListing_numReports(ctx context.Context, field graphql.CollectedField, obj *model.TaberepoListing) (ret graphql.Marshaler) {
 	fc, err := ec.fieldContext_TaberepoListing_numReports(ctx, field)
 	if err != nil {
@@ -2052,12 +2206,14 @@ func (ec *executionContext) fieldContext_TaberepoListing_list(ctx context.Contex
 			switch field.Name {
 			case "user":
 				return ec.fieldContext_Taberepo_user(ctx, field)
-			case "star":
-				return ec.fieldContext_Taberepo_star(ctx, field)
+			case "stars":
+				return ec.fieldContext_Taberepo_stars(ctx, field)
 			case "comment":
 				return ec.fieldContext_Taberepo_comment(ctx, field)
 			case "date":
 				return ec.fieldContext_Taberepo_date(ctx, field)
+			case "pictureUrl":
+				return ec.fieldContext_Taberepo_pictureUrl(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type Taberepo", field.Name)
 		},
@@ -4637,9 +4793,9 @@ func (ec *executionContext) _Taberepo(ctx context.Context, sel ast.SelectionSet,
 
 			out.Values[i] = ec._Taberepo_user(ctx, field, obj)
 
-		case "star":
+		case "stars":
 
-			out.Values[i] = ec._Taberepo_star(ctx, field, obj)
+			out.Values[i] = ec._Taberepo_stars(ctx, field, obj)
 
 		case "comment":
 
@@ -4648,6 +4804,10 @@ func (ec *executionContext) _Taberepo(ctx context.Context, sel ast.SelectionSet,
 		case "date":
 
 			out.Values[i] = ec._Taberepo_date(ctx, field, obj)
+
+		case "pictureUrl":
+
+			out.Values[i] = ec._Taberepo_pictureUrl(ctx, field, obj)
 
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
@@ -4670,6 +4830,14 @@ func (ec *executionContext) _TaberepoListing(ctx context.Context, sel ast.Select
 		switch field.Name {
 		case "__typename":
 			out.Values[i] = graphql.MarshalString("TaberepoListing")
+		case "stars":
+
+			out.Values[i] = ec._TaberepoListing_stars(ctx, field, obj)
+
+		case "numReviews":
+
+			out.Values[i] = ec._TaberepoListing_numReviews(ctx, field, obj)
+
 		case "numReports":
 
 			out.Values[i] = ec._TaberepoListing_numReports(ctx, field, obj)

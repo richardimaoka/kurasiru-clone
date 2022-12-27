@@ -42,12 +42,15 @@ type Step {
 
 type Taberepo {
   user: User
-  star: Float
+  stars: Float
   comment: String
   date: String
+  pictureUrl: String
 }
 
 type TaberepoListing {
+  stars: Float
+  numReviews: Int
   numReports: Int
   list: [Taberepo]
 }
