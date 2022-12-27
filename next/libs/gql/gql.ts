@@ -23,12 +23,14 @@ const documents = {
     types.IngredientElement_FragmentFragmentDoc,
   "\n  fragment IngredientListing_Fragment on Ingredients {\n    servings\n    list {\n      ...IngredientElement_Fragment\n    }\n  }\n":
     types.IngredientListing_FragmentFragmentDoc,
-  "\n  fragment RecipeArticle_Fragment on Recipe {\n    ...DescriptionComponent_Fragment\n    ingredients {\n      ...IngredientListing_Fragment\n    }\n    video {\n      ...VideoComponent_Fragment\n    }\n    ...StepListing_Fragment\n  }\n":
+  "\n  fragment RecipeArticle_Fragment on Recipe {\n    ...DescriptionComponent_Fragment\n    ingredients {\n      ...IngredientListing_Fragment\n    }\n    video {\n      ...VideoComponent_Fragment\n    }\n    ...StepListing_Fragment\n    ...RecipeTipsComponent_Fragment\n  }\n":
     types.RecipeArticle_FragmentFragmentDoc,
   "\n  fragment RecipeGrid_Fragment on Recipe {\n    ...RecipeArticle_Fragment\n  }\n":
     types.RecipeGrid_FragmentFragmentDoc,
   "\n  fragment RecipeMainContainer_Fragment on Recipe {\n    ...RecipeGrid_Fragment\n  }\n":
     types.RecipeMainContainer_FragmentFragmentDoc,
+  "\n  fragment RecipeTipsComponent_Fragment on Recipe {\n    tips\n  }\n":
+    types.RecipeTipsComponent_FragmentFragmentDoc,
   "\n  fragment StepElement_Fragment on Step {\n    description\n  }\n":
     types.StepElement_FragmentFragmentDoc,
   "\n  fragment StepListing_Fragment on Recipe {\n    steps {\n      ...StepElement_Fragment\n    }\n  }\n":
@@ -73,8 +75,8 @@ export function graphql(
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(
-  source: "\n  fragment RecipeArticle_Fragment on Recipe {\n    ...DescriptionComponent_Fragment\n    ingredients {\n      ...IngredientListing_Fragment\n    }\n    video {\n      ...VideoComponent_Fragment\n    }\n    ...StepListing_Fragment\n  }\n"
-): typeof documents["\n  fragment RecipeArticle_Fragment on Recipe {\n    ...DescriptionComponent_Fragment\n    ingredients {\n      ...IngredientListing_Fragment\n    }\n    video {\n      ...VideoComponent_Fragment\n    }\n    ...StepListing_Fragment\n  }\n"];
+  source: "\n  fragment RecipeArticle_Fragment on Recipe {\n    ...DescriptionComponent_Fragment\n    ingredients {\n      ...IngredientListing_Fragment\n    }\n    video {\n      ...VideoComponent_Fragment\n    }\n    ...StepListing_Fragment\n    ...RecipeTipsComponent_Fragment\n  }\n"
+): typeof documents["\n  fragment RecipeArticle_Fragment on Recipe {\n    ...DescriptionComponent_Fragment\n    ingredients {\n      ...IngredientListing_Fragment\n    }\n    video {\n      ...VideoComponent_Fragment\n    }\n    ...StepListing_Fragment\n    ...RecipeTipsComponent_Fragment\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
@@ -87,6 +89,12 @@ export function graphql(
 export function graphql(
   source: "\n  fragment RecipeMainContainer_Fragment on Recipe {\n    ...RecipeGrid_Fragment\n  }\n"
 ): typeof documents["\n  fragment RecipeMainContainer_Fragment on Recipe {\n    ...RecipeGrid_Fragment\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
+  source: "\n  fragment RecipeTipsComponent_Fragment on Recipe {\n    tips\n  }\n"
+): typeof documents["\n  fragment RecipeTipsComponent_Fragment on Recipe {\n    tips\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

@@ -50,6 +50,7 @@ type Recipe {
   breadcrumbs: [BreadcrumbItem]
   video: Video
   steps: [Step]
+  tips: String
 }
 
 type Query {

@@ -72,6 +72,7 @@ export type Recipe = {
   introduction?: Maybe<Scalars["String"]>;
   steps?: Maybe<Array<Maybe<Step>>>;
   subTitle?: Maybe<Scalars["String"]>;
+  tips?: Maybe<Scalars["String"]>;
   title?: Maybe<Scalars["String"]>;
   video?: Maybe<Video>;
 };
@@ -170,6 +171,7 @@ export type RecipeArticle_FragmentFragment = ({
   " $fragmentRefs"?: {
     DescriptionComponent_FragmentFragment: DescriptionComponent_FragmentFragment;
     StepListing_FragmentFragment: StepListing_FragmentFragment;
+    RecipeTipsComponent_FragmentFragment: RecipeTipsComponent_FragmentFragment;
   };
 }) & { " $fragmentName"?: "RecipeArticle_FragmentFragment" };
 
@@ -184,6 +186,11 @@ export type RecipeMainContainer_FragmentFragment = ({ __typename: "Recipe" } & {
     RecipeGrid_FragmentFragment: RecipeGrid_FragmentFragment;
   };
 }) & { " $fragmentName"?: "RecipeMainContainer_FragmentFragment" };
+
+export type RecipeTipsComponent_FragmentFragment = {
+  __typename: "Recipe";
+  tips?: string | null;
+} & { " $fragmentName"?: "RecipeTipsComponent_FragmentFragment" };
 
 export type StepElement_FragmentFragment = {
   __typename: "Step";
@@ -427,6 +434,23 @@ export const StepListing_FragmentFragmentDoc = {
     ...StepElement_FragmentFragmentDoc.definitions,
   ],
 } as unknown as DocumentNode<StepListing_FragmentFragment, unknown>;
+export const RecipeTipsComponent_FragmentFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "RecipeTipsComponent_Fragment" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "Recipe" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [{ kind: "Field", name: { kind: "Name", value: "tips" } }],
+      },
+    },
+  ],
+} as unknown as DocumentNode<RecipeTipsComponent_FragmentFragment, unknown>;
 export const RecipeArticle_FragmentFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -474,6 +498,10 @@ export const RecipeArticle_FragmentFragmentDoc = {
             kind: "FragmentSpread",
             name: { kind: "Name", value: "StepListing_Fragment" },
           },
+          {
+            kind: "FragmentSpread",
+            name: { kind: "Name", value: "RecipeTipsComponent_Fragment" },
+          },
         ],
       },
     },
@@ -481,6 +509,7 @@ export const RecipeArticle_FragmentFragmentDoc = {
     ...IngredientListing_FragmentFragmentDoc.definitions,
     ...VideoComponent_FragmentFragmentDoc.definitions,
     ...StepListing_FragmentFragmentDoc.definitions,
+    ...RecipeTipsComponent_FragmentFragmentDoc.definitions,
   ],
 } as unknown as DocumentNode<RecipeArticle_FragmentFragment, unknown>;
 export const RecipeGrid_FragmentFragmentDoc = {

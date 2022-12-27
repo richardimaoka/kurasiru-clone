@@ -33,6 +33,7 @@ type Recipe struct {
 	Breadcrumbs  []*BreadcrumbItem `json:"breadcrumbs"`
 	Video        *Video            `json:"video"`
 	Steps        []*Step           `json:"steps"`
+	Tips         *string           `json:"tips"`
 }
 
 type Step struct {

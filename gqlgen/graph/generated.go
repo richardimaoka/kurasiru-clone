@@ -77,6 +77,7 @@ type ComplexityRoot struct {
 		Introduction func(childComplexity int) int
 		Steps        func(childComplexity int) int
 		SubTitle     func(childComplexity int) int
+		Tips         func(childComplexity int) int
 		Title        func(childComplexity int) int
 		Video        func(childComplexity int) int
 	}
@@ -255,6 +256,13 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 		}
 
 		return e.complexity.Recipe.SubTitle(childComplexity), true
+
+	case "Recipe.tips":
+		if e.complexity.Recipe.Tips == nil {
+			break
+		}
+
+		return e.complexity.Recipe.Tips(childComplexity), true
 
 	case "Recipe.title":
 		if e.complexity.Recipe.Title == nil {
@@ -461,6 +469,7 @@ type Recipe {
   breadcrumbs: [BreadcrumbItem]
   video: Video
   steps: [Step]
+  tips: String
 }
 
 type Query {
@@ -994,6 +1003,8 @@ func (ec *executionContext) fieldContext_Query_recipe(ctx context.Context, field
 				return ec.fieldContext_Recipe_video(ctx, field)
 			case "steps":
 				return ec.fieldContext_Recipe_steps(ctx, field)
+			case "tips":
+				return ec.fieldContext_Recipe_tips(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type Recipe", field.Name)
 		},
@@ -1570,6 +1581,47 @@ func (ec *executionContext) fieldContext_Recipe_steps(ctx context.Context, field
 				return ec.fieldContext_Step_description(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type Step", field.Name)
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _Recipe_tips(ctx context.Context, field graphql.CollectedField, obj *model.Recipe) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_Recipe_tips(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Tips, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*string)
+	fc.Result = res
+	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_Recipe_tips(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "Recipe",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type String does not have child fields")
 		},
 	}
 	return fc, nil
@@ -4086,6 +4138,10 @@ func (ec *executionContext) _Recipe(ctx context.Context, sel ast.SelectionSet, o
 		case "steps":
 
 			out.Values[i] = ec._Recipe_steps(ctx, field, obj)
+
+		case "tips":
+
+			out.Values[i] = ec._Recipe_tips(ctx, field, obj)
 
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
