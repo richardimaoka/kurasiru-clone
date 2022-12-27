@@ -4,7 +4,11 @@ export const AsideRankingConponent = (): JSX.Element => {
       <div>人気ランキング</div>
       <div className="ranking-container">
         <div className="ranking-image">
-          <img width="85" height="85" src="images/recipe-ranking1.jpg" />
+          <img
+            width="85"
+            height="85"
+            src="http://localhost:8090/images/recipe-ranking1.jpg"
+          />
         </div>
         <div className="ranking-info">
           <div className="ranking-position">1位</div>
@@ -19,7 +23,11 @@ export const AsideRankingConponent = (): JSX.Element => {
           </div>
         </div>
         <div className="ranking-image">
-          <img width="85" height="85" src="images/recipe-ranking2.jpg" />
+          <img
+            width="85"
+            height="85"
+            src="http://localhost:8090/images/recipe-ranking2.jpg"
+          />
         </div>
         <div className="ranking-info">
           <div className="ranking-position">2位</div>
@@ -34,7 +42,11 @@ export const AsideRankingConponent = (): JSX.Element => {
           </div>
         </div>
         <div className="ranking-image">
-          <img width="85" height="85" src="images/recipe-ranking3.jpg" />
+          <img
+            width="85"
+            height="85"
+            src="http://localhost:8090/images/recipe-ranking3.jpg"
+          />
         </div>
         <div className="ranking-info">
           <div className="ranking-position">3位</div>
@@ -49,7 +61,11 @@ export const AsideRankingConponent = (): JSX.Element => {
           </div>
         </div>
         <div className="ranking-image">
-          <img width="85" height="85" src="images/recipe-ranking4.jpg" />
+          <img
+            width="85"
+            height="85"
+            src="http://localhost:8090/images/recipe-ranking4.jpg"
+          />
         </div>
         <div className="ranking-info">
           <div className="ranking-position">4位</div>
@@ -64,7 +80,11 @@ export const AsideRankingConponent = (): JSX.Element => {
           </div>
         </div>
         <div className="ranking-image">
-          <img width="85" height="85" src="images/recipe-ranking5.jpg" />
+          <img
+            width="85"
+            height="85"
+            src="http://localhost:8090/images/recipe-ranking5.jpg"
+          />
         </div>
         <div className="ranking-info">
           <div className="ranking-position">5位</div>
