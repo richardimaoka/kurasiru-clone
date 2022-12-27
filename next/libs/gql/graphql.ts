@@ -72,6 +72,7 @@ export type Recipe = {
   introduction?: Maybe<Scalars["String"]>;
   steps?: Maybe<Array<Maybe<Step>>>;
   subTitle?: Maybe<Scalars["String"]>;
+  taberepo?: Maybe<TaberepoListing>;
   tips?: Maybe<Scalars["String"]>;
   title?: Maybe<Scalars["String"]>;
   video?: Maybe<Video>;
@@ -80,6 +81,20 @@ export type Recipe = {
 export type Step = {
   __typename: "Step";
   description?: Maybe<Scalars["String"]>;
+};
+
+export type Taberepo = {
+  __typename: "Taberepo";
+  comment?: Maybe<Scalars["String"]>;
+  date?: Maybe<Scalars["String"]>;
+  star?: Maybe<Scalars["Float"]>;
+  user?: Maybe<User>;
+};
+
+export type TaberepoListing = {
+  __typename: "TaberepoListing";
+  list?: Maybe<Array<Maybe<Taberepo>>>;
+  numReports?: Maybe<Scalars["Int"]>;
 };
 
 export type Todo = {
@@ -94,6 +109,7 @@ export type User = {
   __typename: "User";
   id: Scalars["ID"];
   name: Scalars["String"];
+  pictureUrl?: Maybe<Scalars["String"]>;
 };
 
 export type Video = {
@@ -186,6 +202,11 @@ export type RecipeMainContainer_FragmentFragment = ({ __typename: "Recipe" } & {
     RecipeGrid_FragmentFragment: RecipeGrid_FragmentFragment;
   };
 }) & { " $fragmentName"?: "RecipeMainContainer_FragmentFragment" };
+
+export type RecipeTaberepoListing_FragmentFragment = {
+  __typename: "Recipe";
+  tips?: string | null;
+} & { " $fragmentName"?: "RecipeTaberepoListing_FragmentFragment" };
 
 export type RecipeTipsComponent_FragmentFragment = {
   __typename: "Recipe";
@@ -558,6 +579,23 @@ export const RecipeMainContainer_FragmentFragmentDoc = {
     ...RecipeGrid_FragmentFragmentDoc.definitions,
   ],
 } as unknown as DocumentNode<RecipeMainContainer_FragmentFragment, unknown>;
+export const RecipeTaberepoListing_FragmentFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "RecipeTaberepoListing_Fragment" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "Recipe" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [{ kind: "Field", name: { kind: "Name", value: "tips" } }],
+      },
+    },
+  ],
+} as unknown as DocumentNode<RecipeTaberepoListing_FragmentFragment, unknown>;
 export const GetRecipeDocument = {
   kind: "Document",
   definitions: [

@@ -34,10 +34,23 @@ type Recipe struct {
 	Video        *Video            `json:"video"`
 	Steps        []*Step           `json:"steps"`
 	Tips         *string           `json:"tips"`
+	Taberepo     *TaberepoListing  `json:"taberepo"`
 }
 
 type Step struct {
 	Description *string `json:"description"`
+}
+
+type Taberepo struct {
+	User    *User    `json:"user"`
+	Star    *float64 `json:"star"`
+	Comment *string  `json:"comment"`
+	Date    *string  `json:"date"`
+}
+
+type TaberepoListing struct {
+	NumReports *int        `json:"numReports"`
+	List       []*Taberepo `json:"list"`
 }
 
 type Todo struct {
@@ -48,8 +61,9 @@ type Todo struct {
 }
 
 type User struct {
-	ID   string `json:"id"`
-	Name string `json:"name"`
+	ID         string  `json:"id"`
+	Name       string  `json:"name"`
+	PictureURL *string `json:"pictureUrl"`
 }
 
 type Video struct {

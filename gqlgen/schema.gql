@@ -12,6 +12,7 @@ type Todo {
 type User {
   id: ID!
   name: String!
+  pictureUrl: String
 }
 
 type Ingredient {
@@ -39,6 +40,18 @@ type Step {
   description: String
 }
 
+type Taberepo {
+  user: User
+  star: Float
+  comment: String
+  date: String
+}
+
+type TaberepoListing {
+  numReports: Int
+  list: [Taberepo]
+}
+
 type Recipe {
   id: ID
   title: String
@@ -51,6 +64,7 @@ type Recipe {
   video: Video
   steps: [Step]
   tips: String
+  taberepo: TaberepoListing
 }
 
 type Query {

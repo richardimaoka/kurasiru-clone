@@ -29,6 +29,8 @@ const documents = {
     types.RecipeGrid_FragmentFragmentDoc,
   "\n  fragment RecipeMainContainer_Fragment on Recipe {\n    ...RecipeGrid_Fragment\n  }\n":
     types.RecipeMainContainer_FragmentFragmentDoc,
+  "\n  fragment RecipeTaberepoListing_Fragment on Recipe {\n    tips\n  }\n":
+    types.RecipeTaberepoListing_FragmentFragmentDoc,
   "\n  fragment RecipeTipsComponent_Fragment on Recipe {\n    tips\n  }\n":
     types.RecipeTipsComponent_FragmentFragmentDoc,
   "\n  fragment StepElement_Fragment on Step {\n    description\n  }\n":
@@ -89,6 +91,12 @@ export function graphql(
 export function graphql(
   source: "\n  fragment RecipeMainContainer_Fragment on Recipe {\n    ...RecipeGrid_Fragment\n  }\n"
 ): typeof documents["\n  fragment RecipeMainContainer_Fragment on Recipe {\n    ...RecipeGrid_Fragment\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
+  source: "\n  fragment RecipeTaberepoListing_Fragment on Recipe {\n    tips\n  }\n"
+): typeof documents["\n  fragment RecipeTaberepoListing_Fragment on Recipe {\n    tips\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
