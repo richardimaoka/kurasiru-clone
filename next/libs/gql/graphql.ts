@@ -186,12 +186,18 @@ export type RecipeArticle_FragmentFragment = ({
         };
       })
     | null;
+  taberepo?:
+    | ({ __typename: "TaberepoListing" } & {
+        " $fragmentRefs"?: {
+          RecipeTaberepoListing_FragmentFragment: RecipeTaberepoListing_FragmentFragment;
+        };
+      })
+    | null;
 } & {
   " $fragmentRefs"?: {
     DescriptionComponent_FragmentFragment: DescriptionComponent_FragmentFragment;
     StepListing_FragmentFragment: StepListing_FragmentFragment;
     RecipeTipsComponent_FragmentFragment: RecipeTipsComponent_FragmentFragment;
-    RecipeTaberepoListing_FragmentFragment: RecipeTaberepoListing_FragmentFragment;
   };
 }) & { " $fragmentName"?: "RecipeArticle_FragmentFragment" };
 
@@ -208,22 +214,21 @@ export type RecipeMainContainer_FragmentFragment = ({ __typename: "Recipe" } & {
 }) & { " $fragmentName"?: "RecipeMainContainer_FragmentFragment" };
 
 export type RecipeTaberepoListing_FragmentFragment = {
-  __typename: "Recipe";
-  taberepo?: {
-    __typename: "TaberepoListing";
-    numReports?: number | null;
-    list?: Array<{
-      __typename: "Taberepo";
+  __typename: "TaberepoListing";
+  stars?: number | null;
+  numReports?: number | null;
+  numReviews?: number | null;
+  list?: Array<{
+    __typename: "Taberepo";
+    pictureUrl?: string | null;
+    comment?: string | null;
+    date?: string | null;
+    user?: {
+      __typename: "User";
+      name: string;
       pictureUrl?: string | null;
-      comment?: string | null;
-      date?: string | null;
-      user?: {
-        __typename: "User";
-        name: string;
-        pictureUrl?: string | null;
-      } | null;
-    } | null> | null;
-  } | null;
+    } | null;
+  } | null> | null;
 } & { " $fragmentName"?: "RecipeTaberepoListing_FragmentFragment" };
 
 export type RecipeTipsComponent_FragmentFragment = {
@@ -498,53 +503,37 @@ export const RecipeTaberepoListing_FragmentFragmentDoc = {
       name: { kind: "Name", value: "RecipeTaberepoListing_Fragment" },
       typeCondition: {
         kind: "NamedType",
-        name: { kind: "Name", value: "Recipe" },
+        name: { kind: "Name", value: "TaberepoListing" },
       },
       selectionSet: {
         kind: "SelectionSet",
         selections: [
+          { kind: "Field", name: { kind: "Name", value: "stars" } },
+          { kind: "Field", name: { kind: "Name", value: "numReports" } },
+          { kind: "Field", name: { kind: "Name", value: "numReviews" } },
           {
             kind: "Field",
-            name: { kind: "Name", value: "taberepo" },
+            name: { kind: "Name", value: "list" },
             selectionSet: {
               kind: "SelectionSet",
               selections: [
-                { kind: "Field", name: { kind: "Name", value: "numReports" } },
                 {
                   kind: "Field",
-                  name: { kind: "Name", value: "list" },
+                  name: { kind: "Name", value: "user" },
                   selectionSet: {
                     kind: "SelectionSet",
                     selections: [
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "user" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "name" },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "pictureUrl" },
-                            },
-                          ],
-                        },
-                      },
+                      { kind: "Field", name: { kind: "Name", value: "name" } },
                       {
                         kind: "Field",
                         name: { kind: "Name", value: "pictureUrl" },
                       },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "comment" },
-                      },
-                      { kind: "Field", name: { kind: "Name", value: "date" } },
                     ],
                   },
                 },
+                { kind: "Field", name: { kind: "Name", value: "pictureUrl" } },
+                { kind: "Field", name: { kind: "Name", value: "comment" } },
+                { kind: "Field", name: { kind: "Name", value: "date" } },
               ],
             },
           },
@@ -605,8 +594,20 @@ export const RecipeArticle_FragmentFragmentDoc = {
             name: { kind: "Name", value: "RecipeTipsComponent_Fragment" },
           },
           {
-            kind: "FragmentSpread",
-            name: { kind: "Name", value: "RecipeTaberepoListing_Fragment" },
+            kind: "Field",
+            name: { kind: "Name", value: "taberepo" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: {
+                    kind: "Name",
+                    value: "RecipeTaberepoListing_Fragment",
+                  },
+                },
+              ],
+            },
           },
         ],
       },

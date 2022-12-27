@@ -1,19 +1,20 @@
 import { css } from "@emotion/react";
 import { FragmentType, graphql, useFragment } from "../../libs/gql";
+import { TaberepoStar } from "./TaberepoStar";
 
 const RecipeTaberepoListing_Fragment = graphql(`
-  fragment RecipeTaberepoListing_Fragment on Recipe {
-    taberepo {
-      numReports
-      list {
-        user {
-          name
-          pictureUrl
-        }
+  fragment RecipeTaberepoListing_Fragment on TaberepoListing {
+    stars
+    numReports
+    numReviews
+    list {
+      user {
+        name
         pictureUrl
-        comment
-        date
       }
+      pictureUrl
+      comment
+      date
     }
   }
 `);
@@ -49,62 +50,22 @@ export const RecipeTaberepoListing = (
             display: flex;
           `}
         >
-          <div
-            css={css`
-              display: flex;
-            `}
-          >
-            <img
+          {fragment.stars ? (
+            <div
               css={css`
-                display: block;
-                margin-left: 2px;
-                width: 20px;
+                display: flex;
+                gap: 2px;
               `}
-              width="20"
-              height="18.438"
-              src="http://localhost:8090/images/star-full.svg"
-            />
-            <img
-              css={css`
-                display: block;
-                margin-left: 2px;
-                width: 20px;
-              `}
-              width="20"
-              height="18.438"
-              src="http://localhost:8090/images/star-full.svg"
-            />
-            <img
-              css={css`
-                display: block;
-                margin-left: 2px;
-                width: 20px;
-              `}
-              width="20"
-              height="18.438"
-              src="http://localhost:8090/images/star-full.svg"
-            />
-            <img
-              css={css`
-                display: block;
-                margin-left: 2px;
-                width: 20px;
-              `}
-              width="20"
-              height="18.438"
-              src="http://localhost:8090/images/star-full.svg"
-            />
-            <img
-              css={css`
-                display: block;
-                margin-left: 2px;
-                width: 20px;
-              `}
-              width="20"
-              height="18.438"
-              src="http://localhost:8090/images/star-half.svg"
-            />
-          </div>
+            >
+              <TaberepoStar nthStar={1} score={fragment.stars} />
+              <TaberepoStar nthStar={2} score={fragment.stars} />
+              <TaberepoStar nthStar={3} score={fragment.stars} />
+              <TaberepoStar nthStar={4} score={fragment.stars} />
+              <TaberepoStar nthStar={5} score={fragment.stars} />
+            </div>
+          ) : (
+            <></>
+          )}
           <div
             css={css`
               margin-left: 4px;

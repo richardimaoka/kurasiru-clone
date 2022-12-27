@@ -19,7 +19,9 @@ const RecipeArticle_Fragment = graphql(`
     }
     ...StepListing_Fragment
     ...RecipeTipsComponent_Fragment
-    ...RecipeTaberepoListing_Fragment
+    taberepo {
+      ...RecipeTaberepoListing_Fragment
+    }
   }
 `);
 
@@ -43,7 +45,9 @@ export const RecipeArticle = (props: RecipeProps): JSX.Element => {
         <IngredientListing fragment={fragment.ingredients} />
         <StepListing fragment={fragment} />
         <RecipeTipsComponent fragment={fragment} />
-        <RecipeTaberepoListing fragment={fragment} />
+        {fragment.taberepo && (
+          <RecipeTaberepoListing fragment={fragment.taberepo} />
+        )}
       </div>
     </article>
   ) : (
