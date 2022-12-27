@@ -3,9 +3,9 @@ import { AsideRankingConponent } from "./AsideRankingConponent";
 
 export const AsideContainer = (): JSX.Element => {
   return (
-    <section>
+    <aside>
       <AsideAdsComponent />
       <AsideRankingConponent />
-    </section>
+    </aside>
   );
 };
