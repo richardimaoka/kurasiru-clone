@@ -23,8 +23,6 @@ const documents = {
     types.IngredientElement_FragmentFragmentDoc,
   "\n  fragment IngredientListing_Fragment on Ingredients {\n    servings\n    list {\n      ...IngredientElement_Fragment\n    }\n  }\n":
     types.IngredientListing_FragmentFragmentDoc,
-  "\n  fragment RecipeContents_Fragment on Recipe {\n    ...BreadcrumbContainer_Fragment\n    ...RecipeMainContainer_Fragment\n  }\n":
-    types.RecipeContents_FragmentFragmentDoc,
   "\n  fragment RecipeMainContainer_Fragment on Recipe {\n    ...DescriptionComponent_Fragment\n    ingredients {\n      ...IngredientListing_Fragment\n    }\n    video {\n      ...VideoComponent_Fragment\n    }\n    ...StepListing_Fragment\n  }\n":
     types.RecipeMainContainer_FragmentFragmentDoc,
   "\n  fragment StepElement_Fragment on Step {\n    description\n  }\n":
@@ -33,7 +31,7 @@ const documents = {
     types.StepListing_FragmentFragmentDoc,
   "\n  fragment VideoComponent_Fragment on Video {\n    thumbnailUrl\n    source\n    type\n  }\n":
     types.VideoComponent_FragmentFragmentDoc,
-  "\n  query GetRecipe($recipeId: ID) {\n    recipe(id: $recipeId) {\n      ...RecipeContents_Fragment\n    }\n  }\n":
+  "\n  query GetRecipe($recipeId: ID) {\n    recipe(id: $recipeId) {\n      ...RecipeMainContainer_Fragment\n      ...BreadcrumbContainer_Fragment\n    }\n  }\n":
     types.GetRecipeDocument,
 };
 
@@ -71,12 +69,6 @@ export function graphql(
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(
-  source: "\n  fragment RecipeContents_Fragment on Recipe {\n    ...BreadcrumbContainer_Fragment\n    ...RecipeMainContainer_Fragment\n  }\n"
-): typeof documents["\n  fragment RecipeContents_Fragment on Recipe {\n    ...BreadcrumbContainer_Fragment\n    ...RecipeMainContainer_Fragment\n  }\n"];
-/**
- * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
- */
-export function graphql(
   source: "\n  fragment RecipeMainContainer_Fragment on Recipe {\n    ...DescriptionComponent_Fragment\n    ingredients {\n      ...IngredientListing_Fragment\n    }\n    video {\n      ...VideoComponent_Fragment\n    }\n    ...StepListing_Fragment\n  }\n"
 ): typeof documents["\n  fragment RecipeMainContainer_Fragment on Recipe {\n    ...DescriptionComponent_Fragment\n    ingredients {\n      ...IngredientListing_Fragment\n    }\n    video {\n      ...VideoComponent_Fragment\n    }\n    ...StepListing_Fragment\n  }\n"];
 /**
@@ -101,8 +93,8 @@ export function graphql(
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(
-  source: "\n  query GetRecipe($recipeId: ID) {\n    recipe(id: $recipeId) {\n      ...RecipeContents_Fragment\n    }\n  }\n"
-): typeof documents["\n  query GetRecipe($recipeId: ID) {\n    recipe(id: $recipeId) {\n      ...RecipeContents_Fragment\n    }\n  }\n"];
+  source: "\n  query GetRecipe($recipeId: ID) {\n    recipe(id: $recipeId) {\n      ...RecipeMainContainer_Fragment\n      ...BreadcrumbContainer_Fragment\n    }\n  }\n"
+): typeof documents["\n  query GetRecipe($recipeId: ID) {\n    recipe(id: $recipeId) {\n      ...RecipeMainContainer_Fragment\n      ...BreadcrumbContainer_Fragment\n    }\n  }\n"];
 
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
