@@ -78,8 +78,6 @@ const RecipePage = ({ recipe }: RecipePageProps) => {
       <Header />
       <BreadcrumbContainer fragment={recipe} />
       <RecipeMainContainer fragment={recipe} />
-      {/* <aside> side contents */}
-      {/* <footer> footer */}
       <FooterContainerUpper />
       <FooterContainerLower />
     </>

@@ -29,34 +29,39 @@ export const RecipeMainContainer = (props: RecipeProps): JSX.Element => {
   return fragment.video && fragment.ingredients ? (
     <main
       css={css`
-        display: grid;
-        justify-content: center;
-        grid-template-columns: 680px 300px;
-        column-gap: 40px;
         background-color: white;
       `}
     >
-      <section
+      <div
         css={css`
-          .contents {
-            grid-column: 1 / 2;
-          }
+          display: grid;
+          justify-content: center;
+          grid-template-columns: 680px 300px;
+          column-gap: 40px;
         `}
       >
-        <div
+        <article
           css={css`
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
+            .contents {
+              grid-column: 1 / 2;
+            }
           `}
         >
-          <VideoComponent fragment={fragment.video} />
-          <DescriptionComponent fragment={fragment} />
-          <IngredientListing fragment={fragment.ingredients} />
-          <StepListing fragment={fragment} />
-        </div>
-      </section>
-      <AsideContainer />
+          <div
+            css={css`
+              display: flex;
+              flex-direction: column;
+              gap: 20px;
+            `}
+          >
+            <VideoComponent fragment={fragment.video} />
+            <DescriptionComponent fragment={fragment} />
+            <IngredientListing fragment={fragment.ingredients} />
+            <StepListing fragment={fragment} />
+          </div>
+        </article>
+        <AsideContainer />
+      </div>
     </main>
   ) : (
     <></>
