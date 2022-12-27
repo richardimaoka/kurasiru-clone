@@ -1,6 +1,7 @@
 import { ApolloError } from "@apollo/client";
 import { GetServerSideProps } from "next";
 import { ParsedUrlQuery } from "querystring";
+import { Header } from "../../components/header/Header";
 import { Layout } from "../../components/layouts/Layout";
 import { RecipeContents } from "../../components/recipe/RecipeContents";
 import { client } from "../../libs/apolloClient";
@@ -70,9 +71,13 @@ type RecipePageProps = GetRecipeQuery;
 
 const RecipePage = ({ recipe }: RecipePageProps) => {
   return recipe ? (
-    <Layout>
+    <>
+      <Header />
+      {/* <nav> breadcrumb */}
       <RecipeContents fragment={recipe} />
-    </Layout>
+      {/* <aside> side contents */}
+      {/* <footer> footer */}
+    </>
   ) : (
     <></>
   );
