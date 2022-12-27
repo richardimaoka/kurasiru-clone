@@ -3,6 +3,7 @@ import { GetServerSideProps } from "next";
 import { ParsedUrlQuery } from "querystring";
 import { BreadcrumbContainer } from "../../components/bradcrumb/BreadcrumbContainer";
 import { FooterContainerLower } from "../../components/footer/FooterContainerLower";
+import { FooterContainerUpper } from "../../components/footer/FooterContainerUpper";
 import { Header } from "../../components/header/Header";
 import { RecipeMainContainer } from "../../components/recipe/RecipeMainContainer";
 import { client } from "../../libs/apolloClient";
@@ -79,6 +80,7 @@ const RecipePage = ({ recipe }: RecipePageProps) => {
       <RecipeMainContainer fragment={recipe} />
       {/* <aside> side contents */}
       {/* <footer> footer */}
+      <FooterContainerUpper />
       <FooterContainerLower />
     </>
   ) : (

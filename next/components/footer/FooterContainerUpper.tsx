@@ -1,25 +1,27 @@
 import { css } from "@emotion/react";
 
-export const Footer = (): JSX.Element => {
+export const FooterContainerUpper = (): JSX.Element => {
   return (
-    <footer>
-      <div>
-        <section
+    <footer
+      css={css`
+        background-color: #ededed;
+      `}
+    >
+      <div
+        css={css`
+          margin: 0 auto;
+          width: 1024px;
+        `}
+      >
+        <img
           css={css`
+            display: block;
             margin-top: 40px;
-            background-color: #ededed;
           `}
-        >
-          <img
-            css={css`
-              display: block;
-              margin: 0 auto;
-            `}
-            width="1024"
-            height="300"
-            src="images/footer-image.png"
-          />
-        </section>
+          width="1024"
+          height="300"
+          src="http://localhost:8090/images/footer-image.png"
+        />
       </div>
     </footer>
   );
