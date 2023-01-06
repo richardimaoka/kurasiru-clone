@@ -1,11 +1,9 @@
 import { ApolloError } from "@apollo/client";
 import { GetServerSideProps } from "next";
 import { ParsedUrlQuery } from "querystring";
-import { BreadcrumbContainer } from "../../components/bradcrumb/BreadcrumbContainer";
 import { FooterContainerLower } from "../../components/footer/FooterContainerLower";
 import { FooterContainerUpper } from "../../components/footer/FooterContainerUpper";
 import { Header } from "../../components/header/Header";
-import { RecipeMainContainer } from "../../components/recipe/RecipeMainContainer";
 import { client } from "../../libs/apolloClient";
 import { graphql } from "../../libs/gql/gql";
 import { GetRecipeQuery } from "../../libs/gql/graphql";
@@ -13,8 +11,7 @@ import { GetRecipeQuery } from "../../libs/gql/graphql";
 const GET_RECIPE = graphql(`
   query GetRecipe($recipeId: ID) {
     recipe(id: $recipeId) {
-      ...RecipeMainContainer_Fragment
-      ...BreadcrumbContainer_Fragment
+      id
     }
   }
 `);
@@ -76,8 +73,7 @@ const RecipePage = ({ recipe }: RecipePageProps) => {
   return recipe ? (
     <>
       <Header />
-      <BreadcrumbContainer fragment={recipe} />
-      <RecipeMainContainer fragment={recipe} />
+      {/* <div>{recipe.id}</div> */}
       <FooterContainerUpper />
       <FooterContainerLower />
     </>
