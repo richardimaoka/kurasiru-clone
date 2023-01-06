@@ -2,58 +2,13 @@
 
 package model
 
-type BreadcrumbItem struct {
-	Name *string `json:"name"`
-	Href *string `json:"href"`
-}
-
-type Ingredient struct {
-	Item   *string `json:"item"`
-	Amount *string `json:"amount"`
-}
-
-type Ingredients struct {
-	Servings *string       `json:"servings"`
-	List     []*Ingredient `json:"list"`
-}
-
 type NewTodo struct {
 	Text   string `json:"text"`
 	UserID string `json:"userId"`
 }
 
 type Recipe struct {
-	ID           *string           `json:"id"`
-	Title        *string           `json:"title"`
-	SubTitle     *string           `json:"subTitle"`
-	Introduction *string           `json:"introduction"`
-	CookingTime  *string           `json:"cookingTime"`
-	Expense      *string           `json:"expense"`
-	Ingredients  *Ingredients      `json:"ingredients"`
-	Breadcrumbs  []*BreadcrumbItem `json:"breadcrumbs"`
-	Video        *Video            `json:"video"`
-	Steps        []*Step           `json:"steps"`
-	Tips         *string           `json:"tips"`
-	Taberepo     *TaberepoListing  `json:"taberepo"`
-}
-
-type Step struct {
-	Description *string `json:"description"`
-}
-
-type Taberepo struct {
-	User       *User    `json:"user"`
-	Stars      *float64 `json:"stars"`
-	Comment    *string  `json:"comment"`
-	Date       *string  `json:"date"`
-	PictureURL *string  `json:"pictureUrl"`
-}
-
-type TaberepoListing struct {
-	Stars      *float64    `json:"stars"`
-	NumReviews *int        `json:"numReviews"`
-	NumReports *int        `json:"numReports"`
-	List       []*Taberepo `json:"list"`
+	ID *string `json:"id"`
 }
 
 type Todo struct {
@@ -67,10 +22,4 @@ type User struct {
 	ID         string  `json:"id"`
 	Name       string  `json:"name"`
 	PictureURL *string `json:"pictureUrl"`
-}
-
-type Video struct {
-	ThumbnailURL *string `json:"thumbnailUrl"`
-	Source       *string `json:"source"`
-	Type         *string `json:"type"`
 }

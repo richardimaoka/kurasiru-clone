@@ -15,59 +15,60 @@ type User {
   pictureUrl: String
 }
 
-type Ingredient {
-  item: String
-  amount: String
-}
+# type Ingredient {
+#   item: String
+#   amount: String
+# }
 
-type Ingredients {
-  servings: String
-  list: [Ingredient]
-}
+# type Ingredients {
+#   servings: String
+#   list: [Ingredient]
+# }
 
-type BreadcrumbItem {
-  name: String
-  href: String
-}
+# type BreadcrumbItem {
+#   name: String
+#   href: String
+# }
 
-type Video {
-  thumbnailUrl: String
-  source: String
-  type: String
-}
+# type Video {
+#   thumbnailUrl: String
+#   source: String
+#   type: String
+# }
 
-type Step {
-  description: String
-}
+# type Step {
+#   description: String
+# }
 
-type Taberepo {
-  user: User
-  stars: Float
-  comment: String
-  date: String
-  pictureUrl: String
-}
+# type Taberepo {
+#   user: User
+#   stars: Float
+#   comment: String
+#   date: String
+#   pictureUrl: String
+# }
 
-type TaberepoListing {
-  stars: Float
-  numReviews: Int
-  numReports: Int
-  list: [Taberepo]
-}
+# type TaberepoListing {
+#   stars: Float
+#   numReviews: Int
+#   numReports: Int
+#   list: [Taberepo]
+# }
 
 type Recipe {
   id: ID
-  title: String
-  subTitle: String
-  introduction: String
-  cookingTime: String
-  expense: String
-  ingredients: Ingredients
-  breadcrumbs: [BreadcrumbItem]
-  video: Video
-  steps: [Step]
-  tips: String
-  taberepo: TaberepoListing
+  # title: String
+  # subTitle: String
+  # introduction: String
+  ###############################
+  # cookingTime: String
+  # expense: String
+  # ingredients: Ingredients
+  # breadcrumbs: [BreadcrumbItem]
+  # video: Video
+  # steps: [Step]
+  # tips: String
+  # taberepo: TaberepoListing
 }
 
 type Query {
