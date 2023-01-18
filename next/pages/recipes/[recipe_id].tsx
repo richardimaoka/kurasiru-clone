@@ -5,6 +5,7 @@ import { ParsedUrlQuery } from "querystring";
 import { FooterContainerLower } from "../../components/footer/FooterContainerLower";
 import { FooterContainerUpper } from "../../components/footer/FooterContainerUpper";
 import { Header } from "../../components/header/Header";
+import { DescriptionComponent } from "../../components/recipe/DescriptionComponent";
 import { IngredientListing } from "../../components/recipe/IngredientListing";
 import { VideoComponent } from "../../components/recipe/VideoComponent";
 import { client } from "../../libs/apolloClient";
@@ -18,6 +19,7 @@ const GET_RECIPE = graphql(`
       video {
         ...VideoComponent_Fragment
       }
+      ...DescriptionComponent_Fragment
       ingredients {
         ...IngredientListing_Fragment
       }
@@ -106,52 +108,7 @@ const RecipePage = ({ recipe }: RecipePageProps) => {
             {/* `recipe.video &&` がちょっと無理やり感あり */}
             {recipe.video && <VideoComponent fragment={recipe.video} />}
 
-            <div
-              css={css`
-                margin-bottom: 20px;
-              `}
-            >
-              <div
-                css={css`
-                  font-size: 22px;
-                  font-weight: 700;
-                `}
-              >
-                チーズイン 煮込みハンバーグ　レシピ・作り方
-              </div>
-              <div
-                css={css`
-                  font-size: 12px;
-                  margin-bottom: 20px;
-                  color: #635f5a;
-                `}
-              >
-                「チーズイン
-                煮込みハンバーグ」の作り方を簡単で分かりやすいレシピ動画で紹介しています。
-              </div>
-              <div
-                css={css`
-                  margin-bottom: 20px;
-                `}
-              >
-                とろーりチーズが美味しい、チーズイン煮込みハンバーグのご紹介です。ソースはデミグラスソースとカットトマト缶を使うことで、コクがありながらもあっさりといただけますよ。お好みできのこや、生のトマトを加えても美味しくいただけます。お好きな野菜などを加えてアレンジしてお楽しみくださいね。
-              </div>
-              <div>調理時間：30分</div>
-              <div>費用目安：500円前後</div>
-              <button
-                css={css`
-                  width: 300px;
-                  height: 50px;
-                  font-size: 14px;
-                  font-weight: 700;
-                  background-color: f0efef;
-                  border: none;
-                  border-radius: 25px;
-                `}
-              >
-                保存する
-              </button>
-            </div>
+            <DescriptionComponent fragment={recipe} />
 
             {recipe.ingredients && (
               <IngredientListing fragment={recipe.ingredients} />
