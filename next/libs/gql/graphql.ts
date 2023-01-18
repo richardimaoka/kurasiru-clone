@@ -114,6 +114,17 @@ export type GetRecipeQuery = {
           };
         })
       | null;
+    ingredients?: {
+      __typename: "Ingredients";
+      list?: Array<
+        | ({ __typename: "Ingredient" } & {
+            " $fragmentRefs"?: {
+              IngredientElement_FragmentFragment: IngredientElement_FragmentFragment;
+            };
+          })
+        | null
+      > | null;
+    } | null;
   } | null;
 };
 
@@ -211,6 +222,31 @@ export const GetRecipeDocument = {
                     ],
                   },
                 },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "ingredients" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "list" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "FragmentSpread",
+                              name: {
+                                kind: "Name",
+                                value: "IngredientElement_Fragment",
+                              },
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
               ],
             },
           },
@@ -218,5 +254,6 @@ export const GetRecipeDocument = {
       },
     },
     ...VideoComponent_FragmentFragmentDoc.definitions,
+    ...IngredientElement_FragmentFragmentDoc.definitions,
   ],
 } as unknown as DocumentNode<GetRecipeQuery, GetRecipeQueryVariables>;
