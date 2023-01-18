@@ -88,12 +88,13 @@ export type GetRecipeQuery = {
   recipe?: {
     __typename: "Recipe";
     id?: string | null;
-    video?: {
-      __typename: "Video";
-      thumbnailUrl?: string | null;
-      source?: string | null;
-      type?: string | null;
-    } | null;
+    video?:
+      | ({ __typename: "Video" } & {
+          " $fragmentRefs"?: {
+            VideoComponent_FragmentFragment: VideoComponent_FragmentFragment;
+          };
+        })
+      | null;
   } | null;
 };
 
@@ -162,14 +163,12 @@ export const GetRecipeDocument = {
                     kind: "SelectionSet",
                     selections: [
                       {
-                        kind: "Field",
-                        name: { kind: "Name", value: "thumbnailUrl" },
+                        kind: "FragmentSpread",
+                        name: {
+                          kind: "Name",
+                          value: "VideoComponent_Fragment",
+                        },
                       },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "source" },
-                      },
-                      { kind: "Field", name: { kind: "Name", value: "type" } },
                     ],
                   },
                 },
@@ -179,5 +178,6 @@ export const GetRecipeDocument = {
         ],
       },
     },
+    ...VideoComponent_FragmentFragmentDoc.definitions,
   ],
 } as unknown as DocumentNode<GetRecipeQuery, GetRecipeQueryVariables>;
