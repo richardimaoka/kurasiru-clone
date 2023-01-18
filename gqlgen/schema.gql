@@ -57,12 +57,11 @@ type Video {
 
 type Recipe {
   id: ID
-  # title: String
-  # subTitle: String
-  # introduction: String
-  ###############################
-  # cookingTime: String
-  # expense: String
+  title: String
+  subTitle: String
+  introduction: String
+  cookingTime: String
+  expense: String
   ingredients: Ingredients
   # breadcrumbs: [BreadcrumbItem]
   video: Video
