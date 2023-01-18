@@ -17,7 +17,9 @@ const GET_RECIPE = graphql(`
     recipe(id: $recipeId) {
       id
       video {
-        ...VideoComponent_Fragment
+        thumbnailUrl
+        source
+        type
       }
       ...DescriptionComponent_Fragment
       ingredients {
@@ -106,7 +108,7 @@ const RecipePage = ({ recipe }: RecipePageProps) => {
             `}
           >
             {/* `recipe.video &&` がちょっと無理やり感あり */}
-            {recipe.video && <VideoComponent fragment={recipe.video} />}
+            {recipe.video && <VideoComponent video={recipe.video} />}
 
             <DescriptionComponent fragment={recipe} />
 
