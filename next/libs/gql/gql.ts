@@ -19,7 +19,9 @@ const documents = {
     types.IngredientElement_FragmentFragmentDoc,
   "\n  fragment IngredientListing_Fragment on Ingredients {\n    servings\n    list {\n      ...IngredientElement_Fragment\n    }\n  }\n":
     types.IngredientListing_FragmentFragmentDoc,
-  "\n  query GetRecipe($recipeId: ID) {\n    recipe(id: $recipeId) {\n      id\n      video {\n        thumbnailUrl\n        source\n        type\n      }\n      ...DescriptionComponent_Fragment\n      ingredients {\n        ...IngredientListing_Fragment\n      }\n    }\n  }\n":
+  "\n  fragment VideoComponent_Fragment on Video {\n    thumbnailUrl\n    source\n    type\n  }\n":
+    types.VideoComponent_FragmentFragmentDoc,
+  "\n  query GetRecipe($recipeId: ID) {\n    recipe(id: $recipeId) {\n      id\n      video {\n        ...VideoComponent_Fragment\n      }\n      ...DescriptionComponent_Fragment\n      ingredients {\n        ...IngredientListing_Fragment\n      }\n    }\n  }\n":
     types.GetRecipeDocument,
 };
 
@@ -45,8 +47,14 @@ export function graphql(
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(
-  source: "\n  query GetRecipe($recipeId: ID) {\n    recipe(id: $recipeId) {\n      id\n      video {\n        thumbnailUrl\n        source\n        type\n      }\n      ...DescriptionComponent_Fragment\n      ingredients {\n        ...IngredientListing_Fragment\n      }\n    }\n  }\n"
-): (typeof documents)["\n  query GetRecipe($recipeId: ID) {\n    recipe(id: $recipeId) {\n      id\n      video {\n        thumbnailUrl\n        source\n        type\n      }\n      ...DescriptionComponent_Fragment\n      ingredients {\n        ...IngredientListing_Fragment\n      }\n    }\n  }\n"];
+  source: "\n  fragment VideoComponent_Fragment on Video {\n    thumbnailUrl\n    source\n    type\n  }\n"
+): (typeof documents)["\n  fragment VideoComponent_Fragment on Video {\n    thumbnailUrl\n    source\n    type\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
+  source: "\n  query GetRecipe($recipeId: ID) {\n    recipe(id: $recipeId) {\n      id\n      video {\n        ...VideoComponent_Fragment\n      }\n      ...DescriptionComponent_Fragment\n      ingredients {\n        ...IngredientListing_Fragment\n      }\n    }\n  }\n"
+): (typeof documents)["\n  query GetRecipe($recipeId: ID) {\n    recipe(id: $recipeId) {\n      id\n      video {\n        ...VideoComponent_Fragment\n      }\n      ...DescriptionComponent_Fragment\n      ingredients {\n        ...IngredientListing_Fragment\n      }\n    }\n  }\n"];
 
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.

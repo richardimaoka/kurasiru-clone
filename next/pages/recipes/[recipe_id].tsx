@@ -12,14 +12,19 @@ import { client } from "../../libs/apolloClient";
 import { graphql } from "../../libs/gql/gql";
 import { GetRecipeQuery } from "../../libs/gql/graphql";
 
+const VideoComponent_Fragment = graphql(`
+  fragment VideoComponent_Fragment on Video {
+    thumbnailUrl
+    source
+    type
+  }
+`);
 const GET_RECIPE = graphql(`
   query GetRecipe($recipeId: ID) {
     recipe(id: $recipeId) {
       id
       video {
-        thumbnailUrl
-        source
-        type
+        ...VideoComponent_Fragment
       }
       ...DescriptionComponent_Fragment
       ingredients {

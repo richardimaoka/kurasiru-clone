@@ -119,6 +119,13 @@ export type IngredientListing_FragmentFragment = {
   > | null;
 } & { " $fragmentName"?: "IngredientListing_FragmentFragment" };
 
+export type VideoComponent_FragmentFragment = {
+  __typename: "Video";
+  thumbnailUrl?: string | null;
+  source?: string | null;
+  type?: string | null;
+} & { " $fragmentName"?: "VideoComponent_FragmentFragment" };
+
 export type GetRecipeQueryVariables = Exact<{
   recipeId?: InputMaybe<Scalars["ID"]>;
 }>;
@@ -129,12 +136,13 @@ export type GetRecipeQuery = {
     | ({
         __typename: "Recipe";
         id?: string | null;
-        video?: {
-          __typename: "Video";
-          thumbnailUrl?: string | null;
-          source?: string | null;
-          type?: string | null;
-        } | null;
+        video?:
+          | ({ __typename: "Video" } & {
+              " $fragmentRefs"?: {
+                VideoComponent_FragmentFragment: VideoComponent_FragmentFragment;
+              };
+            })
+          | null;
         ingredients?:
           | ({ __typename: "Ingredients" } & {
               " $fragmentRefs"?: {
@@ -227,6 +235,27 @@ export const IngredientListing_FragmentFragmentDoc = {
     ...IngredientElement_FragmentFragmentDoc.definitions,
   ],
 } as unknown as DocumentNode<IngredientListing_FragmentFragment, unknown>;
+export const VideoComponent_FragmentFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "VideoComponent_Fragment" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "Video" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "thumbnailUrl" } },
+          { kind: "Field", name: { kind: "Name", value: "source" } },
+          { kind: "Field", name: { kind: "Name", value: "type" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<VideoComponent_FragmentFragment, unknown>;
 export const GetRecipeDocument = {
   kind: "Document",
   definitions: [
@@ -271,14 +300,12 @@ export const GetRecipeDocument = {
                     kind: "SelectionSet",
                     selections: [
                       {
-                        kind: "Field",
-                        name: { kind: "Name", value: "thumbnailUrl" },
+                        kind: "FragmentSpread",
+                        name: {
+                          kind: "Name",
+                          value: "VideoComponent_Fragment",
+                        },
                       },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "source" },
-                      },
-                      { kind: "Field", name: { kind: "Name", value: "type" } },
                     ],
                   },
                 },
@@ -311,6 +338,7 @@ export const GetRecipeDocument = {
         ],
       },
     },
+    ...VideoComponent_FragmentFragmentDoc.definitions,
     ...DescriptionComponent_FragmentFragmentDoc.definitions,
     ...IngredientListing_FragmentFragmentDoc.definitions,
   ],
