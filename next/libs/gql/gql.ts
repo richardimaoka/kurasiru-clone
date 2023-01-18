@@ -15,6 +15,8 @@ import { TypedDocumentNode as DocumentNode } from "@graphql-typed-document-node/
 const documents = {
   "\n  fragment IngredientElement_Fragment on Ingredient {\n    item\n    amount\n  }\n":
     types.IngredientElement_FragmentFragmentDoc,
+  "\n  fragment IngredientListing_Fragment on Ingredients {\n    servings\n    list {\n      ...IngredientElement_Fragment\n    }\n  }\n":
+    types.IngredientListing_FragmentFragmentDoc,
   "\n  fragment VideoComponent_Fragment on Video {\n    thumbnailUrl\n    source\n    type\n  }\n":
     types.VideoComponent_FragmentFragmentDoc,
   "\n  query GetRecipe($recipeId: ID) {\n    recipe(id: $recipeId) {\n      id\n      video {\n        ...VideoComponent_Fragment\n      }\n      ingredients {\n        list {\n          ...IngredientElement_Fragment\n        }\n      }\n    }\n  }\n":
@@ -27,6 +29,12 @@ const documents = {
 export function graphql(
   source: "\n  fragment IngredientElement_Fragment on Ingredient {\n    item\n    amount\n  }\n"
 ): (typeof documents)["\n  fragment IngredientElement_Fragment on Ingredient {\n    item\n    amount\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
+  source: "\n  fragment IngredientListing_Fragment on Ingredients {\n    servings\n    list {\n      ...IngredientElement_Fragment\n    }\n  }\n"
+): (typeof documents)["\n  fragment IngredientListing_Fragment on Ingredients {\n    servings\n    list {\n      ...IngredientElement_Fragment\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

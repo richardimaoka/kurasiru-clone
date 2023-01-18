@@ -91,6 +91,19 @@ export type IngredientElement_FragmentFragment = {
   amount?: string | null;
 } & { " $fragmentName"?: "IngredientElement_FragmentFragment" };
 
+export type IngredientListing_FragmentFragment = {
+  __typename: "Ingredients";
+  servings?: string | null;
+  list?: Array<
+    | ({ __typename: "Ingredient" } & {
+        " $fragmentRefs"?: {
+          IngredientElement_FragmentFragment: IngredientElement_FragmentFragment;
+        };
+      })
+    | null
+  > | null;
+} & { " $fragmentName"?: "IngredientListing_FragmentFragment" };
+
 export type VideoComponent_FragmentFragment = {
   __typename: "Video";
   thumbnailUrl?: string | null;
@@ -148,6 +161,39 @@ export const IngredientElement_FragmentFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<IngredientElement_FragmentFragment, unknown>;
+export const IngredientListing_FragmentFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "IngredientListing_Fragment" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "Ingredients" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "servings" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "list" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "IngredientElement_Fragment" },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    ...IngredientElement_FragmentFragmentDoc.definitions,
+  ],
+} as unknown as DocumentNode<IngredientListing_FragmentFragment, unknown>;
 export const VideoComponent_FragmentFragmentDoc = {
   kind: "Document",
   definitions: [
