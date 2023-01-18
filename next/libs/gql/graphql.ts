@@ -47,6 +47,7 @@ export type QueryRecipeArgs = {
 export type Recipe = {
   __typename: "Recipe";
   id?: Maybe<Scalars["ID"]>;
+  video?: Maybe<Video>;
 };
 
 export type Todo = {
@@ -62,6 +63,13 @@ export type User = {
   id: Scalars["ID"];
   name: Scalars["String"];
   pictureUrl?: Maybe<Scalars["String"]>;
+};
+
+export type Video = {
+  __typename: "Video";
+  source?: Maybe<Scalars["String"]>;
+  thumbnailUrl?: Maybe<Scalars["String"]>;
+  type?: Maybe<Scalars["String"]>;
 };
 
 export type GetRecipeQueryVariables = Exact<{
