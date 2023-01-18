@@ -13,6 +13,11 @@ const GET_RECIPE = graphql(`
   query GetRecipe($recipeId: ID) {
     recipe(id: $recipeId) {
       id
+      video {
+        thumbnailUrl
+        source
+        type
+      }
     }
   }
 `);
