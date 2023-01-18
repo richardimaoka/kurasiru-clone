@@ -17,6 +17,11 @@ const GET_RECIPE = graphql(`
       video {
         ...VideoComponent_Fragment
       }
+      ingredients {
+        list {
+          ...IngredientElement_Fragment
+        }
+      }
     }
   }
 `);
@@ -155,17 +160,6 @@ const RecipePage = ({ recipe }: RecipePageProps) => {
                 <span>(2人前)</span>
               </div>
 
-              <div
-                css={css`
-                  display: flex;
-                  justify-content: space-between;
-                  padding: 10px 0px;
-                  border-bottom: solid 1px #f4f2f0;
-                `}
-              >
-                <div>牛豚合びき肉</div>
-                <div>250g</div>
-              </div>
               <div
                 css={css`
                   display: flex;
