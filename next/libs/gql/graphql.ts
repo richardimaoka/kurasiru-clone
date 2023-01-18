@@ -85,6 +85,12 @@ export type Video = {
   type?: Maybe<Scalars["String"]>;
 };
 
+export type IngredientElement_FragmentFragment = {
+  __typename: "Ingredient";
+  item?: string | null;
+  amount?: string | null;
+} & { " $fragmentName"?: "IngredientElement_FragmentFragment" };
+
 export type VideoComponent_FragmentFragment = {
   __typename: "Video";
   thumbnailUrl?: string | null;
@@ -111,6 +117,26 @@ export type GetRecipeQuery = {
   } | null;
 };
 
+export const IngredientElement_FragmentFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "IngredientElement_Fragment" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "Ingredient" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "item" } },
+          { kind: "Field", name: { kind: "Name", value: "amount" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<IngredientElement_FragmentFragment, unknown>;
 export const VideoComponent_FragmentFragmentDoc = {
   kind: "Document",
   definitions: [
