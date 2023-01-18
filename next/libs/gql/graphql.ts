@@ -90,6 +90,16 @@ export type Video = {
   type?: Maybe<Scalars["String"]>;
 };
 
+export type DescriptionComponent_FragmentFragment = {
+  __typename: "Recipe";
+  id?: string | null;
+  title?: string | null;
+  subTitle?: string | null;
+  introduction?: string | null;
+  cookingTime?: string | null;
+  expense?: string | null;
+} & { " $fragmentName"?: "DescriptionComponent_FragmentFragment" };
+
 export type IngredientElement_FragmentFragment = {
   __typename: "Ingredient";
   item?: string | null;
@@ -142,6 +152,30 @@ export type GetRecipeQuery = {
   } | null;
 };
 
+export const DescriptionComponent_FragmentFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "DescriptionComponent_Fragment" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "Recipe" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "title" } },
+          { kind: "Field", name: { kind: "Name", value: "subTitle" } },
+          { kind: "Field", name: { kind: "Name", value: "introduction" } },
+          { kind: "Field", name: { kind: "Name", value: "cookingTime" } },
+          { kind: "Field", name: { kind: "Name", value: "expense" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<DescriptionComponent_FragmentFragment, unknown>;
 export const IngredientElement_FragmentFragmentDoc = {
   kind: "Document",
   definitions: [

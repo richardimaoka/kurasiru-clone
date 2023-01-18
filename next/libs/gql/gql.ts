@@ -13,6 +13,8 @@ import { TypedDocumentNode as DocumentNode } from "@graphql-typed-document-node/
  * Therefore it is highly recommended to use the babel-plugin for production.
  */
 const documents = {
+  "\n  fragment DescriptionComponent_Fragment on Recipe {\n    id\n    title\n    subTitle\n    introduction\n    cookingTime\n    expense\n  }\n":
+    types.DescriptionComponent_FragmentFragmentDoc,
   "\n  fragment IngredientElement_Fragment on Ingredient {\n    item\n    amount\n  }\n":
     types.IngredientElement_FragmentFragmentDoc,
   "\n  fragment IngredientListing_Fragment on Ingredients {\n    servings\n    list {\n      ...IngredientElement_Fragment\n    }\n  }\n":
@@ -23,6 +25,12 @@ const documents = {
     types.GetRecipeDocument,
 };
 
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
+  source: "\n  fragment DescriptionComponent_Fragment on Recipe {\n    id\n    title\n    subTitle\n    introduction\n    cookingTime\n    expense\n  }\n"
+): (typeof documents)["\n  fragment DescriptionComponent_Fragment on Recipe {\n    id\n    title\n    subTitle\n    introduction\n    cookingTime\n    expense\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
