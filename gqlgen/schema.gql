@@ -15,15 +15,15 @@ type User {
   pictureUrl: String
 }
 
-# type Ingredient {
-#   item: String
-#   amount: String
-# }
+type Ingredient {
+  item: String
+  amount: String
+}
 
-# type Ingredients {
-#   servings: String
-#   list: [Ingredient]
-# }
+type Ingredients {
+  servings: String
+  list: [Ingredient]
+}
 
 # type BreadcrumbItem {
 #   name: String
@@ -63,7 +63,7 @@ type Recipe {
   ###############################
   # cookingTime: String
   # expense: String
-  # ingredients: Ingredients
+  ingredients: Ingredients
   # breadcrumbs: [BreadcrumbItem]
   video: Video
   # steps: [Step]
