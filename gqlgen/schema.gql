@@ -30,11 +30,11 @@ type User {
 #   href: String
 # }
 
-# type Video {
-#   thumbnailUrl: String
-#   source: String
-#   type: String
-# }
+type Video {
+  thumbnailUrl: String
+  source: String
+  type: String
+}
 
 # type Step {
 #   description: String
@@ -65,7 +65,7 @@ type Recipe {
   # expense: String
   # ingredients: Ingredients
   # breadcrumbs: [BreadcrumbItem]
-  # video: Video
+  video: Video
   # steps: [Step]
   # tips: String
   # taberepo: TaberepoListing
