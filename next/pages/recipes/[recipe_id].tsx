@@ -104,15 +104,17 @@ const RecipePage = ({ recipe }: RecipePageProps) => {
               width="560"
               height="560"
               preload="auto"
-              poster="/images/humberg-thumbnail.jpg"
+              poster={
+                recipe.video?.thumbnailUrl ? recipe.video.thumbnailUrl : ""
+              }
               controls={true}
               controlsList="nodownload"
               muted={true}
               data-v-2932eb4e=""
             >
               <source
-                src="/videos/humburg.mp4"
-                type="video/mp4"
+                src={recipe.video?.source ? recipe.video.source : ""}
+                type={recipe.video?.type ? recipe.video.type : ""}
                 data-v-049f9628=""
               />
               <p data-v-049f9628="">
