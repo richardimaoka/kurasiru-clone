@@ -132,24 +132,30 @@ export type GetRecipeQueryVariables = Exact<{
 
 export type GetRecipeQuery = {
   __typename: "Query";
-  recipe?: {
-    __typename: "Recipe";
-    id?: string | null;
-    video?:
-      | ({ __typename: "Video" } & {
-          " $fragmentRefs"?: {
-            VideoComponent_FragmentFragment: VideoComponent_FragmentFragment;
-          };
-        })
-      | null;
-    ingredients?:
-      | ({ __typename: "Ingredients" } & {
-          " $fragmentRefs"?: {
-            IngredientListing_FragmentFragment: IngredientListing_FragmentFragment;
-          };
-        })
-      | null;
-  } | null;
+  recipe?:
+    | ({
+        __typename: "Recipe";
+        id?: string | null;
+        video?:
+          | ({ __typename: "Video" } & {
+              " $fragmentRefs"?: {
+                VideoComponent_FragmentFragment: VideoComponent_FragmentFragment;
+              };
+            })
+          | null;
+        ingredients?:
+          | ({ __typename: "Ingredients" } & {
+              " $fragmentRefs"?: {
+                IngredientListing_FragmentFragment: IngredientListing_FragmentFragment;
+              };
+            })
+          | null;
+      } & {
+        " $fragmentRefs"?: {
+          DescriptionComponent_FragmentFragment: DescriptionComponent_FragmentFragment;
+        };
+      })
+    | null;
 };
 
 export const DescriptionComponent_FragmentFragmentDoc = {
@@ -304,6 +310,13 @@ export const GetRecipeDocument = {
                   },
                 },
                 {
+                  kind: "FragmentSpread",
+                  name: {
+                    kind: "Name",
+                    value: "DescriptionComponent_Fragment",
+                  },
+                },
+                {
                   kind: "Field",
                   name: { kind: "Name", value: "ingredients" },
                   selectionSet: {
@@ -326,6 +339,7 @@ export const GetRecipeDocument = {
       },
     },
     ...VideoComponent_FragmentFragmentDoc.definitions,
+    ...DescriptionComponent_FragmentFragmentDoc.definitions,
     ...IngredientListing_FragmentFragmentDoc.definitions,
   ],
 } as unknown as DocumentNode<GetRecipeQuery, GetRecipeQueryVariables>;
