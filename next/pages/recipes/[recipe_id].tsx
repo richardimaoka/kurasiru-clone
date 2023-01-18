@@ -5,7 +5,7 @@ import { ParsedUrlQuery } from "querystring";
 import { FooterContainerLower } from "../../components/footer/FooterContainerLower";
 import { FooterContainerUpper } from "../../components/footer/FooterContainerUpper";
 import { Header } from "../../components/header/Header";
-import { IngredientElement } from "../../components/recipe/IngredientElement";
+import { IngredientListing } from "../../components/recipe/IngredientListing";
 import { VideoComponent } from "../../components/recipe/VideoComponent";
 import { client } from "../../libs/apolloClient";
 import { graphql } from "../../libs/gql/gql";
@@ -19,9 +19,7 @@ const GET_RECIPE = graphql(`
         ...VideoComponent_Fragment
       }
       ingredients {
-        list {
-          ...IngredientElement_Fragment
-        }
+        ...IngredientListing_Fragment
       }
     }
   }
@@ -155,18 +153,9 @@ const RecipePage = ({ recipe }: RecipePageProps) => {
               </button>
             </div>
 
-            <div>
-              <div>
-                <span>材料</span>
-                <span>(2人前)</span>
-              </div>
-
-              {/* `recipe.ingredients?.list &&` がちょっと無理やり感あり */}
-              {recipe.ingredients?.list &&
-                recipe.ingredients.list.map(
-                  (elem) => elem && <IngredientElement fragment={elem} />
-                )}
-            </div>
+            {recipe.ingredients && (
+              <IngredientListing fragment={recipe.ingredients} />
+            )}
           </div>
         </section>
       </main>
