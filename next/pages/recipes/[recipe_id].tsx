@@ -1,4 +1,5 @@
 import { ApolloError } from "@apollo/client";
+import { css } from "@emotion/react";
 import { GetServerSideProps } from "next";
 import { ParsedUrlQuery } from "querystring";
 import { FooterContainerLower } from "../../components/footer/FooterContainerLower";
@@ -73,22 +74,39 @@ const RecipePage = ({ recipe }: RecipePageProps) => {
   return recipe ? (
     <>
       <Header />
-      <main class="main">
-        <section class="contents">
-          <div class="recipe-container">
+      <main
+        css={css`
+          display: grid;
+          justify-content: center;
+          grid-template-columns: 680px 300px;
+          column-gap: 40px;
+          background-color: white;
+        `}
+      >
+        <section
+          css={css`
+            grid-column: 1 / 2;
+          `}
+        >
+          <div
+            css={css`
+              display: flex;
+              flex-direction: column;
+              gap: 20px;
+            `}
+          >
             <video
               width="560"
               height="560"
               preload="auto"
-              poster="images/humberg-thumbnail.jpg"
+              poster="/images/humberg-thumbnail.jpg"
               controls={true}
               controlsList="nodownload"
               muted={true}
-              class="native"
               data-v-2932eb4e=""
             >
               <source
-                src="videos/humburg.mp4"
+                src="/videos/humburg.mp4"
                 type="video/mp4"
                 data-v-049f9628=""
               />
@@ -97,89 +115,232 @@ const RecipePage = ({ recipe }: RecipePageProps) => {
               </p>
             </video>
 
-            <div class="recipe-description">
-              <div class="recipe-title">
+            <div
+              css={css`
+                margin-bottom: 20px;
+              `}
+            >
+              <div
+                css={css`
+                  font-size: 22px;
+                  font-weight: 700;
+                `}
+              >
                 チーズイン 煮込みハンバーグ　レシピ・作り方
               </div>
-              <div class="recipe-title-caption">
+              <div
+                css={css`
+                  font-size: 12px;
+                  margin-bottom: 20px;
+                  color: #635f5a;
+                `}
+              >
                 「チーズイン
                 煮込みハンバーグ」の作り方を簡単で分かりやすいレシピ動画で紹介しています。
               </div>
-              <div class="recipe-description">
+              <div
+                css={css`
+                  margin-bottom: 20px;
+                `}
+              >
                 とろーりチーズが美味しい、チーズイン煮込みハンバーグのご紹介です。ソースはデミグラスソースとカットトマト缶を使うことで、コクがありながらもあっさりといただけますよ。お好みできのこや、生のトマトを加えても美味しくいただけます。お好きな野菜などを加えてアレンジしてお楽しみくださいね。
               </div>
               <div>調理時間：30分</div>
               <div>費用目安：500円前後</div>
-              <button class="recipe-save-button">保存する</button>
+              <button
+                css={css`
+                  width: 300px;
+                  height: 50px;
+                  font-size: 14px;
+                  font-weight: 700;
+                  background-color: f0efef;
+                  border: none;
+                  border-radius: 25px;
+                `}
+              >
+                保存する
+              </button>
             </div>
 
-            <div class="ingredients">
+            <div>
               <div>
                 <span>材料</span>
                 <span>(2人前)</span>
               </div>
 
-              <div class="ingredient">
+              <div
+                css={css`
+                  display: flex;
+                  justify-content: space-between;
+                  padding: 10px 0px;
+                  border-bottom: solid 1px #f4f2f0;
+                `}
+              >
                 <div>牛豚合びき肉</div>
                 <div>250g</div>
               </div>
-              <div class="ingredient">
+              <div
+                css={css`
+                  display: flex;
+                  justify-content: space-between;
+                  padding: 10px 0px;
+                  border-bottom: solid 1px #f4f2f0;
+                `}
+              >
                 <div>玉ねぎ</div>
                 <div>100g</div>
               </div>
-              <div class="ingredient">
+              <div
+                css={css`
+                  display: flex;
+                  justify-content: space-between;
+                  padding: 10px 0px;
+                  border-bottom: solid 1px #f4f2f0;
+                `}
+              >
                 <div>ベビーチーズ</div>
                 <div>4個</div>
               </div>
-              <div class="ingredient">
+              <div
+                css={css`
+                  display: flex;
+                  justify-content: space-between;
+                  padding: 10px 0px;
+                  border-bottom: solid 1px #f4f2f0;
+                `}
+              >
                 <div>卵 (Mサイズ)</div>
                 <div>1個</div>
               </div>
-              <div class="ingredient">
+              <div
+                css={css`
+                  display: flex;
+                  justify-content: space-between;
+                  padding: 10px 0px;
+                  border-bottom: solid 1px #f4f2f0;
+                `}
+              >
                 <div>パン粉 (生)</div>
                 <div>大さじ2</div>
               </div>
-              <div class="ingredient">
+              <div
+                css={css`
+                  display: flex;
+                  justify-content: space-between;
+                  padding: 10px 0px;
+                  border-bottom: solid 1px #f4f2f0;
+                `}
+              >
                 <div>牛乳</div>
                 <div>大さじ1</div>
               </div>
-              <div class="ingredient">
+              <div
+                css={css`
+                  display: flex;
+                  justify-content: space-between;
+                  padding: 10px 0px;
+                  border-bottom: solid 1px #f4f2f0;
+                `}
+              >
                 <div>(A)ナツメグ</div>
                 <div>小さじ1</div>
               </div>
-              <div class="ingredient">
+              <div
+                css={css`
+                  display: flex;
+                  justify-content: space-between;
+                  padding: 10px 0px;
+                  border-bottom: solid 1px #f4f2f0;
+                `}
+              >
                 <div>(A)塩こしょう</div>
                 <div>小さじ1/4</div>
               </div>
-              <div class="ingredient">
+              <div
+                css={css`
+                  display: flex;
+                  justify-content: space-between;
+                  padding: 10px 0px;
+                  border-bottom: solid 1px #f4f2f0;
+                `}
+              >
                 <div>サラダ油</div>
                 <div>大さじ1</div>
               </div>
-              <div class="ingredient">
+              <div
+                css={css`
+                  display: flex;
+                  justify-content: space-between;
+                  padding: 10px 0px;
+                  border-bottom: solid 1px #f4f2f0;
+                `}
+              >
                 <div>デミグラスソース</div>
                 <div>200g</div>
               </div>
-              <div class="ingredient">
+              <div
+                css={css`
+                  display: flex;
+                  justify-content: space-between;
+                  padding: 10px 0px;
+                  border-bottom: solid 1px #f4f2f0;
+                `}
+              >
                 <div>カットトマト缶</div>
                 <div>100g</div>
               </div>
-              <div class="ingredient">
+              <div
+                css={css`
+                  display: flex;
+                  justify-content: space-between;
+                  padding: 10px 0px;
+                  border-bottom: solid 1px #f4f2f0;
+                `}
+              >
                 <div>生クリーム</div>
                 <div>20ml</div>
               </div>
-              <div class="ingredient">
+              <div
+                css={css`
+                  display: flex;
+                  justify-content: space-between;
+                  padding: 10px 0px;
+                  border-bottom: solid 1px #f4f2f0;
+                `}
+              >
                 <div>有塩バター</div>
                 <div>20g</div>
               </div>
-              <div class="ingredient">
+              <div
+                css={css`
+                  display: flex;
+                  justify-content: space-between;
+                  padding: 10px 0px;
+                  border-bottom: solid 1px #f4f2f0;
+                `}
+              >
                 <div>赤ワイン</div>
                 <div>大さじ2</div>
               </div>
-              <div class="ingredient">
+              <div
+                css={css`
+                  display: flex;
+                  justify-content: space-between;
+                  padding: 10px 0px;
+                  border-bottom: solid 1px #f4f2f0;
+                `}
+              >
                 <div>ウスターソース</div>
                 <div>大さじ1</div>
               </div>
-              <div class="ingredient">
+              <div
+                css={css`
+                  display: flex;
+                  justify-content: space-between;
+                  padding: 10px 0px;
+                  border-bottom: solid 1px #f4f2f0;
+                `}
+              >
                 <div>生クリーム</div>
                 <div>適量</div>
               </div>
