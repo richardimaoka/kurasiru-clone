@@ -18,9 +18,14 @@ type NewTodo struct {
 }
 
 type Recipe struct {
-	ID          *string      `json:"id"`
-	Ingredients *Ingredients `json:"ingredients"`
-	Video       *Video       `json:"video"`
+	ID           *string      `json:"id"`
+	Title        *string      `json:"title"`
+	SubTitle     *string      `json:"subTitle"`
+	Introduction *string      `json:"introduction"`
+	CookingTime  *string      `json:"cookingTime"`
+	Expense      *string      `json:"expense"`
+	Ingredients  *Ingredients `json:"ingredients"`
+	Video        *Video       `json:"video"`
 }
 
 type Todo struct {
