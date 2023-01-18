@@ -22,7 +22,7 @@ const documents = {
  */
 export function graphql(
   source: "\n  query GetRecipe($recipeId: ID) {\n    recipe(id: $recipeId) {\n      id\n    }\n  }\n"
-): typeof documents["\n  query GetRecipe($recipeId: ID) {\n    recipe(id: $recipeId) {\n      id\n    }\n  }\n"];
+): (typeof documents)["\n  query GetRecipe($recipeId: ID) {\n    recipe(id: $recipeId) {\n      id\n    }\n  }\n"];
 
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
