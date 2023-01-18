@@ -5,6 +5,7 @@ import { ParsedUrlQuery } from "querystring";
 import { FooterContainerLower } from "../../components/footer/FooterContainerLower";
 import { FooterContainerUpper } from "../../components/footer/FooterContainerUpper";
 import { Header } from "../../components/header/Header";
+import { VideoComponent } from "../../components/recipe/VideoComponent";
 import { client } from "../../libs/apolloClient";
 import { graphql } from "../../libs/gql/gql";
 import { GetRecipeQuery } from "../../libs/gql/graphql";
@@ -14,9 +15,7 @@ const GET_RECIPE = graphql(`
     recipe(id: $recipeId) {
       id
       video {
-        thumbnailUrl
-        source
-        type
+        ...VideoComponent_Fragment
       }
     }
   }
@@ -100,27 +99,8 @@ const RecipePage = ({ recipe }: RecipePageProps) => {
               gap: 20px;
             `}
           >
-            <video
-              width="560"
-              height="560"
-              preload="auto"
-              poster={
-                recipe.video?.thumbnailUrl ? recipe.video.thumbnailUrl : ""
-              }
-              controls={true}
-              controlsList="nodownload"
-              muted={true}
-              data-v-2932eb4e=""
-            >
-              <source
-                src={recipe.video?.source ? recipe.video.source : ""}
-                type={recipe.video?.type ? recipe.video.type : ""}
-                data-v-049f9628=""
-              />
-              <p data-v-049f9628="">
-                動画を再生するには、videoタグをサポートしたブラウザが必要です。
-              </p>
-            </video>
+            {/* `recipe.video &&` がちょっと無理やり感あり */}
+            {recipe.video && <VideoComponent fragment={recipe.video} />}
 
             <div
               css={css`
