@@ -72,6 +72,13 @@ export type Video = {
   type?: Maybe<Scalars["String"]>;
 };
 
+export type VideoComponent_FragmentFragment = {
+  __typename: "Video";
+  thumbnailUrl?: string | null;
+  source?: string | null;
+  type?: string | null;
+} & { " $fragmentName"?: "VideoComponent_FragmentFragment" };
+
 export type GetRecipeQueryVariables = Exact<{
   recipeId?: InputMaybe<Scalars["ID"]>;
 }>;
@@ -90,6 +97,27 @@ export type GetRecipeQuery = {
   } | null;
 };
 
+export const VideoComponent_FragmentFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "VideoComponent_Fragment" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "Video" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "thumbnailUrl" } },
+          { kind: "Field", name: { kind: "Name", value: "source" } },
+          { kind: "Field", name: { kind: "Name", value: "type" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<VideoComponent_FragmentFragment, unknown>;
 export const GetRecipeDocument = {
   kind: "Document",
   definitions: [
